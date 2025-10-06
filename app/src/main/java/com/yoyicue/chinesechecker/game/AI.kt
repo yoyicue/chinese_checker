@@ -1,5 +1,6 @@
 package com.yoyicue.chinesechecker.game
 
+import kotlin.math.abs
 import kotlin.random.Random
 
 interface Bot {
@@ -125,7 +126,7 @@ class SmartBot(
         val deadline = System.nanoTime() + timeBudgetMs * 1_000_000
 
         // Base ordering by greedy improvement
-        data class RootChild(val move: Board.Move, val priority: Long)
+        data class RootChild(val move: Board.Move, val boardAfter: Board, val priority: Long)
         val startCamp = board.startCampCells(player)
         fun baseOrder(ms: List<Board.Move>): List<RootChild> = ms.map { m ->
             val b = board.copy().apply(m)
@@ -133,23 +134,31 @@ class SmartBot(
             val jumpBonus = if (m.isJump) 10L else 0L
             val homeBreak = if (m.from in startCamp && m.to !in startCamp) 1L else 0L
             val pri = scoreValue * ROOT_ORDER_SCORE_SCALE + jumpBonus + homeBreak
-            RootChild(m, pri)
+            RootChild(m, b, pri)
         }.sortedByDescending { it.priority }
-        val rootChildren = baseOrder(moves)
+        val rootChildren = baseOrder(moves).toMutableList()
 
         var bestMove: Board.Move? = null
+        val rootHash = hash(board)
         var depth = 1
 
         fun cancelled() = Thread.interrupted() || System.nanoTime() >= deadline
 
         while (depth <= maxDepth && !cancelled()) {
+            val pvMove = bestMove ?: tt[rootHash]?.best
+            if (pvMove != null) {
+                rootChildren.sortWith(
+                    compareByDescending<RootChild> { it.move == pvMove }
+                        .thenByDescending { it.priority }
+                )
+            }
             var localBest: Board.Move? = bestMove
             var localBestScore = Int.MIN_VALUE
             var alphaRoot = Int.MIN_VALUE + 1
             val betaRoot = Int.MAX_VALUE - 1
             for (child in rootChildren) {
                 if (cancelled()) break
-                val b2 = board.copy().apply(child.move)
+                val b2 = child.boardAfter
                 val v = alphaBeta(
                     b2, player, depth - 1,
                     alphaRoot, betaRoot, deadline,
@@ -199,7 +208,7 @@ class SmartBot(
 
         // Terminal
         val w = board.winner()
-        if (w != null) return if (w == me) 1_000_000 else -1_000_000
+        if (w != null) return if (w == me) WIN_SCORE else -WIN_SCORE
         if (depth == 0 || System.nanoTime() >= deadlineNs || Thread.interrupted()) {
             return quiescence(board, me, alphaInit, betaInit, QUIESCENCE_MAX_DEPTH, deadlineNs)
         }
@@ -317,6 +326,10 @@ class SmartBot(
         depth: Int,
         deadlineNs: Long
     ): Int {
+        val winner = board.winner()
+        if (winner != null) {
+            return if (winner == me) WIN_SCORE else -WIN_SCORE
+        }
         if (depth <= 0 || System.nanoTime() >= deadlineNs || Thread.interrupted()) {
             return score(board, me)
         }
@@ -380,27 +393,45 @@ class SmartBot(
         if (moves.isEmpty()) return emptyList()
         val currentPlayer = board.currentPlayer
         val startCamp = board.startCampCells(currentPlayer)
+
+        fun heuristic(move: Board.Move): Int {
+            var h = 0
+            if (move.isJump) h += 16
+            if (move.from in startCamp && move.to !in startCamp) h += 8
+            h += (6 - move.to.distanceTo(CENTER_HEX)).coerceAtLeast(0)
+            if (move.path.size > 2) h += move.path.size
+            return h
+        }
+
+        val jumpPrefilter = moves.asSequence()
+            .filter { it.isJump }
+            .sortedByDescending { heuristic(it) }
+            .take(QUIESCENCE_PREFILTER_CAP)
+            .toList()
+
+        val slidePrefilter = moves.asSequence()
+            .filterNot { it.isJump }
+            .sortedByDescending { heuristic(it) }
+            .take(QUIESCENCE_PREFILTER_SLIDE_CAP)
+            .toList()
+
+        val prefiltered = (jumpPrefilter + slidePrefilter).ifEmpty { moves.take(QUIESCENCE_PREFILTER_CAP) }
+
         val comparator = compareByDescending<TacticCandidate> { it.evalForOrder }
             .thenByDescending { it.freesHome }
             .thenByDescending { it.centerBias }
 
-        val jumpCandidates = moves.filter { it.isJump }.map { move ->
+        val candidates = prefiltered.map { move ->
             val b2 = board.copy().apply(move)
             val eval = score(b2, me)
             val evalForOrder = if (maximizing) eval else -eval
             val freesHome = move.from in startCamp && move.to !in startCamp
             val centerBias = -move.to.distanceTo(CENTER_HEX)
             TacticCandidate(move, b2, evalForOrder, freesHome, centerBias)
-        }.sortedWith(comparator).take(QUIESCENCE_JUMP_CAP)
+        }.sortedWith(comparator)
 
-        val slideCandidates = moves.filterNot { it.isJump }.map { move ->
-            val b2 = board.copy().apply(move)
-            val eval = score(b2, me)
-            val evalForOrder = if (maximizing) eval else -eval
-            val freesHome = move.from in startCamp && move.to !in startCamp
-            val centerBias = -move.to.distanceTo(CENTER_HEX)
-            TacticCandidate(move, b2, evalForOrder, freesHome, centerBias)
-        }.sortedWith(comparator).take(QUIESCENCE_SLIDE_CAP)
+        val jumpCandidates = candidates.filter { it.move.isJump }.take(QUIESCENCE_JUMP_CAP)
+        val slideCandidates = candidates.filterNot { it.move.isJump }.take(QUIESCENCE_SLIDE_CAP)
 
         return buildList { addAll(jumpCandidates); addAll(slideCandidates) }
     }
@@ -426,16 +457,24 @@ class SmartBot(
         val myEntered = enteredCount(b, me)
         val oppEntered = others.maxOf { enteredCount(b, it) }
         val enteredDiff = myEntered - oppEntered
-        val bonus = enteredDiff * enteredWeight(myEff)
-        return relative + bonus
+        val rawBonus = enteredDiff * enteredWeight(myEff)
+        val capFromRelative = (abs(relative) * ENTERED_RELATIVE_CAP_PERCENT) / 100
+        val cap = if (capFromRelative > 0) capFromRelative.coerceAtLeast(ENTERED_ABS_CAP_MIN) else ENTERED_ABS_CAP_MIN
+        val limitedBonus = rawBonus.coerceIn(-cap, cap)
+        return relative + limitedBonus
     }
 }
 
 private val CENTER_HEX: Hex = Hex.origin()
+private const val WIN_SCORE = 1_000_000
 private const val QUIESCENCE_JUMP_CAP = 12
 private const val QUIESCENCE_SLIDE_CAP = 4
+private const val QUIESCENCE_PREFILTER_CAP = 24
+private const val QUIESCENCE_PREFILTER_SLIDE_CAP = 8
 private const val QUIESCENCE_MAX_DEPTH = 2
 private const val ROOT_ORDER_SCORE_SCALE = 1_000L
+private const val ENTERED_RELATIVE_CAP_PERCENT = 60
+private const val ENTERED_ABS_CAP_MIN = 120
 
 private fun distanceSumToGoal(board: Board, player: Board.PlayerId): Int {
     val target = board.goalCampCells(player)
