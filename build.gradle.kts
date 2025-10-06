@@ -3,4 +3,5 @@ plugins {
     // Keep Kotlin aligned with Compose compiler compatibility
     id("org.jetbrains.kotlin.android") version "1.9.25" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.25" apply false
+    id("androidx.room") version "2.6.1" apply false
 }

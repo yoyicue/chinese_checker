@@ -125,15 +125,17 @@ class SmartBot(
         val deadline = System.nanoTime() + timeBudgetMs * 1_000_000
 
         // Base ordering by greedy improvement
+        data class RootChild(val move: Board.Move, val boardAfter: Board, val priority: Long)
         val startCamp = board.startCampCells(player)
-        fun baseOrder(ms: List<Board.Move>): List<Board.Move> = ms.sortedByDescending { m ->
+        fun baseOrder(ms: List<Board.Move>): List<RootChild> = ms.map { m ->
             val b = board.copy().apply(m)
             val scoreValue = score(b, player).toLong()
             val jumpBonus = if (m.isJump) 10L else 0L
             val homeBreak = if (m.from in startCamp && m.to !in startCamp) 1L else 0L
-            scoreValue * ROOT_ORDER_SCORE_SCALE + jumpBonus + homeBreak
-        }
-        val rootMoves = baseOrder(moves)
+            val pri = scoreValue * ROOT_ORDER_SCORE_SCALE + jumpBonus + homeBreak
+            RootChild(m, b, pri)
+        }.sortedByDescending { it.priority }
+        val rootChildren = baseOrder(moves)
 
         var bestMove: Board.Move? = null
         var depth = 1
@@ -145,9 +147,9 @@ class SmartBot(
             var localBestScore = Int.MIN_VALUE
             var alphaRoot = Int.MIN_VALUE + 1
             val betaRoot = Int.MAX_VALUE - 1
-            for (m in rootMoves) {
+            for (child in rootChildren) {
                 if (cancelled()) break
-                val b2 = board.copy().apply(m)
+                val b2 = child.boardAfter
                 val v = alphaBeta(
                     b2, player, depth - 1,
                     alphaRoot, betaRoot, deadline,
@@ -156,7 +158,7 @@ class SmartBot(
                 )
                 if (v > localBestScore) {
                     localBestScore = v
-                    localBest = m
+                    localBest = child.move
                 }
                 if (v > alphaRoot) alphaRoot = v
             }
@@ -165,7 +167,7 @@ class SmartBot(
             }
             depth += 1
         }
-        return bestMove ?: rootMoves.first()
+        return bestMove ?: rootChildren.first().move
     }
 
     private fun alphaBeta(
@@ -201,23 +203,41 @@ class SmartBot(
         if (depth == 0 || System.nanoTime() >= deadlineNs || Thread.interrupted()) {
             val current = board.currentPlayer
             val moves0 = board.legalMovesFor(current)
-            val jumpMoves = moves0.filter { it.isJump }
-            if (jumpMoves.isEmpty()) return score(board, me)
+            if (moves0.isEmpty()) return score(board, me)
 
-            val before = progressMeasure(board, current)
-            val evals = jumpMoves
-                .map { move ->
-                    val b2 = board.copy().apply(move)
-                    val after = progressMeasure(b2, current)
-                    val gain = before - after
-                    gain to score(b2, me)
-                }
-                .sortedByDescending { it.first }
-                .take(QUIESCENCE_JUMP_CAP)
-                .map { it.second }
+            val jumpMoves = moves0.filter { it.isJump }
+            val considerSlides = jumpMoves.isEmpty() || jumpMoves.size <= QUIESCENCE_SLIDE_TRIGGER
+
+            val candidates = mutableListOf<Pair<Board.Move, Int>>()
+
+            fun evaluate(move: Board.Move): Pair<Board.Move, Int> {
+                val b2 = board.copy().apply(move)
+                val sc = score(b2, me)
+                return move to sc
+            }
+
+            if (jumpMoves.isNotEmpty()) {
+                val orderedJumps = jumpMoves
+                    .map(::evaluate)
+                    .sortedBy { if (current == me) -it.second else it.second }
+                candidates += orderedJumps.take(QUIESCENCE_JUMP_CAP)
+            }
+
+            if (considerSlides) {
+                val slides = moves0.asSequence().filterNot { it.isJump }
+                    .map(::evaluate)
+                    .sortedBy { if (current == me) -it.second else it.second }
+                    .take(QUIESCENCE_SLIDE_CAP)
+                candidates += slides
+            }
+
+            if (candidates.isEmpty()) {
+                return score(board, me)
+            }
 
             val fallback = score(board, me)
-            return if (current == me) evals.maxOrNull() ?: fallback else evals.minOrNull() ?: fallback
+            val values = candidates.map { it.second }
+            return if (current == me) values.maxOrNull() ?: fallback else values.minOrNull() ?: fallback
         }
 
         var alpha = alphaInit
@@ -244,7 +264,8 @@ class SmartBot(
 
         // Build ordering: TT best, killers, history, then greedy
         val ttBest = ttEntry?.best
-        val ordered = moves.sortedByDescending { m ->
+        data class ChildNode(val move: Board.Move, val boardAfter: Board, val priority: Int)
+        val ordered = moves.map { m ->
             var pri = 0
             if (ttBest != null && m == ttBest) pri += 1_000_000
             if (killers1.getOrNull(ply) == m) pri += 500_000
@@ -254,8 +275,8 @@ class SmartBot(
             if (keyFT != null) pri += (history[keyFT] ?: 0)
             val b2 = board.copy().apply(m)
             val s = score(b2, me)
-            pri + if (current == me) s else -s
-        }
+            ChildNode(m, b2, pri + if (current == me) s else -s)
+        }.sortedByDescending { it.priority }
 
         val maximizing = (current == me)
         var bestMove: Board.Move? = null
@@ -264,27 +285,26 @@ class SmartBot(
         val origBeta = beta
 
         var searchedAny = false
-        for (m in ordered) {
+        for (child in ordered) {
             if (System.nanoTime() >= deadlineNs || Thread.interrupted()) break
-            val b2 = board.copy().apply(m)
-            val child = alphaBeta(b2, me, depth - 1, alpha, beta, deadlineNs, indexByHex, zob, sideZ, tt, ttPut, killers1, killers2, history, ply + 1)
+            val childScore = alphaBeta(child.boardAfter, me, depth - 1, alpha, beta, deadlineNs, indexByHex, zob, sideZ, tt, ttPut, killers1, killers2, history, ply + 1)
             searchedAny = true
             if (maximizing) {
-                if (child > value) { value = child; bestMove = m }
+                if (childScore > value) { value = childScore; bestMove = child.move }
                 if (value > alpha) alpha = value
                 if (alpha >= beta) {
                     // beta cut -> update killers/history
-                    if (killers1[ply] != m) { killers2[ply] = killers1[ply]; killers1[ply] = m }
-                    val ft = fromToKey(m, indexByHex)
+                    if (killers1[ply] != child.move) { killers2[ply] = killers1[ply]; killers1[ply] = child.move }
+                    val ft = fromToKey(child.move, indexByHex)
                     if (ft != null) history[ft] = (history[ft] ?: 0) + depth * depth
                     break
                 }
             } else {
-                if (child < value) { value = child; bestMove = m }
+                if (childScore < value) { value = childScore; bestMove = child.move }
                 if (value < beta) beta = value
                 if (alpha >= beta) {
-                    if (killers1[ply] != m) { killers2[ply] = killers1[ply]; killers1[ply] = m }
-                    val ft = fromToKey(m, indexByHex)
+                    if (killers1[ply] != child.move) { killers2[ply] = killers1[ply]; killers1[ply] = child.move }
+                    val ft = fromToKey(child.move, indexByHex)
                     if (ft != null) history[ft] = (history[ft] ?: 0) + depth * depth
                     break
                 }
@@ -321,14 +341,15 @@ class SmartBot(
         }
 
         val enteredDiff = enteredCount(b, me) - others.sumOf { enteredCount(b, it) }
-        val bonus = enteredDiff * ENTERED_COUNT_WEIGHT
+        val bonus = enteredDiff * enteredWeight(myEff)
         return relative + bonus
     }
 }
 
 private val CENTER_HEX: Hex = Hex.origin()
-private const val ENTERED_COUNT_WEIGHT = 120
 private const val QUIESCENCE_JUMP_CAP = 12
+private const val QUIESCENCE_SLIDE_CAP = 4
+private const val QUIESCENCE_SLIDE_TRIGGER = 6
 private const val ROOT_ORDER_SCORE_SCALE = 1_000L
 
 private fun distanceSumToGoal(board: Board, player: Board.PlayerId): Int {
@@ -368,4 +389,10 @@ private fun progressMeasure(board: Board, player: Board.PlayerId): Int = effecti
 private fun enteredCount(board: Board, player: Board.PlayerId): Int {
     val goal = board.goalCampCells(player)
     return board.allPieces(player).count { it in goal }
+}
+
+private fun enteredWeight(myEff: Int): Int = when {
+    myEff >= 600 -> 60
+    myEff >= 300 -> 100
+    else -> 40
 }
