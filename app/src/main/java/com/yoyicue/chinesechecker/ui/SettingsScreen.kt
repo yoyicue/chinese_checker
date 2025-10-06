@@ -98,7 +98,7 @@ fun SettingsScreen(onBack: () -> Unit) {
                 )
 
                 SettingSwitchRow(
-                    title = "快节奏",
+                    title = "限时模式",
                     description = "为每位玩家开启走棋倒计时。",
                     checked = s.fastGame,
                     onCheckedChange = { on ->
