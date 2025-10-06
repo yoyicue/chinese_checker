@@ -149,7 +149,18 @@ fun GameScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                Button(onClick = { showConfirmExit.value = true }) { Text("返回") }
+                Button(onClick = {
+                    if (showVictoryOverlay.value) {
+                        scope.launch {
+                            container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, activeConfig)
+                            showVictoryOverlay.value = false
+                            showConfirmExit.value = false
+                            onHome()
+                        }
+                    } else {
+                        showConfirmExit.value = true
+                    }
+                }) { Text("返回") }
                 TextButton(onClick = {
                     if (settings.haptics) doHaptic(HapticKind.Light)
                     vm.undo()
@@ -260,7 +271,7 @@ fun GameScreen(
                         TextButton(onClick = {
                             // 保存并退出
                             scope.launch {
-                                container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, config)
+                                container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, activeConfig)
                                 showConfirmExit.value = false
                                 onHome()
                             }
