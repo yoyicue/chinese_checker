@@ -9,7 +9,7 @@ class AppContainer(context: Context) {
     val settingsRepository = SettingsRepository(context)
     // Room database and repositories
     private val db = Room.databaseBuilder(context, AppDatabase::class.java, "app.db")
-        .fallbackToDestructiveMigration()
+        .addMigrations(*AppDatabase.ALL_MIGRATIONS)
         .build()
     val statsRepository = StatsRepository(db.gameResultDao())
     val profileRepository = ProfileRepository(db.profileDao())

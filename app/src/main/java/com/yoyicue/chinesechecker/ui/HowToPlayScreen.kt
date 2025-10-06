@@ -181,14 +181,14 @@ private fun DemoBoardPath(restartKey: Int, mode: DemoMode) {
     val scheme = MaterialTheme.colorScheme
     Canvas(modifier = Modifier.fillMaxWidth().aspectRatio(1f)) {
         val w = size.width
-        val h = size.height
+        val heightPx = size.height
         val nodeRadiusUnit = 0.45f
         val scale = 0.9f * minOf(
             w / (maxX - minX + 2f * nodeRadiusUnit),
-            h / (maxY - minY + 2f * nodeRadiusUnit)
+            heightPx / (maxY - minY + 2f * nodeRadiusUnit)
         )
         val ox = w / 2f - (minX + maxX) / 2f * scale
-        val oy = h / 2f - (minY + maxY) / 2f * scale
+        val oy = heightPx / 2f - (minY + maxY) / 2f * scale
         val nodeRadius = scale * nodeRadiusUnit
 
         // Draw nodes (pale)
@@ -200,8 +200,8 @@ private fun DemoBoardPath(restartKey: Int, mode: DemoMode) {
         }
 
         val staticColor = Color(0xFF1E88E5)
-        staticPieces.forEach { h ->
-            val id = pts.indexOf(h)
+        staticPieces.forEach { hex ->
+            val id = pts.indexOf(hex)
             if (id >= 0) {
                 val p = unitPx[id]
                 val cx = ox + p.x * scale

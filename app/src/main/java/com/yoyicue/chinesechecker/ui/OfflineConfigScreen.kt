@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -28,6 +30,8 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -99,64 +103,73 @@ fun OfflineConfigScreen(
 
     val seats = remember(playerCountState.value) { seatsForCount(playerCountState.value) }
 
+    val scrollState = rememberScrollState()
+
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Row { TextButton(onClick = onBack) { Text("返回") } }
         Text("离线对战配置", style = MaterialTheme.typography.headlineMedium)
 
-        Row(
-            modifier = Modifier.padding(top = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier
+                .weight(1f, fill = true)
+                .verticalScroll(scrollState)
+                .padding(top = 12.dp)
         ) {
-            Text("玩家人数")
-            CountDropdown(options = playerCountOptions, selected = playerCountState.value, onSelect = { playerCountState.value = it })
-        }
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("玩家人数")
+                CountDropdown(options = playerCountOptions, selected = playerCountState.value, onSelect = { playerCountState.value = it })
+            }
 
-        Column(modifier = Modifier.padding(top = 8.dp)) {
-            seats.forEach { (pid, label) ->
-                val st = setups.getValue(pid)
-                // Colors chosen by others
-                val chosenByOthers = seats.filter { it.first != pid }.map { setups.getValue(it.first).color.value }.toSet()
-                val optionsForThis = colorPalette.filter { it.first !in chosenByOthers }
-                // Ensure current selection remains valid; if not, force to first available
-                if (optionsForThis.none { it.first == st.color.value }) {
-                    optionsForThis.firstOrNull()?.let { st.color.value = it.first }
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 6.dp)
-                        .background(Color(0x0DFFFFFF))
-                        .padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(text = "$label (${pid.name})")
-                    Column(horizontalAlignment = Alignment.End) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                            Text("AI")
-                            Switch(checked = st.isAI.value, onCheckedChange = { st.isAI.value = it })
-                        }
-                        Row(
-                            modifier = Modifier.padding(top = 6.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            if (st.isAI.value) {
-                                AiDropdown(
-                                    selected = st.difficulty.value,
-                                    onSelect = { st.difficulty.value = it },
+            Column(modifier = Modifier.padding(top = 8.dp)) {
+                seats.forEach { (pid, label) ->
+                    val st = setups.getValue(pid)
+                    // Colors chosen by others
+                    val chosenByOthers = seats.filter { it.first != pid }.map { setups.getValue(it.first).color.value }.toSet()
+                    val optionsForThis = colorPalette.filter { it.first !in chosenByOthers }
+                    // Ensure current selection remains valid; if not, force to first available
+                    if (optionsForThis.none { it.first == st.color.value }) {
+                        optionsForThis.firstOrNull()?.let { st.color.value = it.first }
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 6.dp)
+                            .background(Color(0x0DFFFFFF))
+                            .padding(8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = "$label (${pid.name})")
+                        Column(horizontalAlignment = Alignment.End) {
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                Text("AI")
+                                Switch(checked = st.isAI.value, onCheckedChange = { st.isAI.value = it })
+                            }
+                            Row(
+                                modifier = Modifier.padding(top = 6.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                            ) {
+                                if (st.isAI.value) {
+                                    AiDropdown(
+                                        selected = st.difficulty.value,
+                                        onSelect = { st.difficulty.value = it },
+                                    )
+                                }
+                                ColorDropdown(
+                                    options = optionsForThis,
+                                    selected = st.color.value,
+                                    onSelect = { st.color.value = it }
                                 )
                             }
-                            ColorDropdown(
-                                options = optionsForThis,
-                                selected = st.color.value,
-                                onSelect = { st.color.value = it }
-                            )
                         }
                     }
                 }
             }
+            Spacer(Modifier.height(16.dp))
         }
 
         Button(

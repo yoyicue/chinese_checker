@@ -130,7 +130,7 @@ class GameRepository(private val context: Context, private val dao: SaveGameDao)
 
     suspend fun hasSave(): Boolean = withContext(Dispatchers.IO) {
         // Helper to decide if a save is meaningful to continue
-        fun isMeaningful(playerCount: Int, currentPlayer: String, occupantJson: String, lastMoveJson: String?): Boolean {
+        fun isMeaningful(playerCount: Int, currentPlayer: String, occupantJson: String): Boolean {
             return runCatching {
                 // decode occupant
                 val occList = json.decodeFromString<List<OccupantDTO>>(occupantJson)
@@ -154,13 +154,13 @@ class GameRepository(private val context: Context, private val dao: SaveGameDao)
         }
 
         val row = dao.get()
-        if (row != null) return@withContext isMeaningful(row.playerCount, row.currentPlayer, row.occupantJson, row.lastMoveJson)
+        if (row != null) return@withContext isMeaningful(row.playerCount, row.currentPlayer, row.occupantJson)
         if (!legacySaveFile.exists()) return@withContext false
         // Legacy path: parse and check
         val ok = runCatching {
             val save = json.decodeFromString<GameSave>(legacySaveFile.readText())
             val occJson = json.encodeToString(save.occupant)
-            isMeaningful(save.playerCount, save.currentPlayer, occJson, save.lastMove?.let { json.encodeToString(it) })
+            isMeaningful(save.playerCount, save.currentPlayer, occJson)
         }.getOrDefault(false)
         ok
     }
