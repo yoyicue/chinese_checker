@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -62,9 +63,13 @@ import com.yoyicue.chinesechecker.ui.LocalAppContainer
 import com.yoyicue.chinesechecker.ui.game.GameConfig
 import com.yoyicue.chinesechecker.ui.game.PlayerConfig
 import java.util.Random
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 
 @Composable
-fun GameScreen(onBack: () -> Unit) {
+fun GameScreen(
+    onExitWithoutSave: () -> Unit,
+    onHome: () -> Unit = onExitWithoutSave
+) {
     val container = LocalAppContainer.current
     val pendingRestore = container.pendingRestore
     val baseConfig = pendingRestore?.config ?: container.lastGameConfig
@@ -199,12 +204,14 @@ fun GameScreen(onBack: () -> Unit) {
                     colorName = colorName,
                     onPlayAgain = {
                         if (settings.haptics) doHaptic(HapticKind.Success)
+                        showConfirmExit.value = false
                         showVictoryOverlay.value = false
                         vm.newGame()
                     },
                     onHome = {
+                        showConfirmExit.value = false
                         showVictoryOverlay.value = false
-                        showConfirmExit.value = true
+                        onHome()
                     }
                 )
             }
@@ -250,15 +257,15 @@ fun GameScreen(onBack: () -> Unit) {
                 title = { Text("确认退出对局？") },
                 text = { Text("选择是否保存当前对局进度。") },
                 confirmButton = {
-                    TextButton(onClick = {
-                        // 保存并退出
-                        scope.launch {
-                            container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, config)
-                            showConfirmExit.value = false
-                            onBack()
-                        }
-                    }) { Text("保存并退出") }
-                },
+                        TextButton(onClick = {
+                            // 保存并退出
+                            scope.launch {
+                                container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, config)
+                                showConfirmExit.value = false
+                                onHome()
+                            }
+                        }) { Text("保存并退出") }
+                    },
                 dismissButton = {
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         TextButton(onClick = {
@@ -266,7 +273,7 @@ fun GameScreen(onBack: () -> Unit) {
                             scope.launch {
                                 container.gameRepository.clearSave()
                                 showConfirmExit.value = false
-                                onBack()
+                                onExitWithoutSave()
                             }
                         }) { Text("不保存并退出") }
                         TextButton(onClick = { showConfirmExit.value = false }) { Text("取消") }
@@ -580,6 +587,7 @@ private fun BoxScope.DebugOverlay(events: List<String>) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun LegendRow(
     order: List<Board.PlayerId>,
@@ -587,14 +595,19 @@ private fun LegendRow(
     camps: Map<Board.PlayerId, Board.Camp>,
     configs: Map<Board.PlayerId, PlayerConfig>
 ) {
-    Row(
+    FlowRow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
             .padding(vertical = 6.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        maxItemsInEachRow = when {
+            order.size >= 6 -> 3
+            order.size >= 4 -> 2
+            else -> order.size
+        }
     ) {
         order.forEach { pid ->
             val color = colors[pid] ?: MaterialTheme.colorScheme.onSurfaceVariant

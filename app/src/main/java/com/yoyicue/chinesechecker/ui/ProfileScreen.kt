@@ -11,14 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.background
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,23 +30,14 @@ import java.util.Locale
 fun ProfileScreen(onBack: () -> Unit) {
     val container = LocalAppContainer.current
     val scope = rememberCoroutineScope()
-    val profile by container.profileRepository.profile().collectAsState(initial = null)
     val stats by container.statsRepository.stats().collectAsState(initial = null)
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Row { TextButton(onClick = onBack) { Text("返回") } }
-        Text("资料与统计", style = MaterialTheme.typography.headlineMedium)
+        Text("统计", style = MaterialTheme.typography.headlineMedium)
 
-        Spacer(Modifier.height(12.dp))
-        Text("昵称")
-        val nameState = remember(profile) { mutableStateOf(profile?.nickname ?: "玩家") }
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-            OutlinedTextField(value = nameState.value, onValueChange = { nameState.value = it }, modifier = Modifier.weight(1f))
-            Button(onClick = { scope.launch { container.profileRepository.updateNickname(nameState.value.trim().ifEmpty { "玩家" }) } }) { Text("保存") }
-        }
-
-        Spacer(Modifier.height(20.dp))
-        Text("统计", style = MaterialTheme.typography.titleMedium)
+        Spacer(Modifier.height(16.dp))
+        Text("胜负统计", style = MaterialTheme.typography.titleMedium)
         if (stats != null) {
             val s = stats!!
             Column(modifier = Modifier.fillMaxWidth()) {
@@ -122,7 +110,6 @@ private fun StatsBarRow(label: String, value: Int, fraction: Float, color: Color
             Text(value.toString(), color = MaterialTheme.colorScheme.onSurface)
         }
         Spacer(Modifier.height(4.dp))
-        // Track
         androidx.compose.foundation.layout.Box(
             modifier = Modifier
                 .fillMaxWidth()

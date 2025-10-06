@@ -42,7 +42,7 @@ fun StartScreen(
         }
         Button(modifier = Modifier.padding(top = 8.dp), onClick = onStartOffline) { Text("离线对战") }
         Button(modifier = Modifier.padding(top = 8.dp), onClick = onOpenSettings) { Text("设置") }
-        Button(modifier = Modifier.padding(top = 8.dp), onClick = onOpenProfile) { Text("资料") }
+        Button(modifier = Modifier.padding(top = 8.dp), onClick = onOpenProfile) { Text("统计") }
         Button(modifier = Modifier.padding(top = 8.dp), onClick = onOpenHowToPlay) { Text("教学") }
     }
 }

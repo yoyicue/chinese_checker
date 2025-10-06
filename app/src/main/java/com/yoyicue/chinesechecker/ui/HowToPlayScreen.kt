@@ -84,12 +84,6 @@ private fun RulesTabContent() {
             Text("- 连续跳跃：长跳与普通跳可在同一回合串联使用，只要每段落点合法。")
         }
 
-        Text("棋子布局", modifier = Modifier.padding(top = 16.dp), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Column(modifier = Modifier.padding(top = 8.dp)) {
-            Text("- 2/3/4/6 人局共用同一棋盘，起始营地不同。")
-            Text("- 请尽早移动营地前排的棋子，为后续连跳留出通路。")
-        }
-
         Text("演示：连跳路径（示意）", modifier = Modifier.padding(top = 16.dp), style = MaterialTheme.typography.titleMedium)
         val demoTabs = listOf("普通跳", "长跳")
         TabRow(selectedTabIndex = if (demoMode.value == DemoMode.Normal) 0 else 1, modifier = Modifier.padding(top = 8.dp)) {

@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
-val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v.0.1.1"
+val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v0.1.1"
 
 android {
     namespace = "com.yoyicue.chinesechecker"
@@ -55,8 +55,8 @@ android {
 
 kapt {
     arguments {
-        // Export Room schema JSON files for Room (used for migrations/tests)
         arg("room.schemaLocation", "$projectDir/app/schemas")
+        arg("room.incremental", "true")
     }
 }
 

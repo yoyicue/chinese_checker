@@ -1,10 +1,14 @@
 package com.yoyicue.chinesechecker.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,8 +26,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.verticalScroll
 import com.yoyicue.chinesechecker.ui.LocalAppContainer
 import com.yoyicue.chinesechecker.ui.util.HapticKind
 import com.yoyicue.chinesechecker.ui.util.rememberHaptic
@@ -35,84 +41,134 @@ fun SettingsScreen(onBack: () -> Unit) {
     val scope = rememberCoroutineScope()
     val settings by container.settingsRepository.settings.collectAsState(initial = null)
     val doHaptic = rememberHaptic()
+    val scrollState = rememberScrollState()
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Row { TextButton(onClick = onBack) { Text("返回") } }
-        Text("设置")
+        Text("设置", style = MaterialTheme.typography.headlineMedium)
         if (settings != null) {
             val s = settings!!
-            Text("音效音量: %.0f%%".format(s.soundsVolume * 100), color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Slider(value = s.soundsVolume, onValueChange = { v -> scope.launch { container.settingsRepository.update { it.copy(soundsVolume = v) } } })
+            Spacer(Modifier.height(16.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(scrollState)
+            ) {
+                Text(
+                    "音效音量: %.0f%%".format(s.soundsVolume * 100),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Slider(
+                    value = s.soundsVolume,
+                    onValueChange = { v -> scope.launch { container.settingsRepository.update { it.copy(soundsVolume = v) } } },
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                Text("震动")
-                Switch(
+                SettingSwitchRow(
+                    title = "震动",
                     checked = s.haptics,
                     onCheckedChange = { on ->
                         if (on) doHaptic(HapticKind.Success)
                         scope.launch { container.settingsRepository.update { it.copy(haptics = on) } }
                     }
                 )
-            }
 
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                Text("深色主题")
-                Switch(checked = s.themeDark, onCheckedChange = { on ->
-                    scope.launch { container.settingsRepository.update { it.copy(themeDark = on) } }
-                })
-            }
+                SettingSwitchRow(
+                    title = "深色主题",
+                    checked = s.themeDark,
+                    onCheckedChange = { on ->
+                        scope.launch { container.settingsRepository.update { it.copy(themeDark = on) } }
+                    }
+                )
 
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                Text("快节奏")
-                Switch(checked = s.fastGame, onCheckedChange = { on ->
-                    scope.launch { container.settingsRepository.update { it.copy(fastGame = on) } }
-                })
-            }
+                SettingSwitchRow(
+                    title = "快节奏",
+                    description = "为每位玩家开启走棋倒计时。",
+                    checked = s.fastGame,
+                    onCheckedChange = { on ->
+                        scope.launch { container.settingsRepository.update { it.copy(fastGame = on) } }
+                    }
+                )
 
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                Column {
-                    Text("启用多格连跳")
-                    Text(
-                        "所有玩家可连续跳跃更多格数",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        style = MaterialTheme.typography.bodySmall
+                SettingSwitchRow(
+                    title = "启用多格连跳",
+                    description = "允许对称跨越更多棋子，连续跳跃时可产生更远位移。",
+                    checked = s.longJumps,
+                    onCheckedChange = { on ->
+                        scope.launch { container.settingsRepository.update { it.copy(longJumps = on) } }
+                    }
+                )
+
+                if (s.fastGame) {
+                    Spacer(Modifier.height(8.dp))
+                    TurnSecondsDropdown(
+                        selected = s.turnSeconds,
+                        onSelect = { sec -> scope.launch { container.settingsRepository.update { it.copy(turnSeconds = sec) } } }
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    TimeoutActionDropdown(
+                        selected = s.timeoutAction,
+                        onSelect = { act -> scope.launch { container.settingsRepository.update { it.copy(timeoutAction = act) } } }
                     )
                 }
-                Switch(checked = s.longJumps, onCheckedChange = { on ->
-                    scope.launch { container.settingsRepository.update { it.copy(longJumps = on) } }
-                })
-            }
 
-            if (s.fastGame) {
-                TurnSecondsDropdown(
-                    selected = s.turnSeconds,
-                    onSelect = { sec -> scope.launch { container.settingsRepository.update { it.copy(turnSeconds = sec) } } }
+                SettingSwitchRow(
+                    title = "调试开关",
+                    description = "在对局中显示额外日志与事件信息。",
+                    checked = s.debugOverlay,
+                    onCheckedChange = { on ->
+                        scope.launch { container.settingsRepository.update { it.copy(debugOverlay = on) } }
+                    }
                 )
-                TimeoutActionDropdown(
-                    selected = s.timeoutAction,
-                    onSelect = { act -> scope.launch { container.settingsRepository.update { it.copy(timeoutAction = act) } } }
+
+                Spacer(Modifier.height(12.dp))
+                Text("AI 行为", style = MaterialTheme.typography.titleMedium)
+                Spacer(Modifier.height(8.dp))
+                AiDefaultDifficultyDropdown(
+                    selected = s.aiDifficulty,
+                    onSelect = { code -> scope.launch { container.settingsRepository.update { it.copy(aiDifficulty = code) } } }
                 )
-            }
+                SettingSwitchRow(
+                    title = "AI 使用多格连跳",
+                    checked = s.aiLongJumps,
+                    onCheckedChange = { on ->
+                        scope.launch { container.settingsRepository.update { it.copy(aiLongJumps = on) } }
+                    }
+                )
 
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                Text("调试开关")
-                Switch(checked = s.debugOverlay, onCheckedChange = { on ->
-                    scope.launch { container.settingsRepository.update { it.copy(debugOverlay = on) } }
-                })
+                Spacer(Modifier.height(24.dp))
             }
+        } else {
+            Spacer(Modifier.height(16.dp))
+            Text("设置加载中…", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
 
-            // 默认 AI 难度（用于离线对战页的初始难度）
-            Row(modifier = Modifier.padding(top = 16.dp)) { Text("AI 行为") }
-            AiDefaultDifficultyDropdown(
-                selected = s.aiDifficulty,
-                onSelect = { code -> scope.launch { container.settingsRepository.update { it.copy(aiDifficulty = code) } } }
+@Composable
+private fun SettingSwitchRow(
+    title: String,
+    description: String? = null,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = title, style = MaterialTheme.typography.bodyLarge)
+            Switch(checked = checked, onCheckedChange = onCheckedChange)
+        }
+        if (description != null) {
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp)
             )
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                Text("AI 使用多格连跳")
-                Switch(checked = s.aiLongJumps, onCheckedChange = { on ->
-                    scope.launch { container.settingsRepository.update { it.copy(aiLongJumps = on) } }
-                })
-            }
         }
     }
 }
@@ -127,7 +183,11 @@ private fun AiDefaultDifficultyDropdown(selected: Int, onSelect: (Int) -> Unit) 
     )
     val expanded = remember { mutableStateOf(false) }
     val label = options.firstOrNull { it.first == selected }?.second ?: options[1].second
-    ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
+    ExposedDropdownMenuBox(
+        modifier = Modifier.fillMaxWidth(),
+        expanded = expanded.value,
+        onExpandedChange = { expanded.value = !expanded.value }
+    ) {
         OutlinedTextField(
             readOnly = true,
             value = label,
@@ -152,7 +212,11 @@ private fun AiDefaultDifficultyDropdown(selected: Int, onSelect: (Int) -> Unit) 
 private fun TurnSecondsDropdown(selected: Int, onSelect: (Int) -> Unit) {
     val options = listOf(10, 15, 20, 30, 45, 60)
     val expanded = remember { mutableStateOf(false) }
-    ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
+    ExposedDropdownMenuBox(
+        modifier = Modifier.fillMaxWidth(),
+        expanded = expanded.value,
+        onExpandedChange = { expanded.value = !expanded.value }
+    ) {
         OutlinedTextField(
             readOnly = true,
             value = "$selected 秒",
@@ -178,7 +242,11 @@ private fun TimeoutActionDropdown(selected: Int, onSelect: (Int) -> Unit) {
     val options = listOf(0 to "超时：跳过回合", 1 to "超时：自动走子")
     val expanded = remember { mutableStateOf(false) }
     val label = options.firstOrNull { it.first == selected }?.second ?: options.first().second
-    ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
+    ExposedDropdownMenuBox(
+        modifier = Modifier.fillMaxWidth(),
+        expanded = expanded.value,
+        onExpandedChange = { expanded.value = !expanded.value }
+    ) {
         OutlinedTextField(
             readOnly = true,
             value = label,

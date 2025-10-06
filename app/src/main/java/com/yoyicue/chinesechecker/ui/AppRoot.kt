@@ -18,6 +18,18 @@ fun AppRoot() {
     val navController = rememberNavController()
     val container = LocalAppContainer.current
     val scope = rememberCoroutineScope()
+    fun popToStart() {
+        navController.popBackStack("start", inclusive = false, saveState = false)
+    }
+    fun goToOffline() {
+        val popped = navController.popBackStack("offline", inclusive = false, saveState = false)
+        if (!popped) {
+            navController.navigate("offline") {
+                popUpTo("start") { inclusive = false }
+                launchSingleTop = true
+            }
+        }
+    }
     NavHost(navController = navController, startDestination = "start") {
         composable("start") {
             val hasSaveState = remember { mutableStateOf(false) }
@@ -46,10 +58,15 @@ fun AppRoot() {
                 onStartGame = { navController.navigate("game") }
             )
         }
-        composable("game") { GameScreen(onBack = { navController.popBackStack() }) }
-        composable("settings") { SettingsScreen(onBack = { navController.popBackStack() }) }
-        composable("profile") { ProfileScreen(onBack = { navController.popBackStack() }) }
-        composable("howto") { HowToPlayScreen(onBack = { navController.popBackStack() }) }
+        composable("game") {
+            GameScreen(
+                onExitWithoutSave = { goToOffline() },
+                onHome = { popToStart() }
+            )
+        }
+        composable("settings") { SettingsScreen(onBack = { popToStart() }) }
+        composable("profile") { ProfileScreen(onBack = { popToStart() }) }
+        composable("howto") { HowToPlayScreen(onBack = { popToStart() }) }
         composable("ai_guide") { AiGuideScreen(onBack = { navController.popBackStack() }) }
     }
 }
