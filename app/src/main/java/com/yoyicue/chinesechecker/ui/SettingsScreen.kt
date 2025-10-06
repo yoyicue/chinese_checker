@@ -1,5 +1,6 @@
 package com.yoyicue.chinesechecker.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,8 +22,9 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -42,10 +44,23 @@ fun SettingsScreen(onBack: () -> Unit) {
     val settings by container.settingsRepository.settings.collectAsState(initial = null)
     val doHaptic = rememberHaptic()
     val scrollState = rememberScrollState()
+    var secretTapCount by remember { mutableStateOf(0) }
+    var debugUnlocked by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Row { TextButton(onClick = onBack) { Text("返回") } }
-        Text("设置", style = MaterialTheme.typography.headlineMedium)
+        Text(
+            text = "设置",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.clickable {
+                if (!debugUnlocked) {
+                    secretTapCount += 1
+                    if (secretTapCount >= 10) {
+                        debugUnlocked = true
+                    }
+                }
+            }
+        )
         if (settings != null) {
             val s = settings!!
             Spacer(Modifier.height(16.dp))
@@ -113,15 +128,6 @@ fun SettingsScreen(onBack: () -> Unit) {
                     )
                 }
 
-                SettingSwitchRow(
-                    title = "调试开关",
-                    description = "在对局中显示额外日志与事件信息。",
-                    checked = s.debugOverlay,
-                    onCheckedChange = { on ->
-                        scope.launch { container.settingsRepository.update { it.copy(debugOverlay = on) } }
-                    }
-                )
-
                 Spacer(Modifier.height(12.dp))
                 Text("AI 行为", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(8.dp))
@@ -136,6 +142,19 @@ fun SettingsScreen(onBack: () -> Unit) {
                         scope.launch { container.settingsRepository.update { it.copy(aiLongJumps = on) } }
                     }
                 )
+
+                val debugVisible = debugUnlocked || s.debugOverlay
+                if (debugVisible) {
+                    Spacer(Modifier.height(24.dp))
+                    SettingSwitchRow(
+                        title = "调试开关",
+                        description = "在对局中显示额外日志与事件信息。",
+                        checked = s.debugOverlay,
+                        onCheckedChange = { on ->
+                            scope.launch { container.settingsRepository.update { it.copy(debugOverlay = on) } }
+                        }
+                    )
+                }
 
                 Spacer(Modifier.height(24.dp))
             }
