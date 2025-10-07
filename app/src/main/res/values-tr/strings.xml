@@ -4,7 +4,7 @@
     <string name="start_title">Çin Daması</string>
     <string name="start_version">Sürüm v%1$s</string>
     <string name="start_continue">Oyuna devam et</string>
-    <string name="start_offline">Çevrimdışı Maç</string>
+    <string name="start_offline">Çevrimdışı Oyun</string>
     <string name="start_settings">Ayarlar</string>
     <string name="start_stats">İstatistikler</string>
     <string name="start_howto">Nasıl oynanır</string>
@@ -21,8 +21,8 @@
     <string name="settings_dark_theme">Koyu tema</string>
     <string name="settings_fast_mode">Süreli Mod</string>
     <string name="settings_fast_mode_desc">Her oyuncu için tur geri sayımı etkinleştir.</string>
-    <string name="settings_long_jump">Uzun sıçramaları etkinleştir</string>
-    <string name="settings_long_jump_desc">Tek hamlede daha uzağa gitmek için simetrik uzun sıçramalara izin ver.</string>
+    <string name="settings_long_jump">Uzun atlayışları etkinleştir</string>
+    <string name="settings_long_jump_desc">Tek hamlede daha uzağa gitmek için simetrik uzun atlayışlara izin ver.</string>
     <string name="settings_turn_duration">Tur süresi</string>
     <string name="settings_turn_duration_option">%1$d sn</string>
     <string name="settings_timeout_behavior">Süre dolunca davranış</string>
@@ -33,16 +33,16 @@
     <string name="difficulty_easy">Kolay</string>
     <string name="difficulty_medium">Orta</string>
     <string name="difficulty_hard">Zor</string>
-    <string name="settings_ai_long_jump">Yapay Zeka (YZ) için uzun sıçramalara izin ver</string>
+    <string name="settings_ai_long_jump">Yapay Zeka (YZ) için uzun atlayışlara izin ver</string>
     <string name="settings_debug_toggle">Hata ayıklama katmanı</string>
-    <string name="settings_debug_desc">Maç sırasında ek günlükler ve olayları göster.</string>
+    <string name="settings_debug_desc">Oyun sırasında ek günlükler ve olayları göster.</string>
     <string name="settings_language">Dil</string>
     <string name="language_auto">Sistem varsayılanı</string>
     <string name="language_english">İngilizce</string>
     <string name="language_chinese">Çince</string>
     <string name="language_spanish">İspanyolca</string>
     <!-- Çıkış iletişim kutusu -->
-    <string name="exit_dialog_title">Maçı bırak?</string>
+    <string name="exit_dialog_title">Oyunu bırak?</string>
     <string name="exit_dialog_message">Mevcut ilerlemeyi kaydedip kaydetmeyeceğinizi seçin.</string>
     <!-- Oyun ekranı -->
     <string name="game_button_undo">Geri al</string>
@@ -60,11 +60,11 @@
     <string name="camp_nw">Kuzeybatı</string>
     <string name="victory_title">Kazanan</string>
     <string name="victory_winner_message">%1$s (%2$s) kazandı!</string>
-    <string name="victory_congrats_message">Tebrikler! Harika bir maç!</string>
+    <string name="victory_congrats_message">Tebrikler! Harika bir oyun!</string>
     <string name="victory_play_again">Tekrar oyna</string>
     <string name="victory_return_home">Ana ekrana dön</string>
     <!-- Çevrimdışı kurulum -->
-    <string name="offline_title">Çevrimdışı Maç Kurulumu</string>
+    <string name="offline_title">Çevrimdışı Oyun Kurulumu</string>
     <string name="offline_player_count">Oyuncu sayısı</string>
     <string name="offline_ai_label">YZ</string>
     <string name="offline_ai_level">YZ zorluğu</string>
@@ -86,8 +86,8 @@
     <string name="colour_custom">Özel</string>
     <!-- İstatistikler -->
     <string name="profile_title">İstatistikler</string>
-    <string name="profile_section_heading">Maç istatistikleri</string>
-    <string name="profile_total_games">Toplam maç: %1$d</string>
+    <string name="profile_section_heading">Oyun istatistikleri</string>
+    <string name="profile_total_games">Toplam oyun: %1$d</string>
     <string name="profile_last_played">Son oynanma: %1$s</string>
     <string name="profile_reset_stats">İstatistikleri sıfırla</string>
     <string name="profile_chart_by_player">Oyuncuya göre galibiyetler</string>
@@ -97,26 +97,26 @@
     <!-- YZ rehberi -->
     <string name="ai_guide_title">Yapay Zeka (YZ) Modları</string>
     <string name="ai_guide_weak_title">Kolay (rastgele)</string>
-    <string name="ai_guide_weak_desc">Rastgele hamleler seçer; ileri adımlar, sıçramalar ve kampı boşaltma yönünde hafif bir öncelik tanır.</string>
+    <string name="ai_guide_weak_desc">Rastgele hamleler seçer; ileri adımlar, atlayışlar ve başlangıç alanını boşaltmaya hafif bir öncelik tanır.</string>
     <string name="ai_guide_medium_title">Orta (açgözlü)</string>
-    <string name="ai_guide_medium_desc">Tüm hamleleri değerlendirir ve hedefe mesafeyi en aza indirirken başlangıç kampından hızlıca çıkmanı sağlayanı seçer.</string>
+    <string name="ai_guide_medium_desc">Tüm hamleleri değerlendirir ve hedefe mesafeyi en aza indirirken başlangıç alanından hızlıca çıkmanı sağlayanı seçer.</string>
     <string name="ai_guide_strong_title">Zor (Minimax)</string>
-    <string name="ai_guide_strong_desc">Minimax ve budama ile birkaç tur ilerisini okur; mesafe, kamp baskısı ve taktik sıçramaları birleştirir.</string>
+    <string name="ai_guide_strong_desc">Minimax ve budama ile birkaç tur ilerisini okur; mesafe, alan baskısı ve taktik atlayışları birleştirir.</string>
     <string name="ai_guide_tip_title">İpucu</string>
-    <string name="ai_guide_tip_body">Buradan varsayılan YZ seviyesini ayarlayabilir, Çevrimdışı Maçta her koltuk için ayrı bir seviye seçebilirsin.</string>
+    <string name="ai_guide_tip_body">Buradan varsayılan YZ seviyesini ayarlayabilir, Çevrimdışı Oyunda her koltuk için ayrı bir seviye seçebilirsin.</string>
     <!-- Kurallar -->
     <string name="howto_title">Nasıl oynanır</string>
     <string name="howto_tab_rules">Kurallar</string>
     <string name="howto_tab_ai">Yapay Zeka (YZ) Genel Bakış</string>
     <string name="howto_rules_standard_heading">Standart Kurallar</string>
-    <string name="howto_rules_long_heading">Uzun Sıçrama Kuralları</string>
-    <string name="howto_demo_title">Sıçrama Gösterimleri</string>
+    <string name="howto_rules_long_heading">Uzun Atlayış Kuralları</string>
+    <string name="howto_demo_title">Atlayış Gösterimleri</string>
     <string name="howto_demo_restart">Yeniden oynat</string>
-    <string name="howto_demo_normal_desc">Normal sıçrama demosu: Kırmızı taş bitişik taşların üzerinden birer birer atlar.</string>
-    <string name="howto_demo_long_desc">Uzun sıçrama demosu: Kırmızı taş simetrik dizili taşların üzerinden atlar ve sıçramaları zincirlemeye devam eder.</string>
-    <string name="howto_rules_standard">• Adım: bitişik boş deliğe ilerle.\n• Sıçrama: bitişik taşı aşarak ardındaki boş deliğe atla.\n• Zincir sıçramalar: her iniş noktası boş olduğu sürece devam et.\n• Zafer: hedef kamptaki tüm delikleri doldur.</string>
-    <string name="howto_rules_long_jump">• Ayarlar → Uzun sıçramaları etkinleştir.\n• Birden çok taş üzerinden simetrik uzun atlayışlara izin verir ve eşit mesafeye iniş gerekir.\n• Uzun ve normal sıçramalar aynı turda birleştirilebilir.</string>
-    <string name="howto_rules_layout">• Tahta 2/3/4/6 oyuncuyu destekler; başlangıç kampları farklıdır.\n• Zincir sıçrama için yollar açmak üzere ön sırayı erken boşalt.</string>
+    <string name="howto_demo_normal_desc">Normal atlayış gösterimi: Kırmızı taş bitişik taşların üzerinden birer birer atlar.</string>
+    <string name="howto_demo_long_desc">Uzun atlayış gösterimi: Kırmızı taş simetrik dizili taşların üzerinden atlar ve atlayışları zincirlemeye devam eder.</string>
+    <string name="howto_rules_standard">• Adım: bitişik boş deliğe ilerle.\n• Atlayış: bitişik taşı aşarak ardındaki boş deliğe in.\n• Zincir atlayışlar: her iniş noktası boş olduğu sürece devam et.\n• Zafer: hedef alandaki tüm delikleri doldur.</string>
+    <string name="howto_rules_long_jump">• Ayarlar → Uzun atlayışları etkinleştir.\n• Birden çok taş üzerinden simetrik uzun atlayışlara izin verilir ve eşit mesafeye iniş gerekir.\n• Uzun ve normal atlayışları aynı turda birleştirebilirsin.</string>
+    <string name="howto_rules_layout">• Tahta 2/3/4/6 oyuncuyu destekler; başlangıç alanları farklıdır.\n• Zincir atlayışlara yol açmak için ön sırayı erkenden boşalt.</string>
     <!-- Hata ayıklama -->
     <string name="debug_logs_title">Hata ayıklama günlükleri (%1$d) - son 50</string>
     <string name="debug_clear">Günlükleri temizle</string>
