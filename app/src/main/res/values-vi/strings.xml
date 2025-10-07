@@ -4,7 +4,7 @@
     <string name="start_title">Cờ nhảy Trung Quốc</string>
     <string name="start_version">Phiên bản v%1$s</string>
     <string name="start_continue">Tiếp tục trò chơi</string>
-    <string name="start_offline">Trận ngoại tuyến</string>
+    <string name="start_offline">Ván ngoại tuyến</string>
     <string name="start_settings">Cài đặt</string>
     <string name="start_stats">Thống kê</string>
     <string name="start_howto">Cách chơi</string>
@@ -60,11 +60,11 @@
     <string name="camp_nw">Tây Bắc</string>
     <string name="victory_title">Chiến thắng</string>
     <string name="victory_winner_message">%1$s (%2$s) đã thắng!</string>
-    <string name="victory_congrats_message">Chúc mừng! Trận đấu tuyệt vời!</string>
+    <string name="victory_congrats_message">Chúc mừng! Ván đấu tuyệt vời!</string>
     <string name="victory_play_again">Chơi lại</string>
     <string name="victory_return_home">Về trang chủ</string>
     <!-- Thiết lập ngoại tuyến -->
-    <string name="offline_title">Thiết lập trận ngoại tuyến</string>
+    <string name="offline_title">Thiết lập ván ngoại tuyến</string>
     <string name="offline_player_count">Số người chơi</string>
     <string name="offline_ai_label">AI</string>
     <string name="offline_ai_level">Độ khó AI</string>
@@ -97,13 +97,13 @@
     <!-- Hướng dẫn AI -->
     <string name="ai_guide_title">Chế độ AI</string>
     <string name="ai_guide_weak_title">Dễ (ngẫu nhiên)</string>
-    <string name="ai_guide_weak_desc">Chọn nước đi ngẫu nhiên, hơi ưu tiên tiến lên, nhảy và rời căn cứ.</string>
+    <string name="ai_guide_weak_desc">Chọn nước đi ngẫu nhiên, hơi ưu tiên tiến lên, nhảy và rời tam giác xuất phát.</string>
     <string name="ai_guide_medium_title">Trung bình (tham lam)</string>
-    <string name="ai_guide_medium_desc">Đánh giá mọi nước, chọn phương án giảm khoảng cách tới đích và rời căn cứ nhanh.</string>
+    <string name="ai_guide_medium_desc">Đánh giá mọi nước, chọn phương án giảm khoảng cách tới đích và rời tam giác xuất phát nhanh.</string>
     <string name="ai_guide_strong_title">Khó (Minimax)</string>
-    <string name="ai_guide_strong_desc">Dự đoán trước nhiều lượt bằng minimax và cắt tỉa; kết hợp khoảng cách, áp lực căn cứ và các bước nhảy chiến thuật.</string>
+    <string name="ai_guide_strong_desc">Dự đoán trước nhiều lượt bằng minimax và cắt tỉa; kết hợp khoảng cách, áp lực tại tam giác xuất phát và các bước nhảy chiến thuật.</string>
     <string name="ai_guide_tip_title">Mẹo</string>
-    <string name="ai_guide_tip_body">Bạn có thể đặt độ khó AI mặc định tại đây và chọn mức riêng cho từng chỗ ngồi trong trận ngoại tuyến.</string>
+    <string name="ai_guide_tip_body">Bạn có thể đặt độ khó AI mặc định tại đây và chọn mức riêng cho từng vị trí trong ván ngoại tuyến.</string>
     <!-- Luật chơi -->
     <string name="howto_title">Cách chơi</string>
     <string name="howto_tab_rules">Luật</string>
@@ -114,9 +114,9 @@
     <string name="howto_demo_restart">Phát lại</string>
     <string name="howto_demo_normal_desc">Minh họa nhảy thường: quân đỏ lần lượt nhảy qua các quân kề cận.</string>
     <string name="howto_demo_long_desc">Minh họa nhảy xa: quân đỏ vượt qua hàng quân đối xứng và tiếp tục chuỗi nhảy.</string>
-    <string name="howto_rules_standard">• Đi bộ: di chuyển tới lỗ trống kề cận.\n• Nhảy: nhảy qua quân kề cận tới lỗ trống phía sau.\n• Chuỗi nhảy: tiếp tục khi điểm đáp còn trống.\n• Thắng: chiếm toàn bộ lỗ tại căn cứ mục tiêu.</string>
+    <string name="howto_rules_standard">• Đi bộ: di chuyển tới ô trống kề cận.\n• Nhảy: nhảy qua quân kề cận tới ô trống phía sau.\n• Chuỗi nhảy: tiếp tục khi điểm đáp còn trống.\n• Thắng: chiếm toàn bộ ô trong tam giác đích.</string>
     <string name="howto_rules_long_jump">• Bật trong Cài đặt → Nhảy xa.\n• Cho phép các bước nhảy đối xứng qua nhiều quân, đáp xuống vị trí cách đều.\n• Có thể kết hợp nhảy xa và nhảy thường trong cùng một lượt.</string>
-    <string name="howto_rules_layout">• Bàn hỗ trợ 2/3/4/6 người; căn cứ ban đầu khác nhau.\n• Giải phóng sớm hàng trước để mở đường nhảy.</string>
+    <string name="howto_rules_layout">• Bàn hỗ trợ 2/3/4/6 người; tam giác xuất phát khác nhau.\n• Giải phóng sớm hàng trước để mở đường nhảy.</string>
     <!-- Gỡ lỗi -->
     <string name="debug_logs_title">Nhật ký gỡ lỗi (%1$d) - 50 gần nhất</string>
     <string name="debug_clear">Xóa nhật ký</string>
