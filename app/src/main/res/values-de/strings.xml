@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Chinesisches Damespiel</string>
+    <!-- Startbildschirm -->
+    <string name="start_title">Chinesisches Damespiel</string>
+    <string name="start_version">Version v%1$s</string>
+    <string name="start_continue">Spiel fortsetzen</string>
+    <string name="start_offline">Offline-Partie</string>
+    <string name="start_settings">Einstellungen</string>
+    <string name="start_stats">Statistiken</string>
+    <string name="start_howto">Spielanleitung</string>
+    <!-- Allgemein -->
+    <string name="common_back">Zurück</string>
+    <string name="common_cancel">Abbrechen</string>
+    <string name="common_save_and_exit">Speichern und beenden</string>
+    <string name="common_discard_and_exit">Ohne Speichern beenden</string>
+    <string name="common_loading">Wird geladen…</string>
+    <!-- Einstellungen -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_sounds">Toneffekte: %1$d%%</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_dark_theme">Dunkles Design</string>
+    <string name="settings_fast_mode">Zeitlimit-Modus</string>
+    <string name="settings_fast_mode_desc">Für jeden Spieler einen Zug-Countdown aktivieren.</string>
+    <string name="settings_long_jump">Lange Sprünge aktivieren</string>
+    <string name="settings_long_jump_desc">Symmetrische lange Sprünge erlauben, um in einem Zug weiter zu kommen.</string>
+    <string name="settings_turn_duration">Zugdauer</string>
+    <string name="settings_turn_duration_option">%1$d s</string>
+    <string name="settings_timeout_behavior">Verhalten bei Zeitablauf</string>
+    <string name="settings_timeout_skip">Zeitablauf: Zug überspringen</string>
+    <string name="settings_timeout_auto">Zeitablauf: automatisch ziehen</string>
+    <string name="settings_ai_section">KI-Verhalten</string>
+    <string name="settings_ai_default_difficulty">Standard-KI-Schwierigkeit</string>
+    <string name="difficulty_easy">Leicht</string>
+    <string name="difficulty_medium">Mittel</string>
+    <string name="difficulty_hard">Schwer</string>
+    <string name="settings_ai_long_jump">Lange Sprünge für die KI erlauben</string>
+    <string name="settings_debug_toggle">Debug-Overlay</string>
+    <string name="settings_debug_desc">Zeigt zusätzliche Protokolle und Ereignisse während der Partie an.</string>
+    <string name="settings_language">Sprache</string>
+    <string name="language_auto">Systemstandard</string>
+    <string name="language_english">Englisch</string>
+    <string name="language_chinese">Chinesisch</string>
+    <string name="language_spanish">Spanisch</string>
+    <!-- Verlassen-Dialog -->
+    <string name="exit_dialog_title">Partie verlassen?</string>
+    <string name="exit_dialog_message">Wählen Sie, ob der aktuelle Fortschritt gespeichert werden soll.</string>
+    <!-- Spielbildschirm -->
+    <string name="game_button_undo">Rückgängig</string>
+    <string name="game_turn_indicator">Zug: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">Gewinner: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · noch %1$d s</string>
+    <string name="game_role_player">Spieler</string>
+    <string name="game_role_ai">KI</string>
+    <string name="game_role_ai_with_difficulty">KI (%1$s)</string>
+    <string name="camp_top">Oben</string>
+    <string name="camp_bottom">Unten</string>
+    <string name="camp_ne">Nordost</string>
+    <string name="camp_se">Südost</string>
+    <string name="camp_sw">Südwest</string>
+    <string name="camp_nw">Nordwest</string>
+    <string name="victory_title">Gewinner</string>
+    <string name="victory_winner_message">%1$s (%2$s) hat gewonnen!</string>
+    <string name="victory_congrats_message">Glückwunsch! Großartige Partie!</string>
+    <string name="victory_play_again">Nochmal spielen</string>
+    <string name="victory_return_home">Zur Startseite</string>
+    <!-- Offline-Konfiguration -->
+    <string name="offline_title">Offline-Partie einrichten</string>
+    <string name="offline_player_count">Spieleranzahl</string>
+    <string name="offline_ai_label">KI</string>
+    <string name="offline_ai_level">KI-Schwierigkeit</string>
+    <string name="offline_color_label">Farbe</string>
+    <string name="offline_start_game">Spiel starten</string>
+    <string name="seat_top">Oben</string>
+    <string name="seat_bottom">Unten</string>
+    <string name="seat_sw">Südwest</string>
+    <string name="seat_se">Südost</string>
+    <string name="seat_ne">Nordost</string>
+    <string name="seat_nw">Nordwest</string>
+    <string name="colour_red">Rot</string>
+    <string name="colour_blue">Blau</string>
+    <string name="colour_purple">Violett</string>
+    <string name="colour_green">Grün</string>
+    <string name="colour_yellow">Gelb</string>
+    <string name="colour_orange">Orange</string>
+    <string name="colour_teal">Türkis</string>
+    <string name="colour_custom">Benutzerdefiniert</string>
+    <!-- Statistiken -->
+    <string name="profile_title">Statistiken</string>
+    <string name="profile_section_heading">Partiestatistiken</string>
+    <string name="profile_total_games">Gesamtpartien: %1$d</string>
+    <string name="profile_last_played">Zuletzt gespielt: %1$s</string>
+    <string name="profile_reset_stats">Statistiken zurücksetzen</string>
+    <string name="profile_chart_by_player">Siege nach Spieler</string>
+    <string name="profile_chart_by_controller">Siege nach Typ (Mensch/KI)</string>
+    <string name="profile_chart_by_difficulty">Siege nach Schwierigkeit</string>
+    <string name="profile_empty">(Noch keine)</string>
+    <!-- KI-Guide -->
+    <string name="ai_guide_title">KI-Modi</string>
+    <string name="ai_guide_weak_title">Leicht (Zufall)</string>
+    <string name="ai_guide_weak_desc">Wählt zufällige Züge mit leichter Bevorzugung von Vorwärtsschritten, Sprüngen und dem Freimachen des Lagers.</string>
+    <string name="ai_guide_medium_title">Mittel (gierig)</string>
+    <string name="ai_guide_medium_desc">Bewertet alle Züge und wählt denjenigen, der die Distanz zum Ziel minimiert und das Startlager rasch räumt.</string>
+    <string name="ai_guide_strong_title">Schwer (Minimax)</string>
+    <string name="ai_guide_strong_desc">Schaut mehrere Züge voraus mit Minimax und Pruning und kombiniert Distanz, Druck im Startlager und taktische Sprünge.</string>
+    <string name="ai_guide_tip_title">Tipp</string>
+    <string name="ai_guide_tip_body">Hier können Sie die Standard-KI-Stufe festlegen und in der Offline-Partie pro Sitz einen eigenen Wert wählen.</string>
+    <!-- Regeln -->
+    <string name="howto_title">Spielanleitung</string>
+    <string name="howto_tab_rules">Regeln</string>
+    <string name="howto_tab_ai">KI-Überblick</string>
+    <string name="howto_rules_standard_heading">Standardregeln</string>
+    <string name="howto_rules_long_heading">Regeln für lange Sprünge</string>
+    <string name="howto_demo_title">Sprung-Demonstrationen</string>
+    <string name="howto_demo_restart">Erneut abspielen</string>
+    <string name="howto_demo_normal_desc">Demonstration Normaler Sprung: Die rote Figur springt nacheinander über benachbarte Steine, jeweils einen Schritt.</string>
+    <string name="howto_demo_long_desc">Demonstration Langer Sprung: Die rote Figur überspringt eine symmetrische Reihe von Steinen und setzt Sprungketten fort.</string>
+    <string name="howto_rules_standard">• Schritt: ins benachbarte freie Feld ziehen.\n• Sprung: über einen benachbarten Stein in das dahinterliegende freie Feld springen.\n• Kettensprünge: weiter springen, solange jedes Landefeld frei ist.\n• Sieg: alle Felder im Ziellager besetzen.</string>
+    <string name="howto_rules_long_jump">• In den Einstellungen unter Lange Sprünge aktivieren.\n• Erlaubt symmetrische lange Sprünge über mehrere Steine mit Landung in gleicher Distanz.\n• Lange und normale Sprünge können in einem Zug kombiniert werden.</string>
+    <string name="howto_rules_layout">• Brett unterstützt 2/3/4/6 Spieler; Startlager unterscheiden sich.\n• Räumen Sie früh die vordere Reihe, um Sprungbahnen zu öffnen.</string>
+    <!-- Debug -->
+    <string name="debug_logs_title">Debug-Protokolle (%1$d) - letzte 50</string>
+    <string name="debug_clear">Protokolle löschen</string>
+    <!-- Verschiedenes -->
+    <string name="loading_stats">Statistiken werden geladen…</string>
+</resources>

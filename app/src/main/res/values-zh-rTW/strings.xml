@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">中國跳棋</string>
+    <!-- 起始畫面 -->
+    <string name="start_title">中國跳棋</string>
+    <string name="start_version">版本 v%1$s</string>
+    <string name="start_continue">繼續對局</string>
+    <string name="start_offline">離線對戰</string>
+    <string name="start_settings">設定</string>
+    <string name="start_stats">統計</string>
+    <string name="start_howto">怎麼玩</string>
+    <!-- 通用 -->
+    <string name="common_back">返回</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_save_and_exit">儲存並離開</string>
+    <string name="common_discard_and_exit">不儲存並離開</string>
+    <string name="common_loading">載入中…</string>
+    <!-- 設定 -->
+    <string name="settings_title">設定</string>
+    <string name="settings_sounds">音效音量：%1$d%%</string>
+    <string name="settings_vibration">震動</string>
+    <string name="settings_dark_theme">深色主題</string>
+    <string name="settings_fast_mode">計時模式</string>
+    <string name="settings_fast_mode_desc">為每位玩家啟用回合倒數。</string>
+    <string name="settings_long_jump">啟用多格連跳</string>
+    <string name="settings_long_jump_desc">允許對稱跨越更多棋子，在單回合內跳得更遠。</string>
+    <string name="settings_turn_duration">每回合時長</string>
+    <string name="settings_turn_duration_option">%1$d 秒</string>
+    <string name="settings_timeout_behavior">逾時行為</string>
+    <string name="settings_timeout_skip">逾時：跳過回合</string>
+    <string name="settings_timeout_auto">逾時：自動落子</string>
+    <string name="settings_ai_section">AI 行為</string>
+    <string name="settings_ai_default_difficulty">預設 AI 難度</string>
+    <string name="difficulty_easy">弱</string>
+    <string name="difficulty_medium">中</string>
+    <string name="difficulty_hard">強</string>
+    <string name="settings_ai_long_jump">AI 使用多格連跳</string>
+    <string name="settings_debug_toggle">除錯覆蓋層</string>
+    <string name="settings_debug_desc">對局中顯示額外日誌與事件資訊。</string>
+    <string name="settings_language">語言</string>
+    <string name="language_auto">跟隨系統</string>
+    <string name="language_english">英語</string>
+    <string name="language_chinese">中文</string>
+    <string name="language_spanish">西班牙語</string>
+    <!-- 離開對話框 -->
+    <string name="exit_dialog_title">確認離開對局？</string>
+    <string name="exit_dialog_message">選擇是否儲存目前進度。</string>
+    <!-- 遊戲畫面 -->
+    <string name="game_button_undo">悔棋</string>
+    <string name="game_turn_indicator">輪到：%1$s %2$s%3$s</string>
+    <string name="game_turn_winner">勝者：%1$s %2$s</string>
+    <string name="game_turn_remaining"> · 剩餘 %1$d 秒</string>
+    <string name="game_role_player">玩家</string>
+    <string name="game_role_ai">AI</string>
+    <string name="game_role_ai_with_difficulty">AI（%1$s）</string>
+    <string name="camp_top">上</string>
+    <string name="camp_bottom">下</string>
+    <string name="camp_ne">右上</string>
+    <string name="camp_se">右下</string>
+    <string name="camp_sw">左下</string>
+    <string name="camp_nw">左上</string>
+    <string name="victory_title">勝利</string>
+    <string name="victory_winner_message">%1$s（%2$s）獲勝！</string>
+    <string name="victory_congrats_message">恭喜！精彩對局！</string>
+    <string name="victory_play_again">再玩一局</string>
+    <string name="victory_return_home">返回首頁</string>
+    <!-- 離線設定 -->
+    <string name="offline_title">離線對戰設定</string>
+    <string name="offline_player_count">玩家人數</string>
+    <string name="offline_ai_label">AI</string>
+    <string name="offline_ai_level">AI 難度</string>
+    <string name="offline_color_label">顏色</string>
+    <string name="offline_start_game">開始遊戲</string>
+    <string name="seat_top">上</string>
+    <string name="seat_bottom">下</string>
+    <string name="seat_sw">左下</string>
+    <string name="seat_se">右下</string>
+    <string name="seat_ne">右上</string>
+    <string name="seat_nw">左上</string>
+    <string name="colour_red">紅</string>
+    <string name="colour_blue">藍</string>
+    <string name="colour_purple">紫</string>
+    <string name="colour_green">綠</string>
+    <string name="colour_yellow">黃</string>
+    <string name="colour_orange">橙</string>
+    <string name="colour_teal">青</string>
+    <string name="colour_custom">自訂</string>
+    <!-- 統計 -->
+    <string name="profile_title">統計</string>
+    <string name="profile_section_heading">對局統計</string>
+    <string name="profile_total_games">總局數：%1$d</string>
+    <string name="profile_last_played">最近遊玩：%1$s</string>
+    <string name="profile_reset_stats">重設統計</string>
+    <string name="profile_chart_by_player">按玩家勝場</string>
+    <string name="profile_chart_by_controller">按類型勝場（玩家/AI）</string>
+    <string name="profile_chart_by_difficulty">按難度勝場</string>
+    <string name="profile_empty">（尚無）</string>
+    <!-- AI 指南 -->
+    <string name="ai_guide_title">AI 模式</string>
+    <string name="ai_guide_weak_title">弱（隨機偏好）</string>
+    <string name="ai_guide_weak_desc">以隨機權重選擇走法，稍微偏好前進、跳躍與清營。</string>
+    <string name="ai_guide_medium_title">中（貪心評估）</string>
+    <string name="ai_guide_medium_desc">遍歷所有走法，選擇縮短距離並盡快清營的那一個。</string>
+    <string name="ai_guide_strong_title">強（Minimax）</string>
+    <string name="ai_guide_strong_desc">使用逐步加深與剪枝，結合距離、營地壓力與戰術跳躍，預先推演多步。</string>
+    <string name="ai_guide_tip_title">提示</string>
+    <string name="ai_guide_tip_body">可於此設定預設 AI 難度，並在離線對戰中為每個座位單獨選擇。</string>
+    <!-- 規則 -->
+    <string name="howto_title">怎麼玩</string>
+    <string name="howto_tab_rules">基礎規則</string>
+    <string name="howto_tab_ai">AI 介紹</string>
+    <string name="howto_rules_standard_heading">標準規則</string>
+    <string name="howto_rules_long_heading">長跳規則</string>
+    <string name="howto_demo_title">跳躍示範</string>
+    <string name="howto_demo_restart">重新播放</string>
+    <string name="howto_demo_normal_desc">普通跳示範：紅色棋子依序跨過鄰近棋子，逐步向前推進。</string>
+    <string name="howto_demo_long_desc">長跳示範：紅色棋子一次跨過對稱排列的棋子，並繼續連跳。</string>
+    <string name="howto_rules_standard">• 一步走：移動到相鄰的空位。\n• 普通跳：跨過相鄰棋子，落到正對的空位。\n• 連續跳：落點為空時可繼續多次跳躍。\n• 勝利：占滿目標營地。</string>
+    <string name="howto_rules_long_jump">• 於設定中啟用多格連跳。\n• 允許按對稱規則跨越多顆棋子，落點需與被跨棋子等距。\n• 可與普通跳於同一回合組合使用。</string>
+    <string name="howto_rules_layout">• 支援 2/3/4/6 人局，起始營地不同。\n• 儘早清出營地前排，為連跳留出通路。</string>
+    <!-- 除錯 -->
+    <string name="debug_logs_title">除錯日誌（%1$d）- 最近 50 筆</string>
+    <string name="debug_clear">清除日誌</string>
+    <!-- 其他 -->
+    <string name="loading_stats">統計載入中…</string>
+</resources>

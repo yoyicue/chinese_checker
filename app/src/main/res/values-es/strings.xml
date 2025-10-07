@@ -16,13 +16,13 @@
     <string name="settings_sounds">Volumen de efectos: %1$d%%</string>
     <string name="settings_vibration">Vibración</string>
     <string name="settings_dark_theme">Tema oscuro</string>
-    <string name="settings_fast_mode">Modo con tiempo</string>
+    <string name="settings_fast_mode">Modo cronometrado</string>
     <string name="settings_fast_mode_desc">Activa una cuenta regresiva para cada jugador.</string>
     <string name="settings_long_jump">Permitir saltos largos</string>
     <string name="settings_long_jump_desc">Permite saltos simétricos más largos en un solo turno.</string>
     <string name="settings_turn_duration">Duración del turno</string>
     <string name="settings_turn_duration_option">%1$d s</string>
-    <string name="settings_timeout_behavior">Comportamiento al agotar tiempo</string>
+    <string name="settings_timeout_behavior">Comportamiento al agotar el tiempo</string>
     <string name="settings_timeout_skip">Tiempo agotado: saltar turno</string>
     <string name="settings_timeout_auto">Tiempo agotado: mover automáticamente</string>
     <string name="settings_ai_section">Comportamiento de la IA</string>
@@ -30,7 +30,7 @@
     <string name="difficulty_easy">Fácil</string>
     <string name="difficulty_medium">Media</string>
     <string name="difficulty_hard">Difícil</string>
-    <string name="settings_ai_long_jump">IA con saltos largos</string>
+    <string name="settings_ai_long_jump">Permitir a la IA saltos largos</string>
     <string name="settings_debug_toggle">Superposición de depuración</string>
     <string name="settings_debug_desc">Muestra registros y eventos adicionales durante la partida.</string>
     <string name="settings_language">Idioma</string>
@@ -54,7 +54,7 @@
     <string name="camp_sw">Suroeste</string>
     <string name="camp_nw">Noroeste</string>
     <string name="victory_title">Ganador</string>
-    <string name="victory_winner_message">¡%1$s %2$s gana!</string>
+    <string name="victory_winner_message">¡%1$s (%2$s) ha ganado!</string>
     <string name="victory_congrats_message">¡Enhorabuena! ¡Gran partida!</string>
     <string name="victory_play_again">Jugar de nuevo</string>
     <string name="victory_return_home">Volver al inicio</string>
@@ -90,7 +90,7 @@
     <string name="ai_guide_title">Modos de IA</string>
     <string name="ai_guide_weak_title">Fácil (aleatorio)</string>
     <string name="ai_guide_weak_desc">Elige jugadas al azar con una ligera preferencia por avanzar, saltar y liberar el campamento.</string>
-    <string name="ai_guide_medium_title">Media (codicioso)</string>
+    <string name="ai_guide_medium_title">Media (voraz)</string>
     <string name="ai_guide_medium_desc">Evalúa todas las jugadas y elige la que reduce la distancia al objetivo y despeja el campamento.</string>
     <string name="ai_guide_strong_title">Difícil (Minimax)</string>
     <string name="ai_guide_strong_desc">Piensa varios turnos por adelantado con minimax y poda, equilibrando distancia, presión y saltos tácticos.</string>

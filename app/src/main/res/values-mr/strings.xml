@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">चायनीज चेकर्स</string>
+    <!-- प्रारंभ स्क्रीन -->
+    <string name="start_title">चायनीज चेकर्स</string>
+    <string name="start_version">आवृत्ती v%1$s</string>
+    <string name="start_continue">खेळ पुढे सुरू करा</string>
+    <string name="start_offline">ऑफलाइन सामना</string>
+    <string name="start_settings">सेटिंग्ज</string>
+    <string name="start_stats">आकडेवारी</string>
+    <string name="start_howto">कसे खेळायचे</string>
+    <!-- सामान्य -->
+    <string name="common_back">मागे</string>
+    <string name="common_cancel">रद्द करा</string>
+    <string name="common_save_and_exit">जतन करा व बाहेर पडा</string>
+    <string name="common_discard_and_exit">न जतन करता बाहेर पडा</string>
+    <string name="common_loading">लोड होत आहे…</string>
+    <!-- सेटिंग्ज -->
+    <string name="settings_title">सेटिंग्ज</string>
+    <string name="settings_sounds">ध्वनी प्रभाव: %1$d%%</string>
+    <string name="settings_vibration">व्हायब्रेशन</string>
+    <string name="settings_dark_theme">गडद थीम</string>
+    <string name="settings_fast_mode">वेळबद्ध मोड</string>
+    <string name="settings_fast_mode_desc">प्रत्येक खेळाडूसाठी चाल काउंटडाउन सक्षम करा.</string>
+    <string name="settings_long_jump">लांब उड्या सक्षम करा</string>
+    <string name="settings_long_jump_desc">सममित लांब उड्यांनी एका चालीत अधिक अंतर पार करा.</string>
+    <string name="settings_turn_duration">चालीची कालावधी</string>
+    <string name="settings_turn_duration_option">%1$d से.</string>
+    <string name="settings_timeout_behavior">वेळ संपल्यावर वर्तन</string>
+    <string name="settings_timeout_skip">वेळ संपला: चाल वगळा</string>
+    <string name="settings_timeout_auto">वेळ संपला: आपोआप चाल</string>
+    <string name="settings_ai_section">एआय वर्तन</string>
+    <string name="settings_ai_default_difficulty">डीफॉल्ट एआय कठीणता</string>
+    <string name="difficulty_easy">सोपे</string>
+    <string name="difficulty_medium">मध्यम</string>
+    <string name="difficulty_hard">कठीण</string>
+    <string name="settings_ai_long_jump">एआयसाठी लांब उड्यांना परवानगी द्या</string>
+    <string name="settings_debug_toggle">डिबग ओव्हरले</string>
+    <string name="settings_debug_desc">सामन्यात अतिरिक्त नोंदी व घटना दाखवा.</string>
+    <string name="settings_language">भाषा</string>
+    <string name="language_auto">प्रणाली डिफॉल्ट</string>
+    <string name="language_english">इंग्रजी</string>
+    <string name="language_chinese">चिनी</string>
+    <string name="language_spanish">स्पॅनिश</string>
+    <!-- बाहेर पडणे डायलॉग -->
+    <string name="exit_dialog_title">सामना सोडायचा?</string>
+    <string name="exit_dialog_message">वर्तमान प्रगती जतन करायची का ते निवडा.</string>
+    <!-- गेम स्क्रीन -->
+    <string name="game_button_undo">पूर्ववत</string>
+    <string name="game_turn_indicator">चाल: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">विजेता: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · %1$d से. उरले</string>
+    <string name="game_role_player">खेळाडू</string>
+    <string name="game_role_ai">एआय</string>
+    <string name="game_role_ai_with_difficulty">एआय (%1$s)</string>
+    <string name="camp_top">वर</string>
+    <string name="camp_bottom">खाली</string>
+    <string name="camp_ne">ईशान्य</string>
+    <string name="camp_se">आग्नेय</string>
+    <string name="camp_sw">नैऋत्य</string>
+    <string name="camp_nw">वायव्य</string>
+    <string name="victory_title">विजेता</string>
+    <string name="victory_winner_message">%1$s (%2$s) जिंकले!</string>
+    <string name="victory_congrats_message">अभिनंदन! उत्कृष्ट सामना!</string>
+    <string name="victory_play_again">पुन्हा खेळा</string>
+    <string name="victory_return_home">मुख्य पानावर जा</string>
+    <!-- ऑफलाइन सेटअप -->
+    <string name="offline_title">ऑफलाइन सामना सेटअप</string>
+    <string name="offline_player_count">खेळाडूंची संख्या</string>
+    <string name="offline_ai_label">एआय</string>
+    <string name="offline_ai_level">एआय कठीणता</string>
+    <string name="offline_color_label">रंग</string>
+    <string name="offline_start_game">खेळ सुरू करा</string>
+    <string name="seat_top">वर</string>
+    <string name="seat_bottom">खाली</string>
+    <string name="seat_sw">नैऋत्य</string>
+    <string name="seat_se">आग्नेय</string>
+    <string name="seat_ne">ईशान्य</string>
+    <string name="seat_nw">वायव्य</string>
+    <string name="colour_red">लाल</string>
+    <string name="colour_blue">निळा</string>
+    <string name="colour_purple">जांभळा</string>
+    <string name="colour_green">हिरवा</string>
+    <string name="colour_yellow">पिवळा</string>
+    <string name="colour_orange">नारिंगी</string>
+    <string name="colour_teal">फिरोजी</string>
+    <string name="colour_custom">सानुकूल</string>
+    <!-- आकडेवारी -->
+    <string name="profile_title">आकडेवारी</string>
+    <string name="profile_section_heading">सामन्याची आकडेवारी</string>
+    <string name="profile_total_games">एकूण सामने: %1$d</string>
+    <string name="profile_last_played">शेवटचा खेळ: %1$s</string>
+    <string name="profile_reset_stats">आकडेवारी रीसेट करा</string>
+    <string name="profile_chart_by_player">खेळाडूनुसार विजय</string>
+    <string name="profile_chart_by_controller">प्रकारानुसार विजय (मानव/एआय)</string>
+    <string name="profile_chart_by_difficulty">कठीणतानुसार विजय</string>
+    <string name="profile_empty">(अजून नाही)</string>
+    <!-- एआय मार्गदर्शक -->
+    <string name="ai_guide_title">एआय मोड</string>
+    <string name="ai_guide_weak_title">सोपे (यादृच्छिक)</string>
+    <string name="ai_guide_weak_desc">यादृच्छिक चाली निवडतो; पुढे जाणे, उड्या आणि कॅम्प रिकामा करणे यांना थोडा प्राधान्य.</string>
+    <string name="ai_guide_medium_title">मध्यम (लोभी)</string>
+    <string name="ai_guide_medium_desc">सर्व चालींचे मूल्यांकन करून लक्ष्यापर्यंतचे अंतर कमी करणारी आणि लवकर बेस रिकामी करणारी चाल निवडतो.</string>
+    <string name="ai_guide_strong_title">कठीण (Minimax)</string>
+    <string name="ai_guide_strong_desc">Minimax व pruning ने पुढील काही चाली वाचतो; अंतर, बेस दडपण व सामरिक उड्या एकत्र करतो.</string>
+    <string name="ai_guide_tip_title">सूचना</string>
+    <string name="ai_guide_tip_body">इथे डीफॉल्ट एआय कठीणता सेट करा आणि ऑफलाइन सामन्यात प्रत्येक आसनासाठी वेगळी पातळी निवडा.</string>
+    <!-- नियम -->
+    <string name="howto_title">कसे खेळायचे</string>
+    <string name="howto_tab_rules">नियम</string>
+    <string name="howto_tab_ai">एआय आढावा</string>
+    <string name="howto_rules_standard_heading">मानक नियम</string>
+    <string name="howto_rules_long_heading">लांब उडीचे नियम</string>
+    <string name="howto_demo_title">उडींचे प्रात्यक्षिक</string>
+    <string name="howto_demo_restart">पुन्हा प्ले करा</string>
+    <string name="howto_demo_normal_desc">सामान्य उडीचे प्रात्यक्षिक: लाल मोहरा शेजारच्या मोहऱ्यांवरून एकामागून एक उडी मारतो.</string>
+    <string name="howto_demo_long_desc">लांब उडीचे प्रात्यक्षिक: लाल मोहरा सममित रांगेतील मोहऱ्यांवरून उडी मारतो आणि उड्यांची साखळी चालू ठेवतो.</string>
+    <string name="howto_rules_standard">• पाऊल: शेजारच्या रिकाम्या छिद्रात जा.\n• उडी: शेजारच्या मोहऱ्यावरून पुढील रिकाम्या छिद्रात उडी मारा.\n• साखळी उड्या: प्रत्येक लँडिंग रिकामे असेपर्यंत सुरू ठेवा.\n• विजय: लक्ष्य कॅम्पमधील सर्व छिद्रे भरा.</string>
+    <string name="howto_rules_long_jump">• सेटिंग्ज → लांब उड्या सक्षम करा.\n• अनेक मोहऱ्यांवरून सममित लांब उड्यांना परवानगी; समान अंतरावर लँडिंग हवे.\n• लांब आणि सामान्य उड्या एकाच चालीत एकत्र करता येतात.</string>
+    <string name="howto_rules_layout">• पट 2/3/4/6 खेळाडूंना समर्थन देतो; सुरुवातीचे कॅम्प वेगळे.\n• साखळी उड्यांसाठी मार्ग खुला करण्यासाठी पुढची रांग लवकर रिकामी करा.</string>
+    <!-- डिबग -->
+    <string name="debug_logs_title">डिबग लॉग (%1$d) - अलीकडील 50</string>
+    <string name="debug_clear">लॉग साफ करा</string>
+    <!-- इतर -->
+    <string name="loading_stats">आकडेवारी लोड होत आहे…</string>
+</resources>

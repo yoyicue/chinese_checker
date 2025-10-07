@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Damas Chinesas</string>
+    <!-- Tela inicial -->
+    <string name="start_title">Damas Chinesas</string>
+    <string name="start_version">Versão v%1$s</string>
+    <string name="start_continue">Continuar jogo</string>
+    <string name="start_offline">Partida offline</string>
+    <string name="start_settings">Configurações</string>
+    <string name="start_stats">Estatísticas</string>
+    <string name="start_howto">Como jogar</string>
+    <!-- Comum -->
+    <string name="common_back">Voltar</string>
+    <string name="common_cancel">Cancelar</string>
+    <string name="common_save_and_exit">Salvar e sair</string>
+    <string name="common_discard_and_exit">Sair sem salvar</string>
+    <string name="common_loading">Carregando…</string>
+    <!-- Configurações -->
+    <string name="settings_title">Configurações</string>
+    <string name="settings_sounds">Efeitos sonoros: %1$d%%</string>
+    <string name="settings_vibration">Vibração</string>
+    <string name="settings_dark_theme">Tema escuro</string>
+    <string name="settings_fast_mode">Modo cronometrado</string>
+    <string name="settings_fast_mode_desc">Ativa uma contagem regressiva para cada jogador.</string>
+    <string name="settings_long_jump">Permitir saltos longos</string>
+    <string name="settings_long_jump_desc">Permite saltos simétricos para avançar mais em um único movimento.</string>
+    <string name="settings_turn_duration">Duração do turno</string>
+    <string name="settings_turn_duration_option">%1$d s</string>
+    <string name="settings_timeout_behavior">Comportamento ao esgotar o tempo</string>
+    <string name="settings_timeout_skip">Tempo esgotado: pular turno</string>
+    <string name="settings_timeout_auto">Tempo esgotado: mover automaticamente</string>
+    <string name="settings_ai_section">Comportamento da IA</string>
+    <string name="settings_ai_default_difficulty">Dificuldade padrão da IA</string>
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_medium">Médio</string>
+    <string name="difficulty_hard">Difícil</string>
+    <string name="settings_ai_long_jump">Permitir saltos longos para a IA</string>
+    <string name="settings_debug_toggle">Sobreposição de depuração</string>
+    <string name="settings_debug_desc">Mostra registros e eventos adicionais durante a partida.</string>
+    <string name="settings_language">Idioma</string>
+    <string name="language_auto">Padrão do sistema</string>
+    <string name="language_english">Inglês</string>
+    <string name="language_chinese">Chinês</string>
+    <string name="language_spanish">Espanhol</string>
+    <!-- Diálogo de saída -->
+    <string name="exit_dialog_title">Sair da partida?</string>
+    <string name="exit_dialog_message">Escolha se deseja salvar o progresso atual.</string>
+    <!-- Tela de jogo -->
+    <string name="game_button_undo">Desfazer</string>
+    <string name="game_turn_indicator">Turno: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">Vencedor: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · %1$d s restantes</string>
+    <string name="game_role_player">Jogador</string>
+    <string name="game_role_ai">IA</string>
+    <string name="game_role_ai_with_difficulty">IA (%1$s)</string>
+    <string name="camp_top">Superior</string>
+    <string name="camp_bottom">Inferior</string>
+    <string name="camp_ne">Nordeste</string>
+    <string name="camp_se">Sudeste</string>
+    <string name="camp_sw">Sudoeste</string>
+    <string name="camp_nw">Noroeste</string>
+    <string name="victory_title">Vencedor</string>
+    <string name="victory_winner_message">%1$s (%2$s) venceu!</string>
+    <string name="victory_congrats_message">Parabéns! Ótima partida!</string>
+    <string name="victory_play_again">Jogar novamente</string>
+    <string name="victory_return_home">Voltar ao início</string>
+    <!-- Configuração offline -->
+    <string name="offline_title">Configuração de partida offline</string>
+    <string name="offline_player_count">Número de jogadores</string>
+    <string name="offline_ai_label">IA</string>
+    <string name="offline_ai_level">Nível da IA</string>
+    <string name="offline_color_label">Cor</string>
+    <string name="offline_start_game">Iniciar partida</string>
+    <string name="seat_top">Superior</string>
+    <string name="seat_bottom">Inferior</string>
+    <string name="seat_sw">Sudoeste</string>
+    <string name="seat_se">Sudeste</string>
+    <string name="seat_ne">Nordeste</string>
+    <string name="seat_nw">Noroeste</string>
+    <string name="colour_red">Vermelho</string>
+    <string name="colour_blue">Azul</string>
+    <string name="colour_purple">Roxo</string>
+    <string name="colour_green">Verde</string>
+    <string name="colour_yellow">Amarelo</string>
+    <string name="colour_orange">Laranja</string>
+    <string name="colour_teal">Turquesa</string>
+    <string name="colour_custom">Personalizado</string>
+    <!-- Estatísticas -->
+    <string name="profile_title">Estatísticas</string>
+    <string name="profile_section_heading">Estatísticas da partida</string>
+    <string name="profile_total_games">Partidas totais: %1$d</string>
+    <string name="profile_last_played">Última partida: %1$s</string>
+    <string name="profile_reset_stats">Redefinir estatísticas</string>
+    <string name="profile_chart_by_player">Vitórias por jogador</string>
+    <string name="profile_chart_by_controller">Vitórias por tipo (Humano/IA)</string>
+    <string name="profile_chart_by_difficulty">Vitórias por dificuldade</string>
+    <string name="profile_empty">(Ainda nenhuma)</string>
+    <!-- Guia da IA -->
+    <string name="ai_guide_title">Modos de IA</string>
+    <string name="ai_guide_weak_title">Fácil (aleatório)</string>
+    <string name="ai_guide_weak_desc">Escolhe jogadas aleatórias com leve preferência por avançar, saltar e liberar o campo.</string>
+    <string name="ai_guide_medium_title">Médio (guloso)</string>
+    <string name="ai_guide_medium_desc">Avalia todas as jogadas e escolhe a que minimiza a distância ao objetivo, saindo rapidamente da base.</string>
+    <string name="ai_guide_strong_title">Difícil (Minimax)</string>
+    <string name="ai_guide_strong_desc">Prevê vários turnos com minimax e poda, combinando distância, pressão em casa e saltos táticos.</string>
+    <string name="ai_guide_tip_title">Dica</string>
+    <string name="ai_guide_tip_body">Aqui você define a dificuldade padrão da IA e pode escolher níveis específicos por assento na Partida offline.</string>
+    <!-- Regras -->
+    <string name="howto_title">Como jogar</string>
+    <string name="howto_tab_rules">Regras</string>
+    <string name="howto_tab_ai">Visão geral da IA</string>
+    <string name="howto_rules_standard_heading">Regras padrão</string>
+    <string name="howto_rules_long_heading">Regras de salto longo</string>
+    <string name="howto_demo_title">Demonstrações de salto</string>
+    <string name="howto_demo_restart">Repetir</string>
+    <string name="howto_demo_normal_desc">Demonstração de salto normal: a peça vermelha salta sobre peças adjacentes, um passo de cada vez.</string>
+    <string name="howto_demo_long_desc">Demonstração de salto longo: a peça vermelha cruza uma linha simétrica de peças e continua encadeando saltos.</string>
+    <string name="howto_rules_standard">• Passo: mover para um buraco adjacente livre.\n• Salto: pular uma peça adjacente para o buraco livre após ela.\n• Cadeia de saltos: continuar enquanto cada aterrissagem estiver livre.\n• Vitória: ocupar todos os buracos do campo alvo.</string>
+    <string name="howto_rules_long_jump">• Ativar em Configurações → Saltos longos.\n• Permite saltos simétricos sobre várias peças, com aterrissagem a distância igual.\n• Saltos longos e normais podem ser combinados no mesmo turno.</string>
+    <string name="howto_rules_layout">• Tabuleiro compatível com 2/3/4/6 jogadores; campos iniciais variam.\n• Liberar cedo a fileira frontal para abrir rotas de salto.</string>
+    <!-- Depuração -->
+    <string name="debug_logs_title">Registros de depuração (%1$d) - últimos 50</string>
+    <string name="debug_clear">Limpar registros</string>
+    <!-- Diversos -->
+    <string name="loading_stats">Carregando estatísticas…</string>
+</resources>

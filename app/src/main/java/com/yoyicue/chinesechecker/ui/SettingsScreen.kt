@@ -195,13 +195,29 @@ private fun SettingSwitchRow(
 @Composable
 private fun LanguageDropdown(selected: String, onSelect: (String) -> Unit) {
     val expanded = remember { mutableStateOf(false) }
+    // Show language names as autonyms (do not localize), for easier recognition.
     val options = listOf(
-        "" to R.string.language_auto,
-        "en" to R.string.language_english,
-        "zh" to R.string.language_chinese,
-        "es" to R.string.language_spanish
+        "" to "Follow system",
+        "en" to "English",
+        "zh" to "中文",
+        "zh-Hant" to "繁體中文",
+        "es" to "Español",
+        "fr" to "Français",
+        "de" to "Deutsch",
+        "it" to "Italiano",
+        "hi" to "हिन्दी",
+        "bn" to "বাংলা",
+        "mr" to "मराठी",
+        "te" to "తెలుగు",
+        "pa-Arab" to "پنجابی",
+        "pt" to "Português",
+        "ru" to "Русский",
+        "ja" to "日本語",
+        "tr" to "Türkçe",
+        "ko" to "한국어",
+        "vi" to "Tiếng Việt"
     )
-    val labelRes = options.firstOrNull { it.first == selected }?.second ?: R.string.language_auto
+    val labelValue = options.firstOrNull { it.first == selected }?.second ?: options.first().second
     ExposedDropdownMenuBox(
         modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
         expanded = expanded.value,
@@ -209,15 +225,15 @@ private fun LanguageDropdown(selected: String, onSelect: (String) -> Unit) {
     ) {
         OutlinedTextField(
             readOnly = true,
-            value = stringResource(labelRes),
+            value = labelValue,
             onValueChange = {},
             label = { Text(stringResource(R.string.settings_language)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor()
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
-            options.forEach { (tag, resId) ->
-                DropdownMenuItem(text = { Text(stringResource(resId)) }, onClick = {
+            options.forEach { (tag, name) ->
+                DropdownMenuItem(text = { Text(name) }, onClick = {
                     onSelect(tag)
                     expanded.value = false
                 })

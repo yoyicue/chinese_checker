@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">चीनी चेकर्स</string>
+    <!-- स्टार्ट स्क्रीन -->
+    <string name="start_title">चीनी चेकर्स</string>
+    <string name="start_version">संस्करण v%1$s</string>
+    <string name="start_continue">खेल जारी रखें</string>
+    <string name="start_offline">ऑफ़लाइन मुकाबला</string>
+    <string name="start_settings">सेटिंग्स</string>
+    <string name="start_stats">आँकड़े</string>
+    <string name="start_howto">कैसे खेलें</string>
+    <!-- सामान्य -->
+    <string name="common_back">वापस</string>
+    <string name="common_cancel">रद्द करें</string>
+    <string name="common_save_and_exit">सहेजें और बाहर निकलें</string>
+    <string name="common_discard_and_exit">बिना सहेजे बाहर निकलें</string>
+    <string name="common_loading">लोड हो रहा है…</string>
+    <!-- सेटिंग्स -->
+    <string name="settings_title">सेटिंग्स</string>
+    <string name="settings_sounds">ध्वनि प्रभाव: %1$d%%</string>
+    <string name="settings_vibration">वाइब्रेशन</string>
+    <string name="settings_dark_theme">डार्क थीम</string>
+    <string name="settings_fast_mode">समयबद्ध मोड</string>
+    <string name="settings_fast_mode_desc">हर खिलाड़ी के लिए चाल की उलटी गिनती सक्षम करें।</string>
+    <string name="settings_long_jump">लंबी छलांगें सक्षम करें</string>
+    <string name="settings_long_jump_desc">सममित लंबी छलांगों से एक चाल में अधिक दूरी तय करें।</string>
+    <string name="settings_turn_duration">चाल की अवधि</string>
+    <string name="settings_turn_duration_option">%1$d सेकंड</string>
+    <string name="settings_timeout_behavior">समय समाप्त होने पर व्यवहार</string>
+    <string name="settings_timeout_skip">समय समाप्त: चाल छोड़ें</string>
+    <string name="settings_timeout_auto">समय समाप्त: स्वतः चाल</string>
+    <string name="settings_ai_section">एआई व्यवहार</string>
+    <string name="settings_ai_default_difficulty">डिफ़ॉल्ट एआई कठिनाई</string>
+    <string name="difficulty_easy">आसान</string>
+    <string name="difficulty_medium">मध्यम</string>
+    <string name="difficulty_hard">कठिन</string>
+    <string name="settings_ai_long_jump">एआई के लिए लंबी छलांगों की अनुमति दें</string>
+    <string name="settings_debug_toggle">डिबग ओवरले</string>
+    <string name="settings_debug_desc">मुकाबले के दौरान अतिरिक्त लॉग और घटनाएँ दिखाएँ।</string>
+    <string name="settings_language">भाषा</string>
+    <string name="language_auto">सिस्टम डिफ़ॉल्ट</string>
+    <string name="language_english">अंग्रेज़ी</string>
+    <string name="language_chinese">चीनी</string>
+    <string name="language_spanish">स्पेनिश</string>
+    <!-- बाहर निकलने का डायलॉग -->
+    <string name="exit_dialog_title">क्या मुकाबले से बाहर निकलें?</string>
+    <string name="exit_dialog_message">चुनें कि वर्तमान प्रगति सहेजनी है या नहीं।</string>
+    <!-- गेम स्क्रीन -->
+    <string name="game_button_undo">पूर्ववत</string>
+    <string name="game_turn_indicator">चाल: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">विजेता: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · %1$d सेकंड शेष</string>
+    <string name="game_role_player">खिलाड़ी</string>
+    <string name="game_role_ai">एआई</string>
+    <string name="game_role_ai_with_difficulty">एआई (%1$s)</string>
+    <string name="camp_top">ऊपर</string>
+    <string name="camp_bottom">नीचे</string>
+    <string name="camp_ne">उत्तर-पूर्व</string>
+    <string name="camp_se">दक्षिण-पूर्व</string>
+    <string name="camp_sw">दक्षिण-पश्चिम</string>
+    <string name="camp_nw">उत्तर-पश्चिम</string>
+    <string name="victory_title">विजेता</string>
+    <string name="victory_winner_message">%1$s (%2$s) जीता!</string>
+    <string name="victory_congrats_message">बधाई! शानदार मुकाबला!</string>
+    <string name="victory_play_again">फिर से खेलें</string>
+    <string name="victory_return_home">होम पर लौटें</string>
+    <!-- ऑफ़लाइन कॉन्फ़िगरेशन -->
+    <string name="offline_title">ऑफ़लाइन मुकाबला सेटअप</string>
+    <string name="offline_player_count">खिलाड़ियों की संख्या</string>
+    <string name="offline_ai_label">एआई</string>
+    <string name="offline_ai_level">एआई कठिनाई</string>
+    <string name="offline_color_label">रंग</string>
+    <string name="offline_start_game">खेल शुरू करें</string>
+    <string name="seat_top">ऊपर</string>
+    <string name="seat_bottom">नीचे</string>
+    <string name="seat_sw">दक्षिण-पश्चिम</string>
+    <string name="seat_se">दक्षिण-पूर्व</string>
+    <string name="seat_ne">उत्तर-पूर्व</string>
+    <string name="seat_nw">उत्तर-पश्चिम</string>
+    <string name="colour_red">लाल</string>
+    <string name="colour_blue">नीला</string>
+    <string name="colour_purple">बैंगनी</string>
+    <string name="colour_green">हरा</string>
+    <string name="colour_yellow">पीला</string>
+    <string name="colour_orange">नारंगी</string>
+    <string name="colour_teal">फ़िरोज़ी</string>
+    <string name="colour_custom">कस्टम</string>
+    <!-- आँकड़े -->
+    <string name="profile_title">आँकड़े</string>
+    <string name="profile_section_heading">मुकाबले के आँकड़े</string>
+    <string name="profile_total_games">कुल खेल: %1$d</string>
+    <string name="profile_last_played">अंतिम खेल: %1$s</string>
+    <string name="profile_reset_stats">आँकड़े रीसेट करें</string>
+    <string name="profile_chart_by_player">खिलाड़ी अनुसार जीतें</string>
+    <string name="profile_chart_by_controller">प्रकार अनुसार जीतें (मानव/एआई)</string>
+    <string name="profile_chart_by_difficulty">कठिनाई अनुसार जीतें</string>
+    <string name="profile_empty">(अभी नहीं)</string>
+    <!-- एआई गाइड -->
+    <string name="ai_guide_title">एआई मोड</string>
+    <string name="ai_guide_weak_title">आसान (यादृच्छिक)</string>
+    <string name="ai_guide_weak_desc">आगे बढ़ने, छलांग और कैंप खाली करने को थोड़ी प्राथमिकता देते हुए यादृच्छिक चालें चुनता है।</string>
+    <string name="ai_guide_medium_title">मध्यम (लोभी)</string>
+    <string name="ai_guide_medium_desc">सभी चालों का मूल्यांकन कर लक्ष्य तक दूरी घटाने तथा शीघ्र बेस छोड़ने वाली चाल चुनता है।</string>
+    <string name="ai_guide_strong_title">कठिन (Minimax)</string>
+    <string name="ai_guide_strong_desc">मिनीमैक्स और प्रूनिंग से कई चालें आगे देखता है; दूरी, बेस दबाव और सामरिक छलांगों का संयोजन करता है।</string>
+    <string name="ai_guide_tip_title">सुझाव</string>
+    <string name="ai_guide_tip_body">यहाँ डिफ़ॉल्ट एआई कठिनाई सेट करें और ऑफ़लाइन मुकाबले में प्रत्येक सीट के लिए अलग स्तर चुनें।</string>
+    <!-- कैसे खेलें -->
+    <string name="howto_title">कैसे खेलें</string>
+    <string name="howto_tab_rules">नियम</string>
+    <string name="howto_tab_ai">एआई अवलोकन</string>
+    <string name="howto_rules_standard_heading">मानक नियम</string>
+    <string name="howto_rules_long_heading">लंबी छलांग नियम</string>
+    <string name="howto_demo_title">छलांग डेमो</string>
+    <string name="howto_demo_restart">फिर से चलाएँ</string>
+    <string name="howto_demo_normal_desc">सामान्य छलांग डेमो: लाल मोहरा पास की गोटियों के ऊपर एक-एक करके कूदता है।</string>
+    <string name="howto_demo_long_desc">लंबी छलांग डेमो: लाल मोहरा सममित पंक्ति की गोटियों के ऊपर कूदकर श्रृंखला जारी रखता है।</string>
+    <string name="howto_rules_standard">• एक कदम: पास के खाली छेद में जाएँ।\n• छलांग: पास की गोटी के ऊपर से आगे के खाली छेद में जाएँ।\n• श्रृंखलाबद्ध छलांग: जब तक हर लैंडिंग खाली हो, जारी रखें।\n• जीत: लक्ष्य कैंप के सभी छेद भरें।</string>
+    <string name="howto_rules_long_jump">• सेटिंग्स → लंबी छलांगें सक्षम करें।\n• सममित रूप से कई गोटियों के ऊपर लंबी छलांग की अनुमति।\n• लंबी और सामान्य छलांगें एक ही चाल में जोड़ी जा सकती हैं।</string>
+    <string name="howto_rules_layout">• बोर्ड 2/3/4/6 खिलाड़ियों को समर्थन देता है; शुरुआती कैंप भिन्न होते हैं।\n• श्रृंखला छलांग के लिए रास्ते खोलने हेतु आगे की पंक्ति जल्दी खाली करें।</string>
+    <!-- डिबग -->
+    <string name="debug_logs_title">डिबग लॉग (%1$d) - हाल के 50</string>
+    <string name="debug_clear">लॉग साफ़ करें</string>
+    <!-- विविध -->
+    <string name="loading_stats">आँकड़े लोड हो रहे हैं…</string>
+</resources>

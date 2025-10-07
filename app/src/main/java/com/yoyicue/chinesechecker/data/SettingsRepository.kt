@@ -85,21 +85,29 @@ class SettingsRepository(private val context: Context) {
         if (raw == null) return ""
         val trimmed = raw.trim()
         if (trimmed.isEmpty()) return ""
-        val lower = trimmed.lowercase()
-        // Take first in list, normalise separators, then isolate primary language subtag
-        val primary = lower.split(',')
-            .firstOrNull()
-            ?.replace('_', '-')
-            ?: lower
-        val root = primary.substringBefore('-')
+        val lower = trimmed.lowercase().replace('_', '-')
+        val first = lower.split(',').firstOrNull() ?: lower
+        // Preserve script/region when relevant; special handling for Chinese scripts
         return when {
-            // Chinese variants and common aliases
-            root == "zh" || root == "cn" || primary.startsWith("zh-") -> "zh"
-            // English variants
-            root == "en" || primary.startsWith("en-") -> "en"
-            // Spanish variants (es-ES, es-MX, es-419, etc.)
-            root == "es" || primary.startsWith("es-") -> "es"
-            else -> root // fallback to the primary subtag
+            first.startsWith("zh-hant") -> "zh-Hant"
+            first == "zh" || first.startsWith("zh-") -> "zh" // default to Simplified resources for other zh variants
+            first == "en" || first.startsWith("en-") -> "en"
+            first == "es" || first.startsWith("es-") -> "es"
+            first == "fr" || first.startsWith("fr-") -> "fr"
+            first == "de" || first.startsWith("de-") -> "de"
+            first == "it" || first.startsWith("it-") -> "it"
+            first == "hi" || first.startsWith("hi-") -> "hi"
+            first == "bn" || first.startsWith("bn-") -> "bn"
+            first == "mr" || first.startsWith("mr-") -> "mr"
+            first == "te" || first.startsWith("te-") -> "te"
+            first.startsWith("pnb") || first.startsWith("pa-arab") || first == "pa" || first.startsWith("pa-pk") -> "pa-Arab"
+            first == "pt" || first.startsWith("pt-") -> "pt"
+            first == "ru" || first.startsWith("ru-") -> "ru"
+            first == "ja" || first.startsWith("ja-") -> "ja"
+            first == "tr" || first.startsWith("tr-") -> "tr"
+            first == "ko" || first.startsWith("ko-") -> "ko"
+            first == "vi" || first.startsWith("vi-") -> "vi"
+            else -> first.substringBefore('-')
         }
     }
 

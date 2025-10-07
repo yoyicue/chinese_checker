@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Çin Daması</string>
+    <!-- Başlangıç ekranı -->
+    <string name="start_title">Çin Daması</string>
+    <string name="start_version">Sürüm v%1$s</string>
+    <string name="start_continue">Oyuna devam et</string>
+    <string name="start_offline">Çevrimdışı Maç</string>
+    <string name="start_settings">Ayarlar</string>
+    <string name="start_stats">İstatistikler</string>
+    <string name="start_howto">Nasıl oynanır</string>
+    <!-- Ortak -->
+    <string name="common_back">Geri</string>
+    <string name="common_cancel">İptal</string>
+    <string name="common_save_and_exit">Kaydet ve çık</string>
+    <string name="common_discard_and_exit">Kaydetmeden çık</string>
+    <string name="common_loading">Yükleniyor…</string>
+    <!-- Ayarlar -->
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_sounds">Ses efektleri: %1$d%%</string>
+    <string name="settings_vibration">Titreşim</string>
+    <string name="settings_dark_theme">Koyu tema</string>
+    <string name="settings_fast_mode">Süreli Mod</string>
+    <string name="settings_fast_mode_desc">Her oyuncu için tur geri sayımı etkinleştir.</string>
+    <string name="settings_long_jump">Uzun sıçramaları etkinleştir</string>
+    <string name="settings_long_jump_desc">Tek hamlede daha uzağa gitmek için simetrik uzun sıçramalara izin ver.</string>
+    <string name="settings_turn_duration">Tur süresi</string>
+    <string name="settings_turn_duration_option">%1$d sn</string>
+    <string name="settings_timeout_behavior">Süre dolunca davranış</string>
+    <string name="settings_timeout_skip">Süre doldu: turu atla</string>
+    <string name="settings_timeout_auto">Süre doldu: otomatik hamle</string>
+    <string name="settings_ai_section">Yapay Zeka (YZ) davranışı</string>
+    <string name="settings_ai_default_difficulty">Varsayılan YZ zorluğu</string>
+    <string name="difficulty_easy">Kolay</string>
+    <string name="difficulty_medium">Orta</string>
+    <string name="difficulty_hard">Zor</string>
+    <string name="settings_ai_long_jump">Yapay Zeka (YZ) için uzun sıçramalara izin ver</string>
+    <string name="settings_debug_toggle">Hata ayıklama katmanı</string>
+    <string name="settings_debug_desc">Maç sırasında ek günlükler ve olayları göster.</string>
+    <string name="settings_language">Dil</string>
+    <string name="language_auto">Sistem varsayılanı</string>
+    <string name="language_english">İngilizce</string>
+    <string name="language_chinese">Çince</string>
+    <string name="language_spanish">İspanyolca</string>
+    <!-- Çıkış iletişim kutusu -->
+    <string name="exit_dialog_title">Maçı bırak?</string>
+    <string name="exit_dialog_message">Mevcut ilerlemeyi kaydedip kaydetmeyeceğinizi seçin.</string>
+    <!-- Oyun ekranı -->
+    <string name="game_button_undo">Geri al</string>
+    <string name="game_turn_indicator">Tur: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">Kazanan: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · %1$d sn kaldı</string>
+    <string name="game_role_player">Oyuncu</string>
+    <string name="game_role_ai">Yapay Zeka (YZ)</string>
+    <string name="game_role_ai_with_difficulty">YZ (%1$s)</string>
+    <string name="camp_top">Yukarı</string>
+    <string name="camp_bottom">Aşağı</string>
+    <string name="camp_ne">Kuzeydoğu</string>
+    <string name="camp_se">Güneydoğu</string>
+    <string name="camp_sw">Güneybatı</string>
+    <string name="camp_nw">Kuzeybatı</string>
+    <string name="victory_title">Kazanan</string>
+    <string name="victory_winner_message">%1$s (%2$s) kazandı!</string>
+    <string name="victory_congrats_message">Tebrikler! Harika bir maç!</string>
+    <string name="victory_play_again">Tekrar oyna</string>
+    <string name="victory_return_home">Ana ekrana dön</string>
+    <!-- Çevrimdışı kurulum -->
+    <string name="offline_title">Çevrimdışı Maç Kurulumu</string>
+    <string name="offline_player_count">Oyuncu sayısı</string>
+    <string name="offline_ai_label">YZ</string>
+    <string name="offline_ai_level">YZ zorluğu</string>
+    <string name="offline_color_label">Renk</string>
+    <string name="offline_start_game">Oyunu başlat</string>
+    <string name="seat_top">Üst</string>
+    <string name="seat_bottom">Alt</string>
+    <string name="seat_sw">Güneybatı</string>
+    <string name="seat_se">Güneydoğu</string>
+    <string name="seat_ne">Kuzeydoğu</string>
+    <string name="seat_nw">Kuzeybatı</string>
+    <string name="colour_red">Kırmızı</string>
+    <string name="colour_blue">Mavi</string>
+    <string name="colour_purple">Mor</string>
+    <string name="colour_green">Yeşil</string>
+    <string name="colour_yellow">Sarı</string>
+    <string name="colour_orange">Turuncu</string>
+    <string name="colour_teal">Turkuaz</string>
+    <string name="colour_custom">Özel</string>
+    <!-- İstatistikler -->
+    <string name="profile_title">İstatistikler</string>
+    <string name="profile_section_heading">Maç istatistikleri</string>
+    <string name="profile_total_games">Toplam maç: %1$d</string>
+    <string name="profile_last_played">Son oynanma: %1$s</string>
+    <string name="profile_reset_stats">İstatistikleri sıfırla</string>
+    <string name="profile_chart_by_player">Oyuncuya göre galibiyetler</string>
+    <string name="profile_chart_by_controller">Türe göre galibiyetler (İnsan/YZ)</string>
+    <string name="profile_chart_by_difficulty">Zorluğa göre galibiyetler</string>
+    <string name="profile_empty">(Henüz yok)</string>
+    <!-- YZ rehberi -->
+    <string name="ai_guide_title">Yapay Zeka (YZ) Modları</string>
+    <string name="ai_guide_weak_title">Kolay (rastgele)</string>
+    <string name="ai_guide_weak_desc">Rastgele hamleler seçer; ileri adımlar, sıçramalar ve kampı boşaltma yönünde hafif bir öncelik tanır.</string>
+    <string name="ai_guide_medium_title">Orta (açgözlü)</string>
+    <string name="ai_guide_medium_desc">Tüm hamleleri değerlendirir ve hedefe mesafeyi en aza indirirken başlangıç kampından hızlıca çıkmanı sağlayanı seçer.</string>
+    <string name="ai_guide_strong_title">Zor (Minimax)</string>
+    <string name="ai_guide_strong_desc">Minimax ve budama ile birkaç tur ilerisini okur; mesafe, kamp baskısı ve taktik sıçramaları birleştirir.</string>
+    <string name="ai_guide_tip_title">İpucu</string>
+    <string name="ai_guide_tip_body">Buradan varsayılan YZ seviyesini ayarlayabilir, Çevrimdışı Maçta her koltuk için ayrı bir seviye seçebilirsin.</string>
+    <!-- Kurallar -->
+    <string name="howto_title">Nasıl oynanır</string>
+    <string name="howto_tab_rules">Kurallar</string>
+    <string name="howto_tab_ai">Yapay Zeka (YZ) Genel Bakış</string>
+    <string name="howto_rules_standard_heading">Standart Kurallar</string>
+    <string name="howto_rules_long_heading">Uzun Sıçrama Kuralları</string>
+    <string name="howto_demo_title">Sıçrama Gösterimleri</string>
+    <string name="howto_demo_restart">Yeniden oynat</string>
+    <string name="howto_demo_normal_desc">Normal sıçrama demosu: Kırmızı taş bitişik taşların üzerinden birer birer atlar.</string>
+    <string name="howto_demo_long_desc">Uzun sıçrama demosu: Kırmızı taş simetrik dizili taşların üzerinden atlar ve sıçramaları zincirlemeye devam eder.</string>
+    <string name="howto_rules_standard">• Adım: bitişik boş deliğe ilerle.\n• Sıçrama: bitişik taşı aşarak ardındaki boş deliğe atla.\n• Zincir sıçramalar: her iniş noktası boş olduğu sürece devam et.\n• Zafer: hedef kamptaki tüm delikleri doldur.</string>
+    <string name="howto_rules_long_jump">• Ayarlar → Uzun sıçramaları etkinleştir.\n• Birden çok taş üzerinden simetrik uzun atlayışlara izin verir ve eşit mesafeye iniş gerekir.\n• Uzun ve normal sıçramalar aynı turda birleştirilebilir.</string>
+    <string name="howto_rules_layout">• Tahta 2/3/4/6 oyuncuyu destekler; başlangıç kampları farklıdır.\n• Zincir sıçrama için yollar açmak üzere ön sırayı erken boşalt.</string>
+    <!-- Hata ayıklama -->
+    <string name="debug_logs_title">Hata ayıklama günlükleri (%1$d) - son 50</string>
+    <string name="debug_clear">Günlükleri temizle</string>
+    <!-- Çeşitli -->
+    <string name="loading_stats">İstatistikler yükleniyor…</string>
+</resources>

@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Китайские шашки</string>
+    <!-- Главный экран -->
+    <string name="start_title">Китайские шашки</string>
+    <string name="start_version">Версия v%1$s</string>
+    <string name="start_continue">Продолжить игру</string>
+    <string name="start_offline">Игра офлайн</string>
+    <string name="start_settings">Настройки</string>
+    <string name="start_stats">Статистика</string>
+    <string name="start_howto">Как играть</string>
+    <!-- Общее -->
+    <string name="common_back">Назад</string>
+    <string name="common_cancel">Отмена</string>
+    <string name="common_save_and_exit">Сохранить и выйти</string>
+    <string name="common_discard_and_exit">Выйти без сохранения</string>
+    <string name="common_loading">Загрузка…</string>
+    <!-- Настройки -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_sounds">Звуковые эффекты: %1$d%%</string>
+    <string name="settings_vibration">Вибрация</string>
+    <string name="settings_dark_theme">Тёмная тема</string>
+    <string name="settings_fast_mode">Режим с таймером</string>
+    <string name="settings_fast_mode_desc">Включить обратный отсчёт хода для каждого игрока.</string>
+    <string name="settings_long_jump">Разрешить дальние прыжки</string>
+    <string name="settings_long_jump_desc">Разрешить симметричные дальние прыжки, чтобы за один ход проходить дальше.</string>
+    <string name="settings_turn_duration">Длительность хода</string>
+    <string name="settings_turn_duration_option">%1$d с</string>
+    <string name="settings_timeout_behavior">Поведение при истечении времени</string>
+    <string name="settings_timeout_skip">Время вышло: пропустить ход</string>
+    <string name="settings_timeout_auto">Время вышло: ход автоматически</string>
+    <string name="settings_ai_section">Поведение ИИ</string>
+    <string name="settings_ai_default_difficulty">Сложность ИИ по умолчанию</string>
+    <string name="difficulty_easy">Лёгкая</string>
+    <string name="difficulty_medium">Средняя</string>
+    <string name="difficulty_hard">Сложная</string>
+    <string name="settings_ai_long_jump">Разрешить дальние прыжки для ИИ</string>
+    <string name="settings_debug_toggle">Окно отладки</string>
+    <string name="settings_debug_desc">Показывать дополнительные журналы и события во время партии.</string>
+    <string name="settings_language">Язык</string>
+    <string name="language_auto">Системный по умолчанию</string>
+    <string name="language_english">Английский</string>
+    <string name="language_chinese">Китайский</string>
+    <string name="language_spanish">Испанский</string>
+    <!-- Диалог выхода -->
+    <string name="exit_dialog_title">Выйти из партии?</string>
+    <string name="exit_dialog_message">Выберите, сохранять ли текущий прогресс.</string>
+    <!-- Экран игры -->
+    <string name="game_button_undo">Отменить</string>
+    <string name="game_turn_indicator">Ход: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">Победитель: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · осталось %1$d с</string>
+    <string name="game_role_player">Игрок</string>
+    <string name="game_role_ai">ИИ</string>
+    <string name="game_role_ai_with_difficulty">ИИ (%1$s)</string>
+    <string name="camp_top">Верх</string>
+    <string name="camp_bottom">Низ</string>
+    <string name="camp_ne">Северо‑Восток</string>
+    <string name="camp_se">Юго‑Восток</string>
+    <string name="camp_sw">Юго‑Запад</string>
+    <string name="camp_nw">Северо‑Запад</string>
+    <string name="victory_title">Победитель</string>
+    <string name="victory_winner_message">%1$s (%2$s) одержал(а) победу!</string>
+    <string name="victory_congrats_message">Поздравляем! Отличная партия!</string>
+    <string name="victory_play_again">Сыграть ещё</string>
+    <string name="victory_return_home">На главный экран</string>
+    <!-- Настройка офлайн -->
+    <string name="offline_title">Настройка офлайн‑партии</string>
+    <string name="offline_player_count">Количество игроков</string>
+    <string name="offline_ai_label">ИИ</string>
+    <string name="offline_ai_level">Сложность ИИ</string>
+    <string name="offline_color_label">Цвет</string>
+    <string name="offline_start_game">Начать игру</string>
+    <string name="seat_top">Верх</string>
+    <string name="seat_bottom">Низ</string>
+    <string name="seat_sw">Юго‑Запад</string>
+    <string name="seat_se">Юго‑Восток</string>
+    <string name="seat_ne">Северо‑Восток</string>
+    <string name="seat_nw">Северо‑Запад</string>
+    <string name="colour_red">Красный</string>
+    <string name="colour_blue">Синий</string>
+    <string name="colour_purple">Фиолетовый</string>
+    <string name="colour_green">Зелёный</string>
+    <string name="colour_yellow">Жёлтый</string>
+    <string name="colour_orange">Оранжевый</string>
+    <string name="colour_teal">Бирюзовый</string>
+    <string name="colour_custom">Пользовательский</string>
+    <!-- Статистика -->
+    <string name="profile_title">Статистика</string>
+    <string name="profile_section_heading">Статистика партии</string>
+    <string name="profile_total_games">Всего партий: %1$d</string>
+    <string name="profile_last_played">Последняя игра: %1$s</string>
+    <string name="profile_reset_stats">Сбросить статистику</string>
+    <string name="profile_chart_by_player">Победы по игрокам</string>
+    <string name="profile_chart_by_controller">Победы по типу (Человек/ИИ)</string>
+    <string name="profile_chart_by_difficulty">Победы по сложности</string>
+    <string name="profile_empty">(Пока нет)</string>
+    <!-- Режимы ИИ -->
+    <string name="ai_guide_title">Режимы ИИ</string>
+    <string name="ai_guide_weak_title">Лёгкая (случайный выбор)</string>
+    <string name="ai_guide_weak_desc">Выбирает случайные ходы с небольшим приоритетом для шагов вперёд, прыжков и освобождения базы.</string>
+    <string name="ai_guide_medium_title">Средняя (жадный)</string>
+    <string name="ai_guide_medium_desc">Оценивает все ходы и выбирает тот, который минимизирует расстояние до цели и быстро покидает стартовую базу.</string>
+    <string name="ai_guide_strong_title">Сложная (Minimax)</string>
+    <string name="ai_guide_strong_desc">Просматривает несколько ходов вперёд с minimax и отсечениями, учитывая дистанцию, давление в базе и тактические прыжки.</string>
+    <string name="ai_guide_tip_title">Подсказка</string>
+    <string name="ai_guide_tip_body">Здесь можно задать сложность ИИ по умолчанию и выбрать уровень отдельно для каждого места в офлайн‑партии.</string>
+    <!-- Правила -->
+    <string name="howto_title">Как играть</string>
+    <string name="howto_tab_rules">Правила</string>
+    <string name="howto_tab_ai">Обзор ИИ</string>
+    <string name="howto_rules_standard_heading">Стандартные правила</string>
+    <string name="howto_rules_long_heading">Правила дальних прыжков</string>
+    <string name="howto_demo_title">Демонстрации прыжков</string>
+    <string name="howto_demo_restart">Воспроизвести снова</string>
+    <string name="howto_demo_normal_desc">Демонстрация обычного прыжка: красная фишка перепрыгивает соседние фишки по одному шагу.</string>
+    <string name="howto_demo_long_desc">Демонстрация дальнего прыжка: красная фишка перескакивает симметричный ряд фишек и продолжает цепочку прыжков.</string>
+    <string name="howto_rules_standard">• Шаг: перейти в соседнюю свободную лунку.\n• Прыжок: перепрыгнуть соседнюю фишку в свободную лунку за ней.\n• Цепочка прыжков: продолжать, пока каждая точка приземления свободна.\n• Победа: занять все лунки целевого лагеря.</string>
+    <string name="howto_rules_long_jump">• Включить в Настройках → Дальние прыжки.\n• Разрешает симметричные дальние прыжки через несколько фишек с приземлением на равном расстоянии.\n• Дальние и обычные прыжки можно комбинировать в один ход.</string>
+    <string name="howto_rules_layout">• Доска поддерживает 2/3/4/6 игроков; стартовые лагеря различаются.\n• Раннее освобождайте передний ряд, чтобы открыть дорожки для прыжков.</string>
+    <!-- Отладка -->
+    <string name="debug_logs_title">Журналы отладки (%1$d) — последние 50</string>
+    <string name="debug_clear">Очистить журналы</string>
+    <!-- Прочее -->
+    <string name="loading_stats">Загрузка статистики…</string>
+</resources>

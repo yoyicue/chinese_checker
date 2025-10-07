@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">چائنیز چیکرز</string>
+    <!-- آغاز اسکرین -->
+    <string name="start_title">چائنیز چیکرز</string>
+    <string name="start_version">ورژن v%1$s</string>
+    <string name="start_continue">کھیل جاری رکھیں</string>
+    <string name="start_offline">آف لائن میچ</string>
+    <string name="start_settings">سیٹنگز</string>
+    <string name="start_stats">اعدادوشمار</string>
+    <string name="start_howto">کیسے کھیلیں</string>
+    <!-- عمومی -->
+    <string name="common_back">واپس</string>
+    <string name="common_cancel">منسوخ کریں</string>
+    <string name="common_save_and_exit">محفوظ کریں اور خارج ہوں</string>
+    <string name="common_discard_and_exit">بغیر محفوظ کیے خارج ہوں</string>
+    <string name="common_loading">لوڈ ہو رہا ہے…</string>
+    <!-- سیٹنگز -->
+    <string name="settings_title">سیٹنگز</string>
+    <string name="settings_sounds">ساؤنڈ ایفیکٹس: %1$d%%</string>
+    <string name="settings_vibration">وائبریشن</string>
+    <string name="settings_dark_theme">ڈارک تھیم</string>
+    <string name="settings_fast_mode">وقت مقررہ موڈ</string>
+    <string name="settings_fast_mode_desc">ہر کھلاڑی کے لیے ٹرن کاؤنٹ ڈاؤن فعال کریں۔</string>
+    <string name="settings_long_jump">لمبی چھلانگیں فعال کریں</string>
+    <string name="settings_long_jump_desc">متوازن لمبی چھلانگوں کی اجازت دیں تاکہ ایک ہی چال میں زیادہ فاصلہ طے ہو۔</string>
+    <string name="settings_turn_duration">ٹرن دورانیہ</string>
+    <string name="settings_turn_duration_option">%1$d سیکنڈ</string>
+    <string name="settings_timeout_behavior">وقت ختم ہونے پر طرزِ عمل</string>
+    <string name="settings_timeout_skip">وقت ختم: ٹرن چھوڑیں</string>
+    <string name="settings_timeout_auto">وقت ختم: خودکار چال</string>
+    <string name="settings_ai_section">اے آئی کا رویہ</string>
+    <string name="settings_ai_default_difficulty">اے آئی کی طے شدہ مشکل</string>
+    <string name="difficulty_easy">آسان</string>
+    <string name="difficulty_medium">درمیانی</string>
+    <string name="difficulty_hard">مشکل</string>
+    <string name="settings_ai_long_jump">اے آئی کے لیے لمبی چھلانگوں کی اجازت دیں</string>
+    <string name="settings_debug_toggle">ڈیبگ اوورلے</string>
+    <string name="settings_debug_desc">میچ کے دوران اضافی لاگز اور واقعات دکھائیں۔</string>
+    <string name="settings_language">زبان</string>
+    <string name="language_auto">نظام کی طے شدہ</string>
+    <string name="language_english">انگریزی</string>
+    <string name="language_chinese">چینی</string>
+    <string name="language_spanish">ہسپانوی</string>
+    <!-- خروج ڈائیلاگ -->
+    <string name="exit_dialog_title">میچ سے نکلیں؟</string>
+    <string name="exit_dialog_message">منتخب کریں کہ موجودہ پیش رفت محفوظ کرنی ہے یا نہیں۔</string>
+    <!-- کھیل اسکرین -->
+    <string name="game_button_undo">کالعدم کریں</string>
+    <string name="game_turn_indicator">چال: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">فاتح: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · %1$d سیکنڈ باقی</string>
+    <string name="game_role_player">کھلاڑی</string>
+    <string name="game_role_ai">اے آئی</string>
+    <string name="game_role_ai_with_difficulty">اے آئی (%1$s)</string>
+    <string name="camp_top">اوپر</string>
+    <string name="camp_bottom">نیچے</string>
+    <string name="camp_ne">شمال مشرق</string>
+    <string name="camp_se">جنوب مشرق</string>
+    <string name="camp_sw">جنوب مغرب</string>
+    <string name="camp_nw">شمال مغرب</string>
+    <string name="victory_title">فاتح</string>
+    <string name="victory_winner_message">%1$s (%2$s) جیت گیا!</string>
+    <string name="victory_congrats_message">مبارک ہو! شاندار میچ!</string>
+    <string name="victory_play_again">دوبارہ کھیلیں</string>
+    <string name="victory_return_home">ہوم پر جائیں</string>
+    <!-- آف لائن سیٹ اپ -->
+    <string name="offline_title">آف لائن میچ کی ترتیب</string>
+    <string name="offline_player_count">کھلاڑیوں کی تعداد</string>
+    <string name="offline_ai_label">اے آئی</string>
+    <string name="offline_ai_level">اے آئی مشکل</string>
+    <string name="offline_color_label">رنگ</string>
+    <string name="offline_start_game">کھیل شروع کریں</string>
+    <string name="seat_top">اوپر</string>
+    <string name="seat_bottom">نیچے</string>
+    <string name="seat_sw">جنوب مغرب</string>
+    <string name="seat_se">جنوب مشرق</string>
+    <string name="seat_ne">شمال مشرق</string>
+    <string name="seat_nw">شمال مغرب</string>
+    <string name="colour_red">سرخ</string>
+    <string name="colour_blue">نیلا</string>
+    <string name="colour_purple">جامنی</string>
+    <string name="colour_green">سبز</string>
+    <string name="colour_yellow">پیلا</string>
+    <string name="colour_orange">نارنجی</string>
+    <string name="colour_teal">فیروزی</string>
+    <string name="colour_custom">حسبِ مرضی</string>
+    <!-- اعدادوشمار -->
+    <string name="profile_title">اعدادوشمار</string>
+    <string name="profile_section_heading">میچ کے اعدادوشمار</string>
+    <string name="profile_total_games">کل کھیل: %1$d</string>
+    <string name="profile_last_played">آخری کھیل: %1$s</string>
+    <string name="profile_reset_stats">اعدادوشمار ری سیٹ کریں</string>
+    <string name="profile_chart_by_player">کھلاڑی کے لحاظ سے فتوحات</string>
+    <string name="profile_chart_by_controller">قسم کے لحاظ سے فتوحات (انسان/اے آئی)</string>
+    <string name="profile_chart_by_difficulty">مشکل کے لحاظ سے فتوحات</string>
+    <string name="profile_empty">(ابھی تک کوئی نہیں)</string>
+    <!-- اے آئی گائیڈ -->
+    <string name="ai_guide_title">اے آئی موڈز</string>
+    <string name="ai_guide_weak_title">آسان (بے ترتیبی)</string>
+    <string name="ai_guide_weak_desc">بے ترتیبی سے چالیں منتخب کرتا ہے؛ اگے بڑھنے، چھلانگ اور کیمپ خالی کرنے کو معمولی ترجیح دیتا ہے۔</string>
+    <string name="ai_guide_medium_title">درمیانی (لالچی)</string>
+    <string name="ai_guide_medium_desc">تمام چالوں کا جائزہ لے کر وہ چال چنتا ہے جو ہدف تک فاصلہ کم کرے اور جلدی بیس چھوڑے۔</string>
+    <string name="ai_guide_strong_title">مشکل (Minimax)</string>
+    <string name="ai_guide_strong_desc">Minimax اور pruning سے کئی چالیں پہلے دیکھتا ہے؛ فاصلہ، بیس پر دباؤ اور حکمتِ عملی چھلانگیں جوڑتا ہے۔</string>
+    <string name="ai_guide_tip_title">مشورہ</string>
+    <string name="ai_guide_tip_body">یہاں ڈیفالٹ اے آئی مشکل طے کریں اور آف لائن میچ میں ہر نشست کے لیے علیحدہ سطح منتخب کریں۔</string>
+    <!-- قواعد -->
+    <string name="howto_title">کیسے کھیلیں</string>
+    <string name="howto_tab_rules">قواعد</string>
+    <string name="howto_tab_ai">اے آئی خلاصہ</string>
+    <string name="howto_rules_standard_heading">معیاری قواعد</string>
+    <string name="howto_rules_long_heading">لمبی چھلانگ کے قواعد</string>
+    <string name="howto_demo_title">چھلانگ ڈیموز</string>
+    <string name="howto_demo_restart">دوبارہ چلائیں</string>
+    <string name="howto_demo_normal_desc">عام چھلانگ ڈیمو: لال مہرہ برابر والے مہروں پر ایک ایک کر کے چھلانگ لگاتا ہے۔</string>
+    <string name="howto_demo_long_desc">لمبی چھلانگ ڈیمو: لال مہرہ متوازن قطار میں مہروں پر سے گزرتا ہے اور سلسلہ جاری رکھتا ہے۔</string>
+    <string name="howto_rules_standard">• قدم: برابر کے خالی خانے میں جائیں۔\n• چھلانگ: برابر مہرے پر سے چھلانگ لگا کر آگے کے خالی خانے میں اُتریں۔\n• سلسلہ وار چھلانگیں: جب تک ہر لینڈنگ خالی ہو، جاری رکھیں۔\n• جیت: ہدفی کیمپ کے تمام خانے پُر کریں۔</string>
+    <string name="howto_rules_long_jump">• سیٹنگز → لمبی چھلانگیں فعال کریں۔\n• کئی مہروں پر متوازن لمبی چھلانگ کی اجازت؛ برابر فاصلے پر اُترنا لازم۔\n• لمبی اور عام چھلانگیں ایک ہی ٹرن میں جوڑی جا سکتی ہیں۔</string>
+    <string name="howto_rules_layout">• بورڈ 2/3/4/6 کھلاڑیوں کی حمایت کرتا ہے؛ ابتدائی کیمپ مختلف ہوتے ہیں۔\n• سلسلہ وار چھلانگوں کے لیے راستے کھولنے کو اگلی قطار جلدی خالی کریں۔</string>
+    <!-- ڈیبگ -->
+    <string name="debug_logs_title">ڈیبگ لاگز (%1$d) - تازہ ترین 50</string>
+    <string name="debug_clear">لاگز صاف کریں</string>
+    <!-- متفرق -->
+    <string name="loading_stats">اعدادوشمار لوڈ ہو رہے ہیں…</string>
+</resources>

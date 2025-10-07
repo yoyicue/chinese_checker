@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
             LocaleListCompat.forLanguageTags(initialTag)
         }
         AppCompatDelegate.setApplicationLocales(initialLocales)
-        lastAppliedLangNorm = initialTag.split(',').firstOrNull()?.substringBefore('-')
+        lastAppliedLangNorm = canonicalTag(initialTag)
         super.onCreate(savedInstanceState)
         val container = AppContainer(applicationContext)
         setContent {
@@ -52,10 +52,8 @@ class MainActivity : ComponentActivity() {
                     LocaleListCompat.forLanguageTags(settings.languageTag)
                 }
                 val current = AppCompatDelegate.getApplicationLocales()
-                fun norm(tag: String): String =
-                    tag.split(',').firstOrNull()?.substringBefore('-') ?: ""
-                val currentNorm = norm(current.toLanguageTags())
-                val targetNorm = norm(target.toLanguageTags())
+                val currentNorm = canonicalTag(current.toLanguageTags())
+                val targetNorm = canonicalTag(target.toLanguageTags())
                 Log.d("Locales", "languageTag='${settings.languageTag}', current='${current.toLanguageTags()}' normCurrent='$currentNorm', target='${target.toLanguageTags()}' normTarget='$targetNorm'")
                 // Avoid repeated sets for the same target within the same process
                 if (targetNorm != lastAppliedLangNorm && currentNorm != targetNorm) {
@@ -84,15 +82,42 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun applyLocaleToContext(base: Context, tag: String): Context {
-        val primary = tag.split(',').firstOrNull()?.substringBefore('-') ?: tag
+        val first = tag.split(',').firstOrNull() ?: tag
         val conf = Configuration(base.resources.configuration)
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            val ll = android.os.LocaleList.forLanguageTags(primary)
+            val ll = android.os.LocaleList.forLanguageTags(first)
             conf.setLocales(ll)
             base.createConfigurationContext(conf)
         } else {
-            conf.setLocale(Locale.forLanguageTag(primary))
+            conf.setLocale(Locale.forLanguageTag(first))
             base.createConfigurationContext(conf)
+        }
+    }
+
+    private fun canonicalTag(raw: String?): String {
+        if (raw.isNullOrBlank()) return ""
+        val first = raw.trim().replace('_', '-').split(',').first()
+        val lower = first.lowercase()
+        return when {
+            lower.startsWith("zh-hant") -> "zh-Hant"
+            lower == "zh" || lower.startsWith("zh-") -> "zh"
+            lower == "en" || lower.startsWith("en-") -> "en"
+            lower == "es" || lower.startsWith("es-") -> "es"
+            lower == "fr" || lower.startsWith("fr-") -> "fr"
+            lower == "de" || lower.startsWith("de-") -> "de"
+            lower == "it" || lower.startsWith("it-") -> "it"
+            lower == "hi" || lower.startsWith("hi-") -> "hi"
+            lower == "bn" || lower.startsWith("bn-") -> "bn"
+            lower == "mr" || lower.startsWith("mr-") -> "mr"
+            lower == "te" || lower.startsWith("te-") -> "te"
+            lower.startsWith("pnb") || lower.startsWith("pa-arab") || lower == "pa" || lower.startsWith("pa-pk") -> "pa-Arab"
+            lower == "pt" || lower.startsWith("pt-") -> "pt"
+            lower == "ru" || lower.startsWith("ru-") -> "ru"
+            lower == "ja" || lower.startsWith("ja-") -> "ja"
+            lower == "tr" || lower.startsWith("tr-") -> "tr"
+            lower == "ko" || lower.startsWith("ko-") -> "ko"
+            lower == "vi" || lower.startsWith("vi-") -> "vi"
+            else -> lower.substringBefore('-')
         }
     }
 }

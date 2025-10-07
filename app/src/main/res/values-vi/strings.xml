@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">Cờ nhảy Trung Quốc</string>
+    <!-- Màn hình bắt đầu -->
+    <string name="start_title">Cờ nhảy Trung Quốc</string>
+    <string name="start_version">Phiên bản v%1$s</string>
+    <string name="start_continue">Tiếp tục trò chơi</string>
+    <string name="start_offline">Trận ngoại tuyến</string>
+    <string name="start_settings">Cài đặt</string>
+    <string name="start_stats">Thống kê</string>
+    <string name="start_howto">Cách chơi</string>
+    <!-- Chung -->
+    <string name="common_back">Quay lại</string>
+    <string name="common_cancel">Hủy</string>
+    <string name="common_save_and_exit">Lưu và thoát</string>
+    <string name="common_discard_and_exit">Thoát mà không lưu</string>
+    <string name="common_loading">Đang tải…</string>
+    <!-- Cài đặt -->
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_sounds">Hiệu ứng âm thanh: %1$d%%</string>
+    <string name="settings_vibration">Rung</string>
+    <string name="settings_dark_theme">Chủ đề tối</string>
+    <string name="settings_fast_mode">Chế độ bấm giờ</string>
+    <string name="settings_fast_mode_desc">Bật đếm ngược lượt cho mọi người chơi.</string>
+    <string name="settings_long_jump">Bật nhảy xa</string>
+    <string name="settings_long_jump_desc">Cho phép các bước nhảy đối xứng để đi xa hơn trong một lượt.</string>
+    <string name="settings_turn_duration">Thời lượng lượt</string>
+    <string name="settings_turn_duration_option">%1$d giây</string>
+    <string name="settings_timeout_behavior">Xử lý khi hết thời gian</string>
+    <string name="settings_timeout_skip">Hết thời gian: bỏ lượt</string>
+    <string name="settings_timeout_auto">Hết thời gian: đi tự động</string>
+    <string name="settings_ai_section">Hành vi AI</string>
+    <string name="settings_ai_default_difficulty">Độ khó AI mặc định</string>
+    <string name="difficulty_easy">Dễ</string>
+    <string name="difficulty_medium">Trung bình</string>
+    <string name="difficulty_hard">Khó</string>
+    <string name="settings_ai_long_jump">Cho phép AI nhảy xa</string>
+    <string name="settings_debug_toggle">Lớp phủ gỡ lỗi</string>
+    <string name="settings_debug_desc">Hiển thị thêm nhật ký và sự kiện trong trận.</string>
+    <string name="settings_language">Ngôn ngữ</string>
+    <string name="language_auto">Mặc định hệ thống</string>
+    <string name="language_english">Tiếng Anh</string>
+    <string name="language_chinese">Tiếng Trung</string>
+    <string name="language_spanish">Tiếng Tây Ban Nha</string>
+    <!-- Hộp thoại thoát -->
+    <string name="exit_dialog_title">Rời trận?</string>
+    <string name="exit_dialog_message">Chọn có lưu tiến trình hiện tại hay không.</string>
+    <!-- Màn hình chơi -->
+    <string name="game_button_undo">Hoàn tác</string>
+    <string name="game_turn_indicator">Lượt: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">Người thắng: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · còn %1$d giây</string>
+    <string name="game_role_player">Người chơi</string>
+    <string name="game_role_ai">AI</string>
+    <string name="game_role_ai_with_difficulty">AI (%1$s)</string>
+    <string name="camp_top">Trên</string>
+    <string name="camp_bottom">Dưới</string>
+    <string name="camp_ne">Đông Bắc</string>
+    <string name="camp_se">Đông Nam</string>
+    <string name="camp_sw">Tây Nam</string>
+    <string name="camp_nw">Tây Bắc</string>
+    <string name="victory_title">Chiến thắng</string>
+    <string name="victory_winner_message">%1$s (%2$s) đã thắng!</string>
+    <string name="victory_congrats_message">Chúc mừng! Trận đấu tuyệt vời!</string>
+    <string name="victory_play_again">Chơi lại</string>
+    <string name="victory_return_home">Về trang chủ</string>
+    <!-- Thiết lập ngoại tuyến -->
+    <string name="offline_title">Thiết lập trận ngoại tuyến</string>
+    <string name="offline_player_count">Số người chơi</string>
+    <string name="offline_ai_label">AI</string>
+    <string name="offline_ai_level">Độ khó AI</string>
+    <string name="offline_color_label">Màu</string>
+    <string name="offline_start_game">Bắt đầu</string>
+    <string name="seat_top">Trên</string>
+    <string name="seat_bottom">Dưới</string>
+    <string name="seat_sw">Tây Nam</string>
+    <string name="seat_se">Đông Nam</string>
+    <string name="seat_ne">Đông Bắc</string>
+    <string name="seat_nw">Tây Bắc</string>
+    <string name="colour_red">Đỏ</string>
+    <string name="colour_blue">Xanh lam</string>
+    <string name="colour_purple">Tím</string>
+    <string name="colour_green">Xanh lục</string>
+    <string name="colour_yellow">Vàng</string>
+    <string name="colour_orange">Cam</string>
+    <string name="colour_teal">Xanh ngọc lam</string>
+    <string name="colour_custom">Tùy chỉnh</string>
+    <!-- Thống kê -->
+    <string name="profile_title">Thống kê</string>
+    <string name="profile_section_heading">Thống kê trận đấu</string>
+    <string name="profile_total_games">Tổng số trận: %1$d</string>
+    <string name="profile_last_played">Chơi gần nhất: %1$s</string>
+    <string name="profile_reset_stats">Đặt lại thống kê</string>
+    <string name="profile_chart_by_player">Số trận thắng theo người chơi</string>
+    <string name="profile_chart_by_controller">Thắng theo loại (Người/AI)</string>
+    <string name="profile_chart_by_difficulty">Thắng theo độ khó</string>
+    <string name="profile_empty">(Chưa có)</string>
+    <!-- Hướng dẫn AI -->
+    <string name="ai_guide_title">Chế độ AI</string>
+    <string name="ai_guide_weak_title">Dễ (ngẫu nhiên)</string>
+    <string name="ai_guide_weak_desc">Chọn nước đi ngẫu nhiên, hơi ưu tiên tiến lên, nhảy và rời căn cứ.</string>
+    <string name="ai_guide_medium_title">Trung bình (tham lam)</string>
+    <string name="ai_guide_medium_desc">Đánh giá mọi nước, chọn phương án giảm khoảng cách tới đích và rời căn cứ nhanh.</string>
+    <string name="ai_guide_strong_title">Khó (Minimax)</string>
+    <string name="ai_guide_strong_desc">Dự đoán trước nhiều lượt bằng minimax và cắt tỉa; kết hợp khoảng cách, áp lực căn cứ và các bước nhảy chiến thuật.</string>
+    <string name="ai_guide_tip_title">Mẹo</string>
+    <string name="ai_guide_tip_body">Bạn có thể đặt độ khó AI mặc định tại đây và chọn mức riêng cho từng chỗ ngồi trong trận ngoại tuyến.</string>
+    <!-- Luật chơi -->
+    <string name="howto_title">Cách chơi</string>
+    <string name="howto_tab_rules">Luật</string>
+    <string name="howto_tab_ai">Tổng quan AI</string>
+    <string name="howto_rules_standard_heading">Luật tiêu chuẩn</string>
+    <string name="howto_rules_long_heading">Luật nhảy xa</string>
+    <string name="howto_demo_title">Minh họa nhảy</string>
+    <string name="howto_demo_restart">Phát lại</string>
+    <string name="howto_demo_normal_desc">Minh họa nhảy thường: quân đỏ lần lượt nhảy qua các quân kề cận.</string>
+    <string name="howto_demo_long_desc">Minh họa nhảy xa: quân đỏ vượt qua hàng quân đối xứng và tiếp tục chuỗi nhảy.</string>
+    <string name="howto_rules_standard">• Đi bộ: di chuyển tới lỗ trống kề cận.\n• Nhảy: nhảy qua quân kề cận tới lỗ trống phía sau.\n• Chuỗi nhảy: tiếp tục khi điểm đáp còn trống.\n• Thắng: chiếm toàn bộ lỗ tại căn cứ mục tiêu.</string>
+    <string name="howto_rules_long_jump">• Bật trong Cài đặt → Nhảy xa.\n• Cho phép các bước nhảy đối xứng qua nhiều quân, đáp xuống vị trí cách đều.\n• Có thể kết hợp nhảy xa và nhảy thường trong cùng một lượt.</string>
+    <string name="howto_rules_layout">• Bàn hỗ trợ 2/3/4/6 người; căn cứ ban đầu khác nhau.\n• Giải phóng sớm hàng trước để mở đường nhảy.</string>
+    <!-- Gỡ lỗi -->
+    <string name="debug_logs_title">Nhật ký gỡ lỗi (%1$d) - 50 gần nhất</string>
+    <string name="debug_clear">Xóa nhật ký</string>
+    <!-- Khác -->
+    <string name="loading_stats">Đang tải thống kê…</string>
+</resources>

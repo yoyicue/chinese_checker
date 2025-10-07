@@ -27,5 +27,5 @@ class SettingsViewModel(private val repository: SettingsRepository) : ViewModel(
     fun setDebugOverlay(enabled: Boolean) = update { it.copy(debugOverlay = enabled) }
     fun setAiDifficulty(code: Int) = update { it.copy(aiDifficulty = code) }
     fun setAiLongJumps(enabled: Boolean) = update { it.copy(aiLongJumps = enabled) }
-    fun setLanguage(tag: String) = update { it.copy(languageTag = tag.lowercase()) }
+    fun setLanguage(tag: String) = update { it.copy(languageTag = tag) }
 }

@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">চাইনিজ চেকার্স</string>
+    <!-- শুরু পর্দা -->
+    <string name="start_title">চাইনিজ চেকার্স</string>
+    <string name="start_version">সংস্করণ v%1$s</string>
+    <string name="start_continue">খেলা চালিয়ে যান</string>
+    <string name="start_offline">অফলাইন ম্যাচ</string>
+    <string name="start_settings">সেটিংস</string>
+    <string name="start_stats">পরিসংখ্যান</string>
+    <string name="start_howto">কিভাবে খেলবেন</string>
+    <!-- সাধারণ -->
+    <string name="common_back">ফিরে যান</string>
+    <string name="common_cancel">বাতিল</string>
+    <string name="common_save_and_exit">সংরক্ষণ করে বেরিয়ে যান</string>
+    <string name="common_discard_and_exit">সংরক্ষণ না করে বেরিয়ে যান</string>
+    <string name="common_loading">লোড হচ্ছে…</string>
+    <!-- সেটিংস -->
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_sounds">সাউন্ড ইফেক্ট: %1$d%%</string>
+    <string name="settings_vibration">কম্পন</string>
+    <string name="settings_dark_theme">ডার্ক থিম</string>
+    <string name="settings_fast_mode">সময় নির্ধারিত মোড</string>
+    <string name="settings_fast_mode_desc">প্রতি খেলোয়াড়ের জন্য টার্ন কাউন্টডাউন সক্রিয় করুন।</string>
+    <string name="settings_long_jump">দীর্ঘ লাফ সক্রিয় করুন</string>
+    <string name="settings_long_jump_desc">সমমিত দীর্ঘ লাফে এক চালেই বেশি দূর যাওয়ার অনুমতি দিন।</string>
+    <string name="settings_turn_duration">টার্নের সময়কাল</string>
+    <string name="settings_turn_duration_option">%1$d সেকেন্ড</string>
+    <string name="settings_timeout_behavior">সময় শেষ হলে আচরণ</string>
+    <string name="settings_timeout_skip">সময় শেষ: টার্ন বাদ দিন</string>
+    <string name="settings_timeout_auto">সময় শেষ: স্বয়ংক্রিয় চাল</string>
+    <string name="settings_ai_section">এআই আচরণ</string>
+    <string name="settings_ai_default_difficulty">ডিফল্ট এআই কঠিনতা</string>
+    <string name="difficulty_easy">সহজ</string>
+    <string name="difficulty_medium">মাঝারি</string>
+    <string name="difficulty_hard">কঠিন</string>
+    <string name="settings_ai_long_jump">এআই‑এর জন্য দীর্ঘ লাফের অনুমতি দিন</string>
+    <string name="settings_debug_toggle">ডিবাগ ওভারলে</string>
+    <string name="settings_debug_desc">ম্যাচ চলাকালীন অতিরিক্ত লগ ও ইভেন্ট দেখান।</string>
+    <string name="settings_language">ভাষা</string>
+    <string name="language_auto">সিস্টেম ডিফল্ট</string>
+    <string name="language_english">ইংরেজি</string>
+    <string name="language_chinese">চীনা</string>
+    <string name="language_spanish">স্প্যানিশ</string>
+    <!-- প্রস্থান ডায়ালগ -->
+    <string name="exit_dialog_title">ম্যাচ ছাড়বেন?</string>
+    <string name="exit_dialog_message">বর্তমান অগ্রগতি সংরক্ষণ করবেন কি না বেছে নিন।</string>
+    <!-- গেম পর্দা -->
+    <string name="game_button_undo">আনডু</string>
+    <string name="game_turn_indicator">টার্ন: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">বিজয়ী: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · বাকি %1$d সেকেন্ড</string>
+    <string name="game_role_player">খেলোয়াড়</string>
+    <string name="game_role_ai">এআই</string>
+    <string name="game_role_ai_with_difficulty">এআই (%1$s)</string>
+    <string name="camp_top">উপরে</string>
+    <string name="camp_bottom">নীচে</string>
+    <string name="camp_ne">উত্তর‑পূর্ব</string>
+    <string name="camp_se">দক্ষিণ‑পূর্ব</string>
+    <string name="camp_sw">দক্ষিণ‑পশ্চিম</string>
+    <string name="camp_nw">উত্তর‑পশ্চিম</string>
+    <string name="victory_title">বিজয়ী</string>
+    <string name="victory_winner_message">%1$s (%2$s) জিতেছে!</string>
+    <string name="victory_congrats_message">অভিনন্দন! দারুণ ম্যাচ!</string>
+    <string name="victory_play_again">আবার খেলুন</string>
+    <string name="victory_return_home">হোমে ফিরে যান</string>
+    <!-- অফলাইন কনফিগারেশন -->
+    <string name="offline_title">অফলাইন ম্যাচ কনফিগারেশন</string>
+    <string name="offline_player_count">খেলোয়াড় সংখ্যা</string>
+    <string name="offline_ai_label">এআই</string>
+    <string name="offline_ai_level">এআই কঠিনতা</string>
+    <string name="offline_color_label">রং</string>
+    <string name="offline_start_game">খেলা শুরু করুন</string>
+    <string name="seat_top">উপরে</string>
+    <string name="seat_bottom">নীচে</string>
+    <string name="seat_sw">দক্ষিণ‑পশ্চিম</string>
+    <string name="seat_se">দক্ষিণ‑পূর্ব</string>
+    <string name="seat_ne">উত্তর‑পূর্ব</string>
+    <string name="seat_nw">উত্তর‑পশ্চিম</string>
+    <string name="colour_red">লাল</string>
+    <string name="colour_blue">নীল</string>
+    <string name="colour_purple">বেগুনি</string>
+    <string name="colour_green">সবুজ</string>
+    <string name="colour_yellow">হলুদ</string>
+    <string name="colour_orange">কমলা</string>
+    <string name="colour_teal">ফিরোজা</string>
+    <string name="colour_custom">কাস্টম</string>
+    <!-- পরিসংখ্যান -->
+    <string name="profile_title">পরিসংখ্যান</string>
+    <string name="profile_section_heading">ম্যাচের পরিসংখ্যান</string>
+    <string name="profile_total_games">মোট খেলা: %1$d</string>
+    <string name="profile_last_played">সর্বশেষ খেলা: %1$s</string>
+    <string name="profile_reset_stats">পরিসংখ্যান রিসেট করুন</string>
+    <string name="profile_chart_by_player">খেলোয়াড়ভিত্তিক জয়</string>
+    <string name="profile_chart_by_controller">ধরনভিত্তিক জয় (মানব/এআই)</string>
+    <string name="profile_chart_by_difficulty">কঠিনতাভিত্তিক জয়</string>
+    <string name="profile_empty">(এখনও নেই)</string>
+    <!-- এআই গাইড -->
+    <string name="ai_guide_title">এআই মোড</string>
+    <string name="ai_guide_weak_title">সহজ (এলোমেলো)</string>
+    <string name="ai_guide_weak_desc">এলোমেলো চাল বেছে নেয়; অল্প অগ্রগতি, লাফ ও ক্যাম্প খালি করাকে প্রাধান্য দেয়।</string>
+    <string name="ai_guide_medium_title">মাঝারি (লোভী)</string>
+    <string name="ai_guide_medium_desc">সব চাল মূল্যায়ন করে; লক্ষ্যে দূরত্ব কমায় এবং দ্রুত ক্যাম্প ছেড়ে এমন চাল বেছে নেয়।</string>
+    <string name="ai_guide_strong_title">কঠিন (Minimax)</string>
+    <string name="ai_guide_strong_desc">মিনিম্যাক্স ও প্রুনিং দিয়ে কয়েক টার্ন আগেই আন্দাজ করে; দূরত্ব, ক্যাম্পের চাপ ও কৌশলগত লাফ মিলিয়ে দেখে।</string>
+    <string name="ai_guide_tip_title">টিপস</string>
+    <string name="ai_guide_tip_body">এখানে ডিফল্ট এআই কঠিনতা সেট করুন এবং অফলাইন ম্যাচে প্রতি আসনের জন্য আলাদা স্তর বেছে নিন।</string>
+    <!-- নিয়ম -->
+    <string name="howto_title">কিভাবে খেলবেন</string>
+    <string name="howto_tab_rules">নিয়ম</string>
+    <string name="howto_tab_ai">এআই সংক্ষিপ্তসার</string>
+    <string name="howto_rules_standard_heading">মানক নিয়ম</string>
+    <string name="howto_rules_long_heading">দীর্ঘ লাফের নিয়ম</string>
+    <string name="howto_demo_title">লাফের ডেমো</string>
+    <string name="howto_demo_restart">পুনরায় চালান</string>
+    <string name="howto_demo_normal_desc">সাধারণ লাফের ডেমো: লাল গুটি পাশের গুটির ওপর দিয়ে একে একে লাফায়।</string>
+    <string name="howto_demo_long_desc">দীর্ঘ লাফের ডেমো: লাল গুটি সমমিত সারির গুটির ওপর দিয়ে লাফিয়ে শৃঙ্খল চাল চালিয়ে যায়।</string>
+    <string name="howto_rules_standard">• এক ধাপ: পাশের খালি ছিদ্রে যান।\n• লাফ: পাশের গুটির ওপর দিয়ে সামনের খালি ছিদ্রে যান।\n• শৃঙ্খল লাফ: প্রতিটি অবতরণ খালি থাকলে চালিয়ে যান।\n• জয়: লক্ষ্য ক্যাম্পের সব ছিদ্র দখল করুন।</string>
+    <string name="howto_rules_long_jump">• সেটিংসে যান → দীর্ঘ লাফ চালু করুন।\n• একাধিক গুটির ওপর দিয়ে সমমিত দীর্ঘ লাফের অনুমতি দেয়; সমান দূরত্বে অবতরণ আবশ্যক।\n• দীর্ঘ ও সাধারণ লাফ একই টার্নে মিলিয়ে নেওয়া যায়।</string>
+    <string name="howto_rules_layout">• বোর্ড 2/3/4/6 খেলোয়াড় সমর্থন করে; শুরুর ক্যাম্প আলাদা।\n• শৃঙ্খল লাফের পথ খুলতে সামনের সারি দ্রুত খালি করুন।</string>
+    <!-- ডিবাগ -->
+    <string name="debug_logs_title">ডিবাগ লগ (%1$d) - সর্বশেষ 50</string>
+    <string name="debug_clear">লগ মুছুন</string>
+    <!-- অন্যান্য -->
+    <string name="loading_stats">পরিসংখ্যান লোড হচ্ছে…</string>
+</resources>
