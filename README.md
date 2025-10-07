@@ -29,6 +29,6 @@ This repository delivers an offline Chinese Checkers experience for Android buil
 
 ## Next Steps
 - Expand AI benchmarking and broaden unit tests across AI strategies and pathfinding.
-- Expose music toggle alongside the existing SFX slider.
+- Evaluate whether background music should return in a later release; current build ships with SFX only.
 - Finish accessibility polish for board semantics and offline setup controls.
 - Automate Room schema generation path (single `app/schemas` output) and add migration tests.
