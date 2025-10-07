@@ -6,7 +6,7 @@ plugins {
     id("androidx.room")
 }
 
-val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v0.1.1"
+val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v0.1.2"
 
 android {
     namespace = "com.yoyicue.chinesechecker"
