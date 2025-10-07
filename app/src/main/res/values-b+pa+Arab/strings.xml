@@ -4,7 +4,7 @@
     <string name="start_title">چائنیز چیکرز</string>
     <string name="start_version">ورژن v%1$s</string>
     <string name="start_continue">کھیل جاری رکھیں</string>
-    <string name="start_offline">آف لائن میچ</string>
+    <string name="start_offline">آف لائن کھیل</string>
     <string name="start_settings">سیٹنگز</string>
     <string name="start_stats">اعدادوشمار</string>
     <string name="start_howto">کیسے کھیلیں</string>
@@ -35,14 +35,14 @@
     <string name="difficulty_hard">مشکل</string>
     <string name="settings_ai_long_jump">اے آئی کے لیے لمبی چھلانگوں کی اجازت دیں</string>
     <string name="settings_debug_toggle">ڈیبگ اوورلے</string>
-    <string name="settings_debug_desc">میچ کے دوران اضافی لاگز اور واقعات دکھائیں۔</string>
+    <string name="settings_debug_desc">کھیل کے دوران اضافی لاگز اور واقعات دکھائیں۔</string>
     <string name="settings_language">زبان</string>
     <string name="language_auto">نظام کی طے شدہ</string>
     <string name="language_english">انگریزی</string>
     <string name="language_chinese">چینی</string>
     <string name="language_spanish">ہسپانوی</string>
     <!-- خروج ڈائیلاگ -->
-    <string name="exit_dialog_title">میچ سے نکلیں؟</string>
+    <string name="exit_dialog_title">کھیل چھوڑیں؟</string>
     <string name="exit_dialog_message">منتخب کریں کہ موجودہ پیش رفت محفوظ کرنی ہے یا نہیں۔</string>
     <!-- کھیل اسکرین -->
     <string name="game_button_undo">کالعدم کریں</string>
@@ -60,11 +60,11 @@
     <string name="camp_nw">شمال مغرب</string>
     <string name="victory_title">فاتح</string>
     <string name="victory_winner_message">%1$s (%2$s) جیت گیا!</string>
-    <string name="victory_congrats_message">مبارک ہو! شاندار میچ!</string>
+    <string name="victory_congrats_message">مبارک ہو! شاندار کھیل!</string>
     <string name="victory_play_again">دوبارہ کھیلیں</string>
     <string name="victory_return_home">ہوم پر جائیں</string>
     <!-- آف لائن سیٹ اپ -->
-    <string name="offline_title">آف لائن میچ کی ترتیب</string>
+    <string name="offline_title">آف لائن کھیل کی ترتیب</string>
     <string name="offline_player_count">کھلاڑیوں کی تعداد</string>
     <string name="offline_ai_label">اے آئی</string>
     <string name="offline_ai_level">اے آئی مشکل</string>
@@ -86,7 +86,7 @@
     <string name="colour_custom">حسبِ مرضی</string>
     <!-- اعدادوشمار -->
     <string name="profile_title">اعدادوشمار</string>
-    <string name="profile_section_heading">میچ کے اعدادوشمار</string>
+    <string name="profile_section_heading">کھیل کے اعدادوشمار</string>
     <string name="profile_total_games">کل کھیل: %1$d</string>
     <string name="profile_last_played">آخری کھیل: %1$s</string>
     <string name="profile_reset_stats">اعدادوشمار ری سیٹ کریں</string>
@@ -97,13 +97,13 @@
     <!-- اے آئی گائیڈ -->
     <string name="ai_guide_title">اے آئی موڈز</string>
     <string name="ai_guide_weak_title">آسان (بے ترتیبی)</string>
-    <string name="ai_guide_weak_desc">بے ترتیبی سے چالیں منتخب کرتا ہے؛ اگے بڑھنے، چھلانگ اور کیمپ خالی کرنے کو معمولی ترجیح دیتا ہے۔</string>
+    <string name="ai_guide_weak_desc">بے ترتیبی سے چالیں منتخب کرتا ہے؛ اگے بڑھنے، چھلانگ اور ابتدائی مثلث خالی کرنے کو معمولی ترجیح دیتا ہے۔</string>
     <string name="ai_guide_medium_title">درمیانی (لالچی)</string>
-    <string name="ai_guide_medium_desc">تمام چالوں کا جائزہ لے کر وہ چال چنتا ہے جو ہدف تک فاصلہ کم کرے اور جلدی بیس چھوڑے۔</string>
+    <string name="ai_guide_medium_desc">تمام چالوں کا جائزہ لے کر وہ چال چنتا ہے جو ہدف تک فاصلہ کم کرے اور جلدی ابتدائی مثلث چھوڑے۔</string>
     <string name="ai_guide_strong_title">مشکل (Minimax)</string>
-    <string name="ai_guide_strong_desc">Minimax اور pruning سے کئی چالیں پہلے دیکھتا ہے؛ فاصلہ، بیس پر دباؤ اور حکمتِ عملی چھلانگیں جوڑتا ہے۔</string>
+    <string name="ai_guide_strong_desc">Minimax اور pruning سے کئی چالیں پہلے دیکھتا ہے؛ فاصلہ، ابتدائی مثلث پر دباؤ اور حکمتِ عملی چھلانگیں جوڑتا ہے۔</string>
     <string name="ai_guide_tip_title">مشورہ</string>
-    <string name="ai_guide_tip_body">یہاں ڈیفالٹ اے آئی مشکل طے کریں اور آف لائن میچ میں ہر نشست کے لیے علیحدہ سطح منتخب کریں۔</string>
+    <string name="ai_guide_tip_body">یہاں ڈیفالٹ اے آئی مشکل طے کریں اور آف لائن کھیل میں ہر پوزیشن کے لیے علیحدہ سطح منتخب کریں۔</string>
     <!-- قواعد -->
     <string name="howto_title">کیسے کھیلیں</string>
     <string name="howto_tab_rules">قواعد</string>
@@ -114,9 +114,9 @@
     <string name="howto_demo_restart">دوبارہ چلائیں</string>
     <string name="howto_demo_normal_desc">عام چھلانگ ڈیمو: لال مہرہ برابر والے مہروں پر ایک ایک کر کے چھلانگ لگاتا ہے۔</string>
     <string name="howto_demo_long_desc">لمبی چھلانگ ڈیمو: لال مہرہ متوازن قطار میں مہروں پر سے گزرتا ہے اور سلسلہ جاری رکھتا ہے۔</string>
-    <string name="howto_rules_standard">• قدم: برابر کے خالی خانے میں جائیں۔\n• چھلانگ: برابر مہرے پر سے چھلانگ لگا کر آگے کے خالی خانے میں اُتریں۔\n• سلسلہ وار چھلانگیں: جب تک ہر لینڈنگ خالی ہو، جاری رکھیں۔\n• جیت: ہدفی کیمپ کے تمام خانے پُر کریں۔</string>
+    <string name="howto_rules_standard">• قدم: برابر کے خالی خانے میں جائیں۔\n• چھلانگ: برابر مہرے پر سے چھلانگ لگا کر آگے کے خالی خانے میں اُتریں۔\n• سلسلہ وار چھلانگیں: جب تک ہر لینڈنگ خالی ہو، جاری رکھیں۔\n• جیت: ہدفی مثلث کے تمام خانے پُر کریں۔</string>
     <string name="howto_rules_long_jump">• سیٹنگز → لمبی چھلانگیں فعال کریں۔\n• کئی مہروں پر متوازن لمبی چھلانگ کی اجازت؛ برابر فاصلے پر اُترنا لازم۔\n• لمبی اور عام چھلانگیں ایک ہی ٹرن میں جوڑی جا سکتی ہیں۔</string>
-    <string name="howto_rules_layout">• بورڈ 2/3/4/6 کھلاڑیوں کی حمایت کرتا ہے؛ ابتدائی کیمپ مختلف ہوتے ہیں۔\n• سلسلہ وار چھلانگوں کے لیے راستے کھولنے کو اگلی قطار جلدی خالی کریں۔</string>
+    <string name="howto_rules_layout">• بورڈ 2/3/4/6 کھلاڑیوں کی حمایت کرتا ہے؛ ابتدائی مثلث مختلف ہوتے ہیں۔\n• سلسلہ وار چھلانگوں کے لیے راستے کھولنے کو اگلی قطار جلدی خالی کریں۔</string>
     <!-- ڈیبگ -->
     <string name="debug_logs_title">ڈیبگ لاگز (%1$d) - تازہ ترین 50</string>
     <string name="debug_clear">لاگز صاف کریں</string>
