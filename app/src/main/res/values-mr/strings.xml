@@ -4,7 +4,7 @@
     <string name="start_title">चायनीज चेकर्स</string>
     <string name="start_version">आवृत्ती v%1$s</string>
     <string name="start_continue">खेळ पुढे सुरू करा</string>
-    <string name="start_offline">ऑफलाइन सामना</string>
+    <string name="start_offline">ऑफलाइन खेळ</string>
     <string name="start_settings">सेटिंग्ज</string>
     <string name="start_stats">आकडेवारी</string>
     <string name="start_howto">कसे खेळायचे</string>
@@ -20,7 +20,7 @@
     <string name="settings_vibration">व्हायब्रेशन</string>
     <string name="settings_dark_theme">गडद थीम</string>
     <string name="settings_fast_mode">वेळबद्ध मोड</string>
-    <string name="settings_fast_mode_desc">प्रत्येक खेळाडूसाठी चाल काउंटडाउन सक्षम करा.</string>
+    <string name="settings_fast_mode_desc">प्रत्येक खेळाडूसाठी चालीची उलटी मोजणी सक्षम करा.</string>
     <string name="settings_long_jump">लांब उड्या सक्षम करा</string>
     <string name="settings_long_jump_desc">सममित लांब उड्यांनी एका चालीत अधिक अंतर पार करा.</string>
     <string name="settings_turn_duration">चालीची कालावधी</string>
@@ -35,14 +35,14 @@
     <string name="difficulty_hard">कठीण</string>
     <string name="settings_ai_long_jump">एआयसाठी लांब उड्यांना परवानगी द्या</string>
     <string name="settings_debug_toggle">डिबग ओव्हरले</string>
-    <string name="settings_debug_desc">सामन्यात अतिरिक्त नोंदी व घटना दाखवा.</string>
+    <string name="settings_debug_desc">खेळात अतिरिक्त नोंदी व घटना दाखवा.</string>
     <string name="settings_language">भाषा</string>
     <string name="language_auto">प्रणाली डिफॉल्ट</string>
     <string name="language_english">इंग्रजी</string>
     <string name="language_chinese">चिनी</string>
     <string name="language_spanish">स्पॅनिश</string>
     <!-- बाहेर पडणे डायलॉग -->
-    <string name="exit_dialog_title">सामना सोडायचा?</string>
+    <string name="exit_dialog_title">खेळ सोडायचा?</string>
     <string name="exit_dialog_message">वर्तमान प्रगती जतन करायची का ते निवडा.</string>
     <!-- गेम स्क्रीन -->
     <string name="game_button_undo">पूर्ववत</string>
@@ -60,11 +60,11 @@
     <string name="camp_nw">वायव्य</string>
     <string name="victory_title">विजेता</string>
     <string name="victory_winner_message">%1$s (%2$s) जिंकले!</string>
-    <string name="victory_congrats_message">अभिनंदन! उत्कृष्ट सामना!</string>
+    <string name="victory_congrats_message">अभिनंदन! उत्कृष्ट खेळ!</string>
     <string name="victory_play_again">पुन्हा खेळा</string>
-    <string name="victory_return_home">मुख्य पानावर जा</string>
+    <string name="victory_return_home">मुख्य स्क्रीनवर जा</string>
     <!-- ऑफलाइन सेटअप -->
-    <string name="offline_title">ऑफलाइन सामना सेटअप</string>
+    <string name="offline_title">ऑफलाइन खेळ सेटअप</string>
     <string name="offline_player_count">खेळाडूंची संख्या</string>
     <string name="offline_ai_label">एआय</string>
     <string name="offline_ai_level">एआय कठीणता</string>
@@ -86,8 +86,8 @@
     <string name="colour_custom">सानुकूल</string>
     <!-- आकडेवारी -->
     <string name="profile_title">आकडेवारी</string>
-    <string name="profile_section_heading">सामन्याची आकडेवारी</string>
-    <string name="profile_total_games">एकूण सामने: %1$d</string>
+    <string name="profile_section_heading">खेळाची आकडेवारी</string>
+    <string name="profile_total_games">एकूण खेळ: %1$d</string>
     <string name="profile_last_played">शेवटचा खेळ: %1$s</string>
     <string name="profile_reset_stats">आकडेवारी रीसेट करा</string>
     <string name="profile_chart_by_player">खेळाडूनुसार विजय</string>
@@ -99,11 +99,11 @@
     <string name="ai_guide_weak_title">सोपे (यादृच्छिक)</string>
     <string name="ai_guide_weak_desc">यादृच्छिक चाली निवडतो; पुढे जाणे, उड्या आणि कॅम्प रिकामा करणे यांना थोडा प्राधान्य.</string>
     <string name="ai_guide_medium_title">मध्यम (लोभी)</string>
-    <string name="ai_guide_medium_desc">सर्व चालींचे मूल्यांकन करून लक्ष्यापर्यंतचे अंतर कमी करणारी आणि लवकर बेस रिकामी करणारी चाल निवडतो.</string>
+    <string name="ai_guide_medium_desc">सर्व चालींचे मूल्यांकन करून लक्ष्यापर्यंतचे अंतर कमी करणारी आणि लवकर कॅम्प रिकामी करणारी चाल निवडतो.</string>
     <string name="ai_guide_strong_title">कठीण (Minimax)</string>
-    <string name="ai_guide_strong_desc">Minimax व pruning ने पुढील काही चाली वाचतो; अंतर, बेस दडपण व सामरिक उड्या एकत्र करतो.</string>
+    <string name="ai_guide_strong_desc">Minimax व pruning ने पुढील काही चाली वाचतो; अंतर, कॅम्प दडपण व सामरिक उड्या एकत्र करतो.</string>
     <string name="ai_guide_tip_title">सूचना</string>
-    <string name="ai_guide_tip_body">इथे डीफॉल्ट एआय कठीणता सेट करा आणि ऑफलाइन सामन्यात प्रत्येक आसनासाठी वेगळी पातळी निवडा.</string>
+    <string name="ai_guide_tip_body">इथे डीफॉल्ट एआय कठीणता सेट करा आणि ऑफलाइन खेळात प्रत्येक आसनासाठी वेगळी पातळी निवडा.</string>
     <!-- नियम -->
     <string name="howto_title">कसे खेळायचे</string>
     <string name="howto_tab_rules">नियम</string>
@@ -111,10 +111,10 @@
     <string name="howto_rules_standard_heading">मानक नियम</string>
     <string name="howto_rules_long_heading">लांब उडीचे नियम</string>
     <string name="howto_demo_title">उडींचे प्रात्यक्षिक</string>
-    <string name="howto_demo_restart">पुन्हा प्ले करा</string>
+    <string name="howto_demo_restart">पुन्हा दाखवा</string>
     <string name="howto_demo_normal_desc">सामान्य उडीचे प्रात्यक्षिक: लाल मोहरा शेजारच्या मोहऱ्यांवरून एकामागून एक उडी मारतो.</string>
     <string name="howto_demo_long_desc">लांब उडीचे प्रात्यक्षिक: लाल मोहरा सममित रांगेतील मोहऱ्यांवरून उडी मारतो आणि उड्यांची साखळी चालू ठेवतो.</string>
-    <string name="howto_rules_standard">• पाऊल: शेजारच्या रिकाम्या छिद्रात जा.\n• उडी: शेजारच्या मोहऱ्यावरून पुढील रिकाम्या छिद्रात उडी मारा.\n• साखळी उड्या: प्रत्येक लँडिंग रिकामे असेपर्यंत सुरू ठेवा.\n• विजय: लक्ष्य कॅम्पमधील सर्व छिद्रे भरा.</string>
+    <string name="howto_rules_standard">• चाल: शेजारच्या रिकाम्या छिद्रात जा.\n• उडी: शेजारच्या मोहऱ्यावरून पुढील रिकाम्या छिद्रात उतरा.\n• सलग उड्या: प्रत्येक उतरण्याची जागा रिकामी असेपर्यंत सुरू ठेवा.\n• विजय: लक्ष्य कॅम्पमधील सर्व छिद्रे भरा.</string>
     <string name="howto_rules_long_jump">• सेटिंग्ज → लांब उड्या सक्षम करा.\n• अनेक मोहऱ्यांवरून सममित लांब उड्यांना परवानगी; समान अंतरावर लँडिंग हवे.\n• लांब आणि सामान्य उड्या एकाच चालीत एकत्र करता येतात.</string>
     <string name="howto_rules_layout">• पट 2/3/4/6 खेळाडूंना समर्थन देतो; सुरुवातीचे कॅम्प वेगळे.\n• साखळी उड्यांसाठी मार्ग खुला करण्यासाठी पुढची रांग लवकर रिकामी करा.</string>
     <!-- डिबग -->
