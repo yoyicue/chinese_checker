@@ -28,6 +28,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.yoyicue.chinesechecker.R
 import com.yoyicue.chinesechecker.game.AiDifficulty
 import com.yoyicue.chinesechecker.game.Board
 import com.yoyicue.chinesechecker.ui.LocalAppContainer
@@ -58,8 +60,8 @@ fun OfflineConfigScreen(
     val scrollState = rememberScrollState()
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-        Row { TextButton(onClick = onBack) { Text("返回") } }
-        Text("离线对战配置", style = MaterialTheme.typography.headlineMedium)
+        Row { TextButton(onClick = onBack) { Text(stringResource(R.string.common_back)) } }
+        Text(stringResource(R.string.offline_title), style = MaterialTheme.typography.headlineMedium)
 
         Column(
             modifier = Modifier
@@ -71,7 +73,7 @@ fun OfflineConfigScreen(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("玩家人数")
+                Text(stringResource(R.string.offline_player_count))
                 CountDropdown(
                     options = listOf(2, 3, 4, 6),
                     selected = state.playerCount,
@@ -80,7 +82,7 @@ fun OfflineConfigScreen(
             }
 
             Column(modifier = Modifier.padding(top = 8.dp)) {
-                state.seats.forEach { (pid, label) ->
+                state.seats.forEach { pid ->
                     val setup = viewModel.currentSetup(pid) ?: return@forEach
                     val optionsForThis = viewModel.colorOptionsFor(pid).ifEmpty { com.yoyicue.chinesechecker.ui.offline.OfflineConfigViewModel.COLOR_PALETTE }
 
@@ -93,10 +95,10 @@ fun OfflineConfigScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text(text = "$label (${pid.name})")
+                        Text(text = "${seatLabel(pid)} (${pid.name})")
                         Column(horizontalAlignment = Alignment.End) {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                Text("AI")
+                                Text(stringResource(R.string.offline_ai_label))
                                 Switch(checked = setup.isAi, onCheckedChange = { on -> viewModel.toggleAi(pid, on) })
                             }
                             Row(
@@ -129,7 +131,7 @@ fun OfflineConfigScreen(
                 viewModel.prepareGame(config)
                 onStartGame()
             }
-        ) { Text("开始游戏") }
+        ) { Text(stringResource(R.string.offline_start_game)) }
     }
 }
 
@@ -142,7 +144,7 @@ private fun CountDropdown(options: List<Int>, selected: Int, onSelect: (Int) -> 
             readOnly = true,
             value = selected.toString(),
             onValueChange = {},
-            label = { Text("人数") },
+            label = { Text(stringResource(R.string.offline_player_count)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor()
         )
@@ -166,21 +168,21 @@ private fun AiDropdown(selected: AiDifficulty, onSelect: (AiDifficulty) -> Unit)
         OutlinedTextField(
             readOnly = true,
             value = when (selected) {
-                AiDifficulty.Weak -> "弱"
-                AiDifficulty.Greedy -> "中"
-                AiDifficulty.Smart -> "强"
+                AiDifficulty.Weak -> stringResource(R.string.difficulty_easy)
+                AiDifficulty.Greedy -> stringResource(R.string.difficulty_medium)
+                AiDifficulty.Smart -> stringResource(R.string.difficulty_hard)
             },
             onValueChange = {},
-            label = { Text("AI 难度") },
+            label = { Text(stringResource(R.string.offline_ai_level)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor().width(120.dp)
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
             options.forEach { opt ->
                 val label = when (opt) {
-                    AiDifficulty.Weak -> "弱"
-                    AiDifficulty.Greedy -> "中"
-                    AiDifficulty.Smart -> "强"
+                    AiDifficulty.Weak -> stringResource(R.string.difficulty_easy)
+                    AiDifficulty.Greedy -> stringResource(R.string.difficulty_medium)
+                    AiDifficulty.Smart -> stringResource(R.string.difficulty_hard)
                 }
                 DropdownMenuItem(text = { Text(label) }, onClick = {
                     onSelect(opt)
@@ -193,22 +195,24 @@ private fun AiDropdown(selected: AiDifficulty, onSelect: (AiDifficulty) -> Unit)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ColorDropdown(options: List<Pair<Color, String>>, selected: Color, onSelect: (Color) -> Unit) {
+private fun ColorDropdown(options: List<Pair<Color, Int>>, selected: Color, onSelect: (Color) -> Unit) {
     val expanded = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
-    val label = options.firstOrNull { it.first == selected }?.second
+    val labelRes = options.firstOrNull { it.first == selected }?.second
         ?: options.firstOrNull()?.second
-        ?: "颜色"
+        ?: R.string.offline_color_label
+    val label = stringResource(labelRes)
     ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
         OutlinedTextField(
             readOnly = true,
             value = label,
             onValueChange = {},
-            label = { Text("颜色") },
+            label = { Text(stringResource(R.string.offline_color_label)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor().width(100.dp)
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
-            options.forEach { (c, name) ->
+            options.forEach { (c, nameRes) ->
+                val name = stringResource(nameRes)
                 DropdownMenuItem(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -224,4 +228,14 @@ private fun ColorDropdown(options: List<Pair<Color, String>>, selected: Color, o
             }
         }
     }
+}
+
+@Composable
+private fun seatLabel(pid: Board.PlayerId): String = when (pid) {
+    Board.PlayerId.A -> stringResource(R.string.seat_top)
+    Board.PlayerId.B -> stringResource(R.string.seat_bottom)
+    Board.PlayerId.C -> stringResource(R.string.seat_ne)
+    Board.PlayerId.D -> stringResource(R.string.seat_sw)
+    Board.PlayerId.E -> stringResource(R.string.seat_nw)
+    Board.PlayerId.F -> stringResource(R.string.seat_se)
 }

@@ -24,7 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Alignment
+import com.yoyicue.chinesechecker.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -35,7 +37,7 @@ import kotlin.math.sqrt
 
 @Composable
 fun HowToPlayScreen(onBack: () -> Unit) {
-    val tabTitles = listOf("基础规则", "AI 介绍")
+    val tabs = listOf(R.string.howto_tab_rules, R.string.howto_tab_ai)
     val selectedTab = remember { mutableStateOf(0) }
 
     Column(
@@ -44,14 +46,14 @@ fun HowToPlayScreen(onBack: () -> Unit) {
             .verticalScroll(rememberScrollState())
             .padding(24.dp)
     ) {
-        Row { TextButton(onClick = onBack) { Text("返回") } }
-        Text("怎么玩", style = MaterialTheme.typography.headlineMedium)
+        Row { TextButton(onClick = onBack) { Text(stringResource(R.string.common_back)) } }
+        Text(stringResource(R.string.howto_title), style = MaterialTheme.typography.headlineMedium)
         TabRow(selectedTabIndex = selectedTab.value, modifier = Modifier.padding(top = 16.dp)) {
-            tabTitles.forEachIndexed { index, title ->
+            tabs.forEachIndexed { index, titleRes ->
                 Tab(
                     selected = selectedTab.value == index,
                     onClick = { selectedTab.value = index },
-                    text = { Text(title) }
+                    text = { Text(stringResource(titleRes)) }
                 )
             }
         }
@@ -69,26 +71,39 @@ private fun RulesTabContent() {
     val demoMode = remember { mutableStateOf(DemoMode.Normal) }
 
     Column(modifier = Modifier.padding(top = 16.dp)) {
-        Text("标准规则", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Column(modifier = Modifier.padding(top = 8.dp)) {
-            Text("- 一步走：移动到与棋子相邻（距离为1）的空位。")
-            Text("- 普通跳：跨过相邻棋子，落到其正对的空位。")
-            Text("- 连续跳：一次行动内可连续多次普通跳，每次落点必须为空。")
-            Text("- 胜利条件：把所有棋子移动到目标营地。")
-        }
+        Text(
+            stringResource(R.string.howto_rules_standard_heading),
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Text(
+            stringResource(R.string.howto_rules_standard),
+            modifier = Modifier.padding(top = 8.dp)
+        )
 
-        Text("长跳规则", modifier = Modifier.padding(top = 16.dp), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Column(modifier = Modifier.padding(top = 8.dp)) {
-            Text("- 启用方式：设置 → 启用多格连跳。")
-            Text("- 规则含义：允许对称跨越距离更远的棋子（镜像跨多格），落点与被跨棋子到原位置的距离相等且必须为空。")
-            Text("- 连续跳跃：长跳与普通跳可在同一回合串联使用，只要每段落点合法。")
-        }
+        Text(
+            stringResource(R.string.howto_rules_long_heading),
+            modifier = Modifier.padding(top = 16.dp),
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Text(
+            stringResource(R.string.howto_rules_long_jump),
+            modifier = Modifier.padding(top = 8.dp)
+        )
+        Text(
+            stringResource(R.string.howto_rules_layout),
+            modifier = Modifier.padding(top = 8.dp)
+        )
 
-        Text("演示：连跳路径（示意）", modifier = Modifier.padding(top = 16.dp), style = MaterialTheme.typography.titleMedium)
-        val demoTabs = listOf("普通跳", "长跳")
+        Text(
+            stringResource(R.string.howto_demo_title),
+            modifier = Modifier.padding(top = 16.dp),
+            style = MaterialTheme.typography.titleMedium
+        )
+        val demoTabs = listOf(DemoMode.Normal to R.string.howto_demo_normal, DemoMode.Long to R.string.howto_demo_long)
         TabRow(selectedTabIndex = if (demoMode.value == DemoMode.Normal) 0 else 1, modifier = Modifier.padding(top = 8.dp)) {
-            demoTabs.forEachIndexed { index, title ->
-                val mode = if (index == 0) DemoMode.Normal else DemoMode.Long
+            demoTabs.forEach { (mode, titleRes) ->
                 Tab(
                     selected = demoMode.value == mode,
                     onClick = {
@@ -97,7 +112,7 @@ private fun RulesTabContent() {
                             restartTick.value++
                         }
                     },
-                    text = { Text(title) }
+                    text = { Text(stringResource(titleRes)) }
                 )
             }
         }
@@ -105,13 +120,15 @@ private fun RulesTabContent() {
             DemoBoardPath(restartTick.value, demoMode.value)
         }
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.padding(top = 8.dp)) {
-            Button(onClick = { restartTick.value++ }) { Text("重新播放") }
+            Button(onClick = { restartTick.value++ }) { Text(stringResource(R.string.howto_demo_restart)) }
+        }
+        val descriptionRes = if (demoMode.value == DemoMode.Normal) {
+            R.string.howto_demo_normal_desc
+        } else {
+            R.string.howto_demo_long_desc
         }
         Text(
-            text = if (demoMode.value == DemoMode.Normal)
-                "普通跳示例：红色棋子依次跨过多枚紧邻棋子，逐步向前推进。"
-            else
-                "长跳示例：红色棋子一次跨过与自身对称排列的蓝色棋子，并继续连跳。",
+            text = stringResource(descriptionRes),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 8.dp)
@@ -140,9 +157,9 @@ private fun DemoBoardPath(restartKey: Int, mode: DemoMode) {
                 Hex(3, 0, -3)
             )
             DemoMode.Long -> listOf(
-                Hex(-4, 0, 4),  // 起点
-                Hex(0, -4, 4),  // 镜像长跳落点
-                Hex(2, -4, 2)   // 接着再做一次普通跳
+                Hex(-4, 0, 4),  // start
+                Hex(0, -4, 4),  // mirrored long-jump landing
+                Hex(2, -4, 2)   // followed by a normal jump
             )
         }
     }
@@ -155,8 +172,8 @@ private fun DemoBoardPath(restartKey: Int, mode: DemoMode) {
                 Hex(2, 0, -2)
             )
             DemoMode.Long -> setOf(
-                Hex(-2, -2, 4), // 长跳被跨棋子（镜像）
-                Hex(1, -4, 3)   // 后续普通跳的被跨棋子
+                Hex(-2, -2, 4), // mirrored piece that is jumped over during long jump
+                Hex(1, -4, 3)   // piece jumped over during the follow-up normal jump
             )
         }
     }

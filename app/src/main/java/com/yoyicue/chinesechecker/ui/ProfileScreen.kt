@@ -18,11 +18,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.yoyicue.chinesechecker.R
 import com.yoyicue.chinesechecker.ui.LocalAppContainer
 import com.yoyicue.chinesechecker.ui.profile.ProfileViewModel
 import java.text.SimpleDateFormat
@@ -38,44 +40,44 @@ fun ProfileScreen(onBack: () -> Unit) {
     val stats by viewModel.stats.collectAsState(initial = null)
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-        Row { TextButton(onClick = onBack) { Text("返回") } }
-        Text("统计", style = MaterialTheme.typography.headlineMedium)
+        Row { TextButton(onClick = onBack) { Text(stringResource(R.string.common_back)) } }
+        Text(stringResource(R.string.profile_title), style = MaterialTheme.typography.headlineMedium)
 
         Spacer(Modifier.height(16.dp))
-        Text("胜负统计", style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(R.string.profile_section_heading), style = MaterialTheme.typography.titleMedium)
         if (stats != null) {
             val s = stats!!
             Column(modifier = Modifier.fillMaxWidth()) {
-                Text("总局数: ${s.totalGames}")
-                Text("最近游玩: ${formatTimestamp(s.lastPlayedAt)}")
+                Text(stringResource(R.string.profile_total_games, s.totalGames))
+                Text(stringResource(R.string.profile_last_played, formatTimestamp(s.lastPlayedAt)))
                 Spacer(Modifier.height(12.dp))
                 StatsBarChart(
-                    title = "按玩家胜场",
+                    title = stringResource(R.string.profile_chart_by_player),
                     data = s.winsByPlayer
                 )
                 Spacer(Modifier.height(12.dp))
                 StatsBarChart(
-                    title = "按类型胜场（Human/AI）",
+                    title = stringResource(R.string.profile_chart_by_controller),
                     data = s.winsByController
                 )
                 Spacer(Modifier.height(12.dp))
                 val mappedDifficulty = s.winsByDifficulty.mapKeys { (k, _) ->
                     when (k) {
-                        "Weak" -> "弱"
-                        "Greedy" -> "中"
-                        "Smart" -> "强"
+                        "Weak" -> stringResource(R.string.difficulty_easy)
+                        "Greedy" -> stringResource(R.string.difficulty_medium)
+                        "Smart" -> stringResource(R.string.difficulty_hard)
                         else -> k
                     }
                 }
                 StatsBarChart(
-                    title = "按难度胜场",
+                    title = stringResource(R.string.profile_chart_by_difficulty),
                     data = mappedDifficulty
                 )
             }
             Spacer(Modifier.height(12.dp))
-            Button(onClick = { viewModel.resetStats() }) { Text("重置统计") }
+            Button(onClick = { viewModel.resetStats() }) { Text(stringResource(R.string.profile_reset_stats)) }
         } else {
-            Text("统计加载中…")
+            Text(stringResource(R.string.loading_stats))
         }
     }
 }
@@ -85,7 +87,7 @@ private fun StatsBarChart(title: String, data: Map<String, Int>, barHeight: Dp =
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(title, style = MaterialTheme.typography.titleSmall)
         if (data.isEmpty()) {
-            Text("(暂无)", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(R.string.profile_empty), color = MaterialTheme.colorScheme.onSurfaceVariant)
             return@Column
         }
         val sorted = data.entries.sortedByDescending { it.value }

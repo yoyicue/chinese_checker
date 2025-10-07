@@ -17,14 +17,15 @@ class ProfileViewModel(
 ) : ViewModel() {
 
     val profile: StateFlow<ProfileUi> = profileRepository.profile()
-        .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileUi(nickname = "玩家", avatarUri = null))
+        .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileUi(nickname = "", avatarUri = null))
 
     val stats: StateFlow<StatsUi?> = statsRepository.stats()
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     fun updateNickname(name: String) {
-        val trimmed = name.trim().ifEmpty { "玩家" }
-        viewModelScope.launch { profileRepository.updateNickname(trimmed) }
+        val trimmed = name.trim()
+        val value = if (trimmed.isEmpty()) "" else trimmed
+        viewModelScope.launch { profileRepository.updateNickname(value) }
     }
 
     fun resetStats() {

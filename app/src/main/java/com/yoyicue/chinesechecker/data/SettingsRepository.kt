@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -25,7 +26,8 @@ data class AppSettings(
     val longJumps: Boolean = false,
     val aiDifficulty: Int = 1, // 0=Weak,1=Greedy,2=Smart
     val aiLongJumps: Boolean = true,
-    val debugOverlay: Boolean = false
+    val debugOverlay: Boolean = false,
+    val languageTag: String = "" // empty means follow system
 )
 
 class SettingsRepository(private val context: Context) {
@@ -41,6 +43,7 @@ class SettingsRepository(private val context: Context) {
         val aiDifficulty = intPreferencesKey("ai_difficulty")
         val aiLongJumps = booleanPreferencesKey("ai_long_jumps")
         val debugOverlay = booleanPreferencesKey("debug_overlay")
+        val languageTag = stringPreferencesKey("language_tag")
     }
 
     val settings: Flow<AppSettings> = context.dataStore.data.map { p -> p.toSettings() }
@@ -60,6 +63,7 @@ class SettingsRepository(private val context: Context) {
             prefs[Keys.aiDifficulty] = next.aiDifficulty
             prefs[Keys.aiLongJumps] = next.aiLongJumps
             prefs[Keys.debugOverlay] = next.debugOverlay
+            prefs[Keys.languageTag] = next.languageTag
         }
     }
 
@@ -74,6 +78,29 @@ class SettingsRepository(private val context: Context) {
         longJumps = this[Keys.longJumps] ?: false,
         aiDifficulty = this[Keys.aiDifficulty] ?: 1,
         aiLongJumps = this[Keys.aiLongJumps] ?: true,
-        debugOverlay = this[Keys.debugOverlay] ?: false
+        debugOverlay = this[Keys.debugOverlay] ?: false,
+        languageTag = normaliseLanguageTag(this[Keys.languageTag])
     )
+    private fun normaliseLanguageTag(raw: String?): String {
+        if (raw == null) return ""
+        val trimmed = raw.trim()
+        if (trimmed.isEmpty()) return ""
+        val lower = trimmed.lowercase()
+        // Take first in list, normalise separators, then isolate primary language subtag
+        val primary = lower.split(',')
+            .firstOrNull()
+            ?.replace('_', '-')
+            ?: lower
+        val root = primary.substringBefore('-')
+        return when {
+            // Chinese variants and common aliases
+            root == "zh" || root == "cn" || primary.startsWith("zh-") -> "zh"
+            // English variants
+            root == "en" || primary.startsWith("en-") -> "en"
+            // Spanish variants (es-ES, es-MX, es-419, etc.)
+            root == "es" || primary.startsWith("es-") -> "es"
+            else -> root // fallback to the primary subtag
+        }
+    }
+
 }

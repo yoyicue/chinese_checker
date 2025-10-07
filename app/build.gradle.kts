@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.kotlin.kapt")
-    id("androidx.room")
 }
 
 val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v0.1.2"
@@ -54,8 +53,12 @@ android {
     packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
 }
 
-room {
-    schemaDirectory("$projectDir/app/schemas")
+kapt {
+    arguments {
+        arg("room.schemaLocation", "$projectDir/app/schemas")
+        arg("room.incremental", "true")
+        arg("room.expandProjection", "true")
+    }
 }
 
 dependencies {

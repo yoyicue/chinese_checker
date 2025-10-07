@@ -1,3 +1,127 @@
 <resources>
-    <string name="app_name">中国跳棋</string>
+    <string name="app_name">Chinese Checkers</string>
+    <!-- Start screen -->
+    <string name="start_title">Chinese Checkers</string>
+    <string name="start_version">Version v%1$s</string>
+    <string name="start_continue">Continue Game</string>
+    <string name="start_offline">Offline Match</string>
+    <string name="start_settings">Settings</string>
+    <string name="start_stats">Statistics</string>
+    <string name="start_howto">How to Play</string>
+    <!-- Common -->
+    <string name="common_back">Back</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save_and_exit">Save and Exit</string>
+    <string name="common_discard_and_exit">Exit Without Saving</string>
+    <string name="common_loading">Loading…</string>
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_sounds">Sound Effects: %1$d%%</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_dark_theme">Dark Theme</string>
+    <string name="settings_fast_mode">Timed Mode</string>
+    <string name="settings_fast_mode_desc">Enable a turn countdown for every player.</string>
+    <string name="settings_long_jump">Enable Long Jumps</string>
+    <string name="settings_long_jump_desc">Allow symmetric long jumps to travel farther in a single move.</string>
+    <string name="settings_turn_duration">Turn Duration</string>
+    <string name="settings_turn_duration_option">%1$d s</string>
+    <string name="settings_timeout_behavior">Timeout Behaviour</string>
+    <string name="settings_timeout_skip">Timeout: Skip Turn</string>
+    <string name="settings_timeout_auto">Timeout: Auto Move</string>
+    <string name="settings_ai_section">AI Behaviour</string>
+    <string name="settings_ai_default_difficulty">Default AI Difficulty</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="settings_ai_long_jump">Allow AI Long Jumps</string>
+    <string name="settings_debug_toggle">Debug Overlay</string>
+    <string name="settings_debug_desc">Show additional logs and events during a match.</string>
+    <string name="settings_language">Language</string>
+    <string name="language_auto">System Default</string>
+    <string name="language_english">English</string>
+    <string name="language_chinese">Chinese</string>
+    <string name="language_spanish">Spanish</string>
+    <!-- Exit dialog -->
+    <string name="exit_dialog_title">Leave the match?</string>
+    <string name="exit_dialog_message">Choose whether to save the current progress.</string>
+    <!-- Game screen -->
+    <string name="game_button_undo">Undo</string>
+    <string name="game_turn_indicator">Turn: %1$s %2$s%3$s</string>
+    <string name="game_turn_winner">Winner: %1$s %2$s</string>
+    <string name="game_turn_remaining"> · %1$ds left</string>
+    <string name="game_role_player">Player</string>
+    <string name="game_role_ai">AI</string>
+    <string name="game_role_ai_with_difficulty">AI (%1$s)</string>
+    <string name="camp_top">Top</string>
+    <string name="camp_bottom">Bottom</string>
+    <string name="camp_ne">Northeast</string>
+    <string name="camp_se">Southeast</string>
+    <string name="camp_sw">Southwest</string>
+    <string name="camp_nw">Northwest</string>
+    <string name="victory_title">Winner</string>
+    <string name="victory_winner_message">%1$s %2$s win!</string>
+    <string name="victory_congrats_message">Congratulations! Great game!</string>
+    <string name="victory_play_again">Play Again</string>
+    <string name="victory_return_home">Back to Home</string>
+    <!-- Offline config -->
+    <string name="offline_title">Offline Match Setup</string>
+    <string name="offline_player_count">Player Count</string>
+    <string name="offline_ai_label">AI</string>
+    <string name="offline_ai_level">AI Difficulty</string>
+    <string name="offline_color_label">Colour</string>
+    <string name="offline_start_game">Start Game</string>
+    <string name="seat_top">Top</string>
+    <string name="seat_bottom">Bottom</string>
+    <string name="seat_sw">Southwest</string>
+    <string name="seat_se">Southeast</string>
+    <string name="seat_ne">Northeast</string>
+    <string name="seat_nw">Northwest</string>
+    <string name="colour_red">Red</string>
+    <string name="colour_blue">Blue</string>
+    <string name="colour_purple">Purple</string>
+    <string name="colour_green">Green</string>
+    <string name="colour_yellow">Yellow</string>
+    <string name="colour_orange">Orange</string>
+    <string name="colour_teal">Teal</string>
+    <string name="colour_custom">Custom</string>
+    <!-- Profile/Stats -->
+    <string name="profile_title">Statistics</string>
+    <string name="profile_section_heading">Match statistics</string>
+    <string name="profile_total_games">Total games: %1$d</string>
+    <string name="profile_last_played">Last played: %1$s</string>
+    <string name="profile_reset_stats">Reset Statistics</string>
+    <string name="profile_chart_by_player">Wins by Player</string>
+    <string name="profile_chart_by_controller">Wins by Type (Human/AI)</string>
+    <string name="profile_chart_by_difficulty">Wins by Difficulty</string>
+    <string name="profile_empty">(None yet)</string>
+    <!-- AI guide -->
+    <string name="ai_guide_title">AI Modes</string>
+    <string name="ai_guide_weak_title">Easy (Shuffle)</string>
+    <string name="ai_guide_weak_desc">Picks random moves with a slight preference for forward steps, jumps, and freeing the camp.</string>
+    <string name="ai_guide_medium_title">Medium (Greedy)</string>
+    <string name="ai_guide_medium_desc">Evaluates all moves and chooses the one that minimises the distance to the goal while leaving home quickly.</string>
+    <string name="ai_guide_strong_title">Hard (Minimax)</string>
+    <string name="ai_guide_strong_desc">Looks several turns ahead using minimax with pruning, combining distance, home pressure, and tactical jumps.</string>
+    <string name="ai_guide_tip_title">Tip</string>
+    <string name="ai_guide_tip_body">You can set the default AI level here and choose a specific level for each seat in Offline Match.</string>
+    <!-- How to play -->
+    <string name="howto_title">How to Play</string>
+    <string name="howto_tab_rules">Rules</string>
+    <string name="howto_tab_ai">AI Overview</string>
+    <string name="howto_rules_standard_heading">Standard Rules</string>
+    <string name="howto_rules_long_heading">Long Jump Rules</string>
+    <string name="howto_demo_title">Jump Demonstrations</string>
+    <string name="howto_demo_restart">Replay</string>
+    <string name="howto_demo_normal_desc">Normal jump demo: the red piece hops over adjacent pieces one step at a time.</string>
+    <string name="howto_demo_long_desc">Long jump demo: the red piece leaps across a symmetric line of pieces and keeps chaining jumps.</string>
+    <string name="howto_rules_standard">• Step: move to an adjacent empty hole.\n• Jump: hop over one adjacent piece into the empty hole beyond.\n• Chain jumps: continue jumping in a single turn as long as each landing is empty.\n• Win: occupy all holes in the target camp.</string>
+    <string name="howto_rules_long_jump">• Enable via Settings → Long Jumps.\n• Allows symmetric long hops over multiple pieces, landing at an equal distance.\n• Long and normal jumps can be combined in a single turn.</string>
+    <string name="howto_rules_layout">• Board supports 2/3/4/6 players; starting camps differ.\n• Clear the front row early to open jump lanes.</string>
+    <string name="howto_demo_normal">Normal Jump Demo</string>
+    <string name="howto_demo_long">Long Jump Demo</string>
+    <!-- Debug -->
+    <string name="debug_logs_title">Debug Logs (%1$d) - latest 50</string>
+    <string name="debug_clear">Clear Logs</string>
+    <!-- Misc -->
+    <string name="loading_stats">Statistics loading…</string>
 </resources>

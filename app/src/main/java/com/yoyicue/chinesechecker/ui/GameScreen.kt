@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.toArgb
@@ -62,6 +63,7 @@ import com.yoyicue.chinesechecker.ui.game.GameConfig
 import com.yoyicue.chinesechecker.ui.game.PlayerConfig
 import java.util.Random
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import com.yoyicue.chinesechecker.R
 
 @Composable
 fun GameScreen(
@@ -153,9 +155,19 @@ fun GameScreen(
     val indicatorColor = (ui.winner?.let { colorByPlayer[it] } ?: colorByPlayer[currentPlayer])
         ?: MaterialTheme.colorScheme.onSurface
     val curCamp = ui.board.startCampOf[currentPlayer]
-    val timeStr = ui.timeLeftSec?.let { " · 剩余 ${it}s" } ?: ""
-    val statusText = ui.winner?.let { "胜者: ${it.name} ${campLabel(ui.board.startCampOf[it])}" }
-        ?: "轮到: ${currentPlayer.name} ${campLabel(curCamp)}$timeStr"
+    val timeStr = ui.timeLeftSec?.let { stringResource(R.string.game_turn_remaining, it) } ?: ""
+    val statusText = ui.winner?.let { winner ->
+        stringResource(
+            R.string.game_turn_winner,
+            winner.name,
+            campLabel(ui.board.startCampOf[winner])
+        )
+    } ?: stringResource(
+        R.string.game_turn_indicator,
+        currentPlayer.name,
+        campLabel(curCamp),
+        timeStr
+    )
 
     val onBackPressed: () -> Unit = {
         if (showVictoryOverlay.value) {
@@ -209,11 +221,9 @@ fun GameScreen(
             if (showVictoryOverlay.value) {
                 val winner = ui.winner ?: Board.PlayerId.A
                 val winColor = colorByPlayer[winner] ?: defaultColorFor(winner)
-                val colorName = chineseColorName(winColor)
                 VictoryOverlay(
                     winner = winner,
                     color = winColor,
-                    colorName = colorName,
                     onPlayAgain = {
                         if (settings.haptics) doHaptic(HapticKind.Success)
                         showConfirmExit.value = false
@@ -238,7 +248,7 @@ fun GameScreen(
                         contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 ) {
-                    Text("清空日志", maxLines = 1, softWrap = false)
+                    Text(stringResource(R.string.debug_clear), maxLines = 1, softWrap = false)
                 }
             }
         }
@@ -538,7 +548,7 @@ private fun BoxScope.DebugOverlay(events: List<String>) {
             .padding(8.dp)
     ) {
         Text(
-            text = "调试日志 (${events.size}) - 最近 50 条",
+            text = stringResource(R.string.debug_logs_title, events.size),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
                 .fillMaxWidth()
@@ -574,8 +584,8 @@ private fun GameTopBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Button(onClick = onBack) { Text("返回") }
-            TextButton(onClick = onUndo, enabled = canUndo) { Text("悔棋") }
+            Button(onClick = onBack) { Text(stringResource(R.string.common_back)) }
+            TextButton(onClick = onUndo, enabled = canUndo) { Text(stringResource(R.string.game_button_undo)) }
         }
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Box(modifier = Modifier.size(16.dp).background(indicatorColor))
@@ -592,15 +602,15 @@ private fun ExitConfirmDialog(
 ) {
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("确认退出对局？") },
-        text = { Text("选择是否保存当前对局进度。") },
+        title = { Text(stringResource(R.string.exit_dialog_title)) },
+        text = { Text(stringResource(R.string.exit_dialog_message)) },
         confirmButton = {
-            TextButton(onClick = onSaveExit) { Text("保存并退出") }
+            TextButton(onClick = onSaveExit) { Text(stringResource(R.string.common_save_and_exit)) }
         },
         dismissButton = {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                TextButton(onClick = onDiscardExit) { Text("不保存并退出") }
-                TextButton(onClick = onDismiss) { Text("取消") }
+                TextButton(onClick = onDiscardExit) { Text(stringResource(R.string.common_discard_and_exit)) }
+                TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_cancel)) }
             }
         }
     )
@@ -633,53 +643,75 @@ private fun LegendRow(
             val camp = camps[pid]
             val cfg = configs[pid]
             val role = when (cfg?.controller) {
-                com.yoyicue.chinesechecker.ui.game.ControllerType.AI -> when (cfg.difficulty) {
-                    com.yoyicue.chinesechecker.game.AiDifficulty.Weak -> "AI-弱"
-                    com.yoyicue.chinesechecker.game.AiDifficulty.Greedy -> "AI-中"
-                    com.yoyicue.chinesechecker.game.AiDifficulty.Smart -> "AI-强"
-                    null -> "AI"
+                com.yoyicue.chinesechecker.ui.game.ControllerType.AI -> {
+                    val difficultyLabel = when (cfg.difficulty) {
+                        com.yoyicue.chinesechecker.game.AiDifficulty.Weak -> stringResource(R.string.difficulty_easy)
+                        com.yoyicue.chinesechecker.game.AiDifficulty.Greedy -> stringResource(R.string.difficulty_medium)
+                        com.yoyicue.chinesechecker.game.AiDifficulty.Smart -> stringResource(R.string.difficulty_hard)
+                        null -> null
+                    }
+                    if (difficultyLabel != null) {
+                        stringResource(R.string.game_role_ai_with_difficulty, difficultyLabel)
+                    } else {
+                        stringResource(R.string.game_role_ai)
+                    }
                 }
-                com.yoyicue.chinesechecker.ui.game.ControllerType.Human -> "玩家"
-                null -> "玩家"
+                com.yoyicue.chinesechecker.ui.game.ControllerType.Human, null -> stringResource(R.string.game_role_player)
             }
+            val entryText = listOf(pid.name, campLabel(camp), role)
+                .filter { it.isNotBlank() }
+                .joinToString(separator = " ")
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 Box(modifier = Modifier.size(12.dp).background(color))
-                Text(text = "${pid.name} ${campLabel(camp)} $role", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(text = entryText, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
 }
 
+@Composable
 private fun campLabel(camp: Board.Camp?): String = when (camp) {
-    Board.Camp.Top -> "上"
-    Board.Camp.Bottom -> "下"
-    Board.Camp.NE -> "右上"
-    Board.Camp.SE -> "右下"
-    Board.Camp.SW -> "左下"
-    Board.Camp.NW -> "左上"
+    Board.Camp.Top -> stringResource(R.string.camp_top)
+    Board.Camp.Bottom -> stringResource(R.string.camp_bottom)
+    Board.Camp.NE -> stringResource(R.string.camp_ne)
+    Board.Camp.SE -> stringResource(R.string.camp_se)
+    Board.Camp.SW -> stringResource(R.string.camp_sw)
+    Board.Camp.NW -> stringResource(R.string.camp_nw)
     null -> ""
 }
 
-private fun chineseColorName(c: Color): String {
-    val palette = listOf(
-        Color(0xFFE53935) to "红色",
-        Color(0xFF1E88E5) to "蓝色",
-        Color(0xFF8E24AA) to "紫色",
-        Color(0xFF43A047) to "绿色",
-        Color(0xFFFDD835) to "黄色",
-        Color(0xFFFF7043) to "橙色",
-        Color(0xFF26A69A) to "青色"
-    )
-    val (r, g, b) = rgb(c)
+private val COLOR_NAME_PALETTE = listOf(
+    Color(0xFFE53935) to R.string.colour_red,
+    Color(0xFF1E88E5) to R.string.colour_blue,
+    Color(0xFF8E24AA) to R.string.colour_purple,
+    Color(0xFF43A047) to R.string.colour_green,
+    Color(0xFFFDD835) to R.string.colour_yellow,
+    Color(0xFFFF7043) to R.string.colour_orange,
+    Color(0xFF26A69A) to R.string.colour_teal
+)
+
+private fun closestColorNameRes(color: Color): Int? {
+    val (r, g, b) = rgb(color)
     var best = Int.MAX_VALUE
-    var name = "自定义"
-    for ((col, label) in palette) {
-        val (pr, pg, pb) = rgb(col)
-        val dr = r - pr; val dg = g - pg; val db = b - pb
+    var match: Int? = null
+    for ((paletteColor, resId) in COLOR_NAME_PALETTE) {
+        val (pr, pg, pb) = rgb(paletteColor)
+        val dr = r - pr
+        val dg = g - pg
+        val db = b - pb
         val d2 = dr * dr + dg * dg + db * db
-        if (d2 < best) { best = d2; name = label }
+        if (d2 < best) {
+            best = d2
+            match = resId
+        }
     }
-    return name
+    return match
+}
+
+@Composable
+private fun colorDisplayName(color: Color): String {
+    val resId = closestColorNameRes(color)
+    return resId?.let { stringResource(it) } ?: stringResource(R.string.colour_custom)
 }
 
 private fun rgb(c: Color): Triple<Int, Int, Int> {
@@ -703,7 +735,6 @@ private fun defaultColorFor(pid: Board.PlayerId): Color = when (pid) {
 private fun VictoryOverlay(
     winner: Board.PlayerId,
     color: Color,
-    colorName: String,
     onPlayAgain: () -> Unit,
     onHome: () -> Unit
 ) {
@@ -776,19 +807,20 @@ private fun VictoryOverlay(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text("🏆", style = MaterialTheme.typography.headlineLarge)
+            val colorName = colorDisplayName(color)
             Text(
-                text = "${winner.name} ${colorName} 获胜！",
+                text = stringResource(R.string.victory_winner_message, winner.name, colorName),
                 style = MaterialTheme.typography.headlineMedium,
                 color = scheme.onSurface
             )
             Text(
-                text = "恭喜！精彩对局！",
+                text = stringResource(R.string.victory_congrats_message),
                 style = MaterialTheme.typography.titleSmall,
                 color = scheme.onSurfaceVariant
             )
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Button(onClick = onPlayAgain) { Text("再来一局") }
-                Button(onClick = onHome) { Text("返回主页") }
+                Button(onClick = onPlayAgain) { Text(stringResource(R.string.victory_play_again)) }
+                Button(onClick = onHome) { Text(stringResource(R.string.victory_return_home)) }
             }
         }
     }

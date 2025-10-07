@@ -38,6 +38,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.yoyicue.chinesechecker.ui.settings.SettingsViewModel
+import androidx.compose.ui.res.stringResource
+import com.yoyicue.chinesechecker.R
+// Locale changes are applied centrally in MainActivity based on DataStore
 
 @Composable
 fun SettingsScreen(onBack: () -> Unit) {
@@ -52,9 +55,9 @@ fun SettingsScreen(onBack: () -> Unit) {
     var debugUnlocked by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-        Row { TextButton(onClick = onBack) { Text("返回") } }
+        Row { TextButton(onClick = onBack) { Text(stringResource(R.string.common_back)) } }
         Text(
-            text = "设置",
+            text = stringResource(R.string.settings_title),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.clickable {
                 if (!debugUnlocked) {
@@ -72,8 +75,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                 .fillMaxWidth()
                 .verticalScroll(scrollState)
         ) {
+            // Language comes first
+            LanguageDropdown(
+                selected = s.languageTag,
+                onSelect = viewModel::setLanguage
+            )
+
+            val volumePercent = (s.soundsVolume * 100).toInt()
             Text(
-                "音效音量: %.0f%%".format(s.soundsVolume * 100),
+                stringResource(R.string.settings_sounds, volumePercent),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -84,7 +94,7 @@ fun SettingsScreen(onBack: () -> Unit) {
             )
 
             SettingSwitchRow(
-                title = "震动",
+                title = stringResource(R.string.settings_vibration),
                 checked = s.haptics,
                 onCheckedChange = { on ->
                     if (on) doHaptic(HapticKind.Success)
@@ -93,21 +103,21 @@ fun SettingsScreen(onBack: () -> Unit) {
             )
 
             SettingSwitchRow(
-                title = "深色主题",
+                title = stringResource(R.string.settings_dark_theme),
                 checked = s.themeDark,
                 onCheckedChange = viewModel::setThemeDark
             )
 
             SettingSwitchRow(
-                title = "限时模式",
-                description = "为每位玩家开启走棋倒计时。",
+                title = stringResource(R.string.settings_fast_mode),
+                description = stringResource(R.string.settings_fast_mode_desc),
                 checked = s.fastGame,
                 onCheckedChange = viewModel::setFastGame
             )
 
             SettingSwitchRow(
-                title = "启用多格连跳",
-                description = "允许对称跨越更多棋子，连续跳跃时可产生更远位移。",
+                title = stringResource(R.string.settings_long_jump),
+                description = stringResource(R.string.settings_long_jump_desc),
                 checked = s.longJumps,
                 onCheckedChange = viewModel::setLongJumps
             )
@@ -126,14 +136,14 @@ fun SettingsScreen(onBack: () -> Unit) {
             }
 
             Spacer(Modifier.height(12.dp))
-            Text("AI 行为", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.settings_ai_section), style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
             AiDefaultDifficultyDropdown(
                 selected = s.aiDifficulty,
                 onSelect = viewModel::setAiDifficulty
             )
             SettingSwitchRow(
-                title = "AI 使用多格连跳",
+                title = stringResource(R.string.settings_ai_long_jump),
                 checked = s.aiLongJumps,
                 onCheckedChange = viewModel::setAiLongJumps
             )
@@ -142,8 +152,8 @@ fun SettingsScreen(onBack: () -> Unit) {
             if (debugVisible) {
                 Spacer(Modifier.height(24.dp))
                 SettingSwitchRow(
-                    title = "调试开关",
-                    description = "在对局中显示额外日志与事件信息。",
+                    title = stringResource(R.string.settings_debug_toggle),
+                    description = stringResource(R.string.settings_debug_desc),
                     checked = s.debugOverlay,
                     onCheckedChange = viewModel::setDebugOverlay
                 )
@@ -183,14 +193,49 @@ private fun SettingSwitchRow(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AiDefaultDifficultyDropdown(selected: Int, onSelect: (Int) -> Unit) {
-    val options = listOf(
-        0 to "弱",
-        1 to "中",
-        2 to "强"
-    )
+private fun LanguageDropdown(selected: String, onSelect: (String) -> Unit) {
     val expanded = remember { mutableStateOf(false) }
-    val label = options.firstOrNull { it.first == selected }?.second ?: options[1].second
+    val options = listOf(
+        "" to R.string.language_auto,
+        "en" to R.string.language_english,
+        "zh" to R.string.language_chinese,
+        "es" to R.string.language_spanish
+    )
+    val labelRes = options.firstOrNull { it.first == selected }?.second ?: R.string.language_auto
+    ExposedDropdownMenuBox(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+        expanded = expanded.value,
+        onExpandedChange = { expanded.value = !expanded.value }
+    ) {
+        OutlinedTextField(
+            readOnly = true,
+            value = stringResource(labelRes),
+            onValueChange = {},
+            label = { Text(stringResource(R.string.settings_language)) },
+            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
+            modifier = Modifier.menuAnchor()
+        )
+        DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
+            options.forEach { (tag, resId) ->
+                DropdownMenuItem(text = { Text(stringResource(resId)) }, onClick = {
+                    onSelect(tag)
+                    expanded.value = false
+                })
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun AiDefaultDifficultyDropdown(selected: Int, onSelect: (Int) -> Unit) {
+    val options = listOf(0, 1, 2)
+    val expanded = remember { mutableStateOf(false) }
+    val label = when (selected) {
+        0 -> stringResource(R.string.difficulty_easy)
+        2 -> stringResource(R.string.difficulty_hard)
+        else -> stringResource(R.string.difficulty_medium)
+    }
     ExposedDropdownMenuBox(
         modifier = Modifier.fillMaxWidth(),
         expanded = expanded.value,
@@ -200,12 +245,17 @@ private fun AiDefaultDifficultyDropdown(selected: Int, onSelect: (Int) -> Unit) 
             readOnly = true,
             value = label,
             onValueChange = {},
-            label = { Text("AI 难度") },
+            label = { Text(stringResource(R.string.settings_ai_default_difficulty)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor()
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
-            options.forEach { (code, text) ->
+            options.forEach { code ->
+                val text = when (code) {
+                    0 -> stringResource(R.string.difficulty_easy)
+                    2 -> stringResource(R.string.difficulty_hard)
+                    else -> stringResource(R.string.difficulty_medium)
+                }
                 DropdownMenuItem(text = { Text(text) }, onClick = {
                     onSelect(code)
                     expanded.value = false
@@ -225,17 +275,19 @@ private fun TurnSecondsDropdown(selected: Int, onSelect: (Int) -> Unit) {
         expanded = expanded.value,
         onExpandedChange = { expanded.value = !expanded.value }
     ) {
+        val valueText = stringResource(R.string.settings_turn_duration_option, selected)
         OutlinedTextField(
             readOnly = true,
-            value = "$selected 秒",
+            value = valueText,
             onValueChange = {},
-            label = { Text("每回合时长") },
+            label = { Text(stringResource(R.string.settings_turn_duration)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor()
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
             options.forEach { sec ->
-                DropdownMenuItem(text = { Text("$sec 秒") }, onClick = {
+                val optionLabel = stringResource(R.string.settings_turn_duration_option, sec)
+                DropdownMenuItem(text = { Text(optionLabel) }, onClick = {
                     onSelect(sec)
                     expanded.value = false
                 })
@@ -247,9 +299,9 @@ private fun TurnSecondsDropdown(selected: Int, onSelect: (Int) -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TimeoutActionDropdown(selected: Int, onSelect: (Int) -> Unit) {
-    val options = listOf(0 to "超时：跳过回合", 1 to "超时：自动走子")
+    val options = listOf(0 to R.string.settings_timeout_skip, 1 to R.string.settings_timeout_auto)
     val expanded = remember { mutableStateOf(false) }
-    val label = options.firstOrNull { it.first == selected }?.second ?: options.first().second
+    val labelRes = options.firstOrNull { it.first == selected }?.second ?: options.first().second
     ExposedDropdownMenuBox(
         modifier = Modifier.fillMaxWidth(),
         expanded = expanded.value,
@@ -257,15 +309,16 @@ private fun TimeoutActionDropdown(selected: Int, onSelect: (Int) -> Unit) {
     ) {
         OutlinedTextField(
             readOnly = true,
-            value = label,
+            value = stringResource(labelRes),
             onValueChange = {},
-            label = { Text("超时行为") },
+            label = { Text(stringResource(R.string.settings_timeout_behavior)) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier.menuAnchor()
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
-            options.forEach { (code, text) ->
-                DropdownMenuItem(text = { Text(text) }, onClick = {
+            options.forEach { (code, resId) ->
+                val textValue = stringResource(resId)
+                DropdownMenuItem(text = { Text(textValue) }, onClick = {
                     onSelect(code)
                     expanded.value = false
                 })
