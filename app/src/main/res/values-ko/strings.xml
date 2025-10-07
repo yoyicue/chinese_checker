@@ -6,8 +6,8 @@
     <string name="start_continue">계속하기</string>
     <string name="start_offline">오프라인 경기</string>
     <string name="start_settings">설정</string>
-    <string name="start_stats">통계</string>
-    <string name="start_howto">플레이 방법</string>
+    <string name="start_stats">전적</string>
+    <string name="start_howto">게임 방법</string>
     <!-- 공통 -->
     <string name="common_back">뒤로</string>
     <string name="common_cancel">취소</string>
@@ -20,20 +20,20 @@
     <string name="settings_vibration">진동</string>
     <string name="settings_dark_theme">다크 테마</string>
     <string name="settings_fast_mode">타이머 모드</string>
-    <string name="settings_fast_mode_desc">모든 플레이어에게 턴 카운트다운을 적용합니다.</string>
+    <string name="settings_fast_mode_desc">각 플레이어의 턴마다 카운트다운 타이머를 적용합니다.</string>
     <string name="settings_long_jump">장거리 점프 활성화</string>
-    <string name="settings_long_jump_desc">대칭 규칙에 따른 장거리 점프로 한 번에 더 멀리 이동합니다.</string>
+    <string name="settings_long_jump_desc">대칭 규칙에 따라 여러 말을 한 번에 뛰어넘을 수 있습니다.</string>
     <string name="settings_turn_duration">턴 시간</string>
     <string name="settings_turn_duration_option">%1$d초</string>
     <string name="settings_timeout_behavior">시간 초과 시 동작</string>
-    <string name="settings_timeout_skip">시간 초과: 턴 건너뛰기</string>
-    <string name="settings_timeout_auto">시간 초과: 자동 이동</string>
+    <string name="settings_timeout_skip">시간 초과 시 턴 건너뛰기</string>
+    <string name="settings_timeout_auto">시간 초과 시 자동 이동</string>
     <string name="settings_ai_section">AI 동작</string>
     <string name="settings_ai_default_difficulty">기본 AI 난이도</string>
     <string name="difficulty_easy">쉬움</string>
     <string name="difficulty_medium">보통</string>
     <string name="difficulty_hard">어려움</string>
-    <string name="settings_ai_long_jump">AI의 장거리 점프 허용</string>
+    <string name="settings_ai_long_jump">AI에 장거리 점프 허용</string>
     <string name="settings_debug_toggle">디버그 오버레이</string>
     <string name="settings_debug_desc">경기 중 추가 로그와 이벤트를 표시합니다.</string>
     <string name="settings_language">언어</string>
@@ -85,41 +85,41 @@
     <string name="colour_teal">청록</string>
     <string name="colour_custom">사용자 지정</string>
     <!-- 통계 -->
-    <string name="profile_title">통계</string>
-    <string name="profile_section_heading">경기 통계</string>
+    <string name="profile_title">전적</string>
+    <string name="profile_section_heading">경기 전적</string>
     <string name="profile_total_games">총 경기 수: %1$d</string>
-    <string name="profile_last_played">마지막 플레이: %1$s</string>
-    <string name="profile_reset_stats">통계 초기화</string>
-    <string name="profile_chart_by_player">플레이어별 승리</string>
-    <string name="profile_chart_by_controller">유형별 승리 (인간/AI)</string>
-    <string name="profile_chart_by_difficulty">난이도별 승리</string>
-    <string name="profile_empty">(아직 없음)</string>
+    <string name="profile_last_played">마지막 플레이 시간: %1$s</string>
+    <string name="profile_reset_stats">전적 초기화</string>
+    <string name="profile_chart_by_player">플레이어별 승수</string>
+    <string name="profile_chart_by_controller">유형별 승수(인간/AI)</string>
+    <string name="profile_chart_by_difficulty">난이도별 승수</string>
+    <string name="profile_empty">(기록 없음)</string>
     <!-- AI 가이드 -->
     <string name="ai_guide_title">AI 모드</string>
     <string name="ai_guide_weak_title">쉬움 (무작위)</string>
-    <string name="ai_guide_weak_desc">앞으로 이동, 점프, 진영 비우기를 약간 우선시하며 무작위로 수를 고릅니다.</string>
+    <string name="ai_guide_weak_desc">앞으로 이동하거나 점프하고 진영을 비우는 수를 약간 우선시하면서 무작위로 수를 고릅니다.</string>
     <string name="ai_guide_medium_title">보통 (탐욕적)</string>
-    <string name="ai_guide_medium_desc">모든 수를 평가하고 목표까지의 거리를 최소화하며 빠르게 진영을 비우는 수를 선택합니다.</string>
+    <string name="ai_guide_medium_desc">모든 수를 평가해 목표까지의 거리를 최소화하고 빠르게 진영을 비우는 수를 선택합니다.</string>
     <string name="ai_guide_strong_title">어려움 (Minimax)</string>
-    <string name="ai_guide_strong_desc">Minimax와 가지치기로 여러 턴을 예측하고, 거리·진영 압박·전술적 점프를 결합합니다.</string>
+    <string name="ai_guide_strong_desc">Minimax와 가지치기 기법으로 여러 턴을 예측하고, 거리와 진영 압박, 전술적 점프를 함께 고려합니다.</string>
     <string name="ai_guide_tip_title">팁</string>
-    <string name="ai_guide_tip_body">여기에서 기본 AI 난이도를 설정하고, 오프라인 경기에서는 자리별로 개별 난이도를 선택할 수 있습니다.</string>
+    <string name="ai_guide_tip_body">여기에서 기본 AI 난이도를 지정하고, 오프라인 경기에서는 좌석마다 난이도를 따로 선택할 수 있습니다.</string>
     <!-- 규칙 -->
-    <string name="howto_title">플레이 방법</string>
+    <string name="howto_title">게임 방법</string>
     <string name="howto_tab_rules">규칙</string>
     <string name="howto_tab_ai">AI 개요</string>
     <string name="howto_rules_standard_heading">표준 규칙</string>
     <string name="howto_rules_long_heading">장거리 점프 규칙</string>
     <string name="howto_demo_title">점프 데모</string>
     <string name="howto_demo_restart">다시 재생</string>
-    <string name="howto_demo_normal_desc">일반 점프 데모: 빨간 말이 인접한 말을 하나씩 넘어갑니다.</string>
-    <string name="howto_demo_long_desc">장거리 점프 데모: 빨간 말이 대칭으로 배열된 말을 넘어가며 연속 점프를 이어갑니다.</string>
-    <string name="howto_rules_standard">• 한 칸 이동: 인접한 빈 칸으로 이동.\n• 점프: 인접 말을 넘어 그 너머의 빈 칸에 착지.\n• 연속 점프: 착지 칸이 비어 있으면 계속.\n• 승리: 목표 진영의 모든 칸을 점령.</string>
-    <string name="howto_rules_long_jump">• 설정 → 장거리 점프에서 활성화.\n• 여러 말을 대칭으로 넘어 같은 거리로 착지하는 장거리 점프 허용.\n• 장거리와 일반 점프는 한 턴에 조합 가능.</string>
-    <string name="howto_rules_layout">• 2/3/4/6인 지원, 시작 진영이 다릅니다.\n• 연속 점프 경로를 확보하려면 전열을 일찍 비우세요.</string>
+    <string name="howto_demo_normal_desc">일반 점프 데모: 빨간 말이 인접한 말을 하나씩 뛰어넘습니다.</string>
+    <string name="howto_demo_long_desc">장거리 점프 데모: 빨간 말이 대칭으로 배열된 말을 뛰어넘으며 연속 점프를 이어갑니다.</string>
+    <string name="howto_rules_standard">• 한 칸 이동: 인접한 빈 칸으로 이동합니다.\n• 점프: 인접한 말을 뛰어넘어 그 너머의 빈 칸에 착지합니다.\n• 연속 점프: 착지 칸이 비어 있으면 연속해서 점프할 수 있습니다.\n• 승리: 목표 진영의 모든 칸을 점령하면 승리입니다.</string>
+    <string name="howto_rules_long_jump">• 설정 → 장거리 점프에서 활성화합니다.\n• 여러 말을 대칭으로 뛰어넘어 동일한 거리에 착지하는 장거리 점프를 허용합니다.\n• 장거리와 일반 점프는 한 턴에서 함께 사용할 수 있습니다.</string>
+    <string name="howto_rules_layout">• 2/3/4/6명 플레이를 지원하며 시작 진영이 다릅니다.\n• 연속 점프 경로를 확보하려면 앞줄을 미리 비워 두세요.</string>
     <!-- 디버그 -->
     <string name="debug_logs_title">디버그 로그 (%1$d) - 최근 50개</string>
     <string name="debug_clear">로그 지우기</string>
     <!-- 기타 -->
-    <string name="loading_stats">통계를 불러오는 중…</string>
+    <string name="loading_stats">전적을 불러오는 중…</string>
 </resources>

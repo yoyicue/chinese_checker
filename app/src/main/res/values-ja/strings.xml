@@ -6,7 +6,7 @@
     <string name="start_continue">続きから</string>
     <string name="start_offline">オフライン対戦</string>
     <string name="start_settings">設定</string>
-    <string name="start_stats">統計</string>
+    <string name="start_stats">戦績</string>
     <string name="start_howto">遊び方</string>
     <!-- 共通 -->
     <string name="common_back">戻る</string>
@@ -20,14 +20,14 @@
     <string name="settings_vibration">バイブレーション</string>
     <string name="settings_dark_theme">ダークテーマ</string>
     <string name="settings_fast_mode">タイマー制</string>
-    <string name="settings_fast_mode_desc">各プレイヤーにターンのカウントダウンを有効化します。</string>
+    <string name="settings_fast_mode_desc">各プレイヤーのターンにカウントダウンタイマーを設定します。</string>
     <string name="settings_long_jump">長距離ジャンプを有効化</string>
-    <string name="settings_long_jump_desc">対称ジャンプにより、一手でより遠くまで移動できます。</string>
+    <string name="settings_long_jump_desc">対称ジャンプを有効にし、一手でより遠くまで移動できます。</string>
     <string name="settings_turn_duration">ターン時間</string>
     <string name="settings_turn_duration_option">%1$d 秒</string>
     <string name="settings_timeout_behavior">タイムアウト時の動作</string>
-    <string name="settings_timeout_skip">タイムアウト: ターンをスキップ</string>
-    <string name="settings_timeout_auto">タイムアウト: 自動移動</string>
+    <string name="settings_timeout_skip">タイムアウト時にターンをスキップ</string>
+    <string name="settings_timeout_auto">タイムアウト時に自動で移動</string>
     <string name="settings_ai_section">AI の挙動</string>
     <string name="settings_ai_default_difficulty">既定の AI 難易度</string>
     <string name="difficulty_easy">易しい</string>
@@ -85,25 +85,25 @@
     <string name="colour_teal">青緑</string>
     <string name="colour_custom">カスタム</string>
     <!-- 統計 -->
-    <string name="profile_title">統計</string>
-    <string name="profile_section_heading">対戦の統計</string>
+    <string name="profile_title">戦績</string>
+    <string name="profile_section_heading">対戦の戦績</string>
     <string name="profile_total_games">総対戦数: %1$d</string>
-    <string name="profile_last_played">最終プレイ: %1$s</string>
+    <string name="profile_last_played">最終プレイ日時：%1$s</string>
     <string name="profile_reset_stats">統計をリセット</string>
-    <string name="profile_chart_by_player">プレイヤー別の勝利</string>
-    <string name="profile_chart_by_controller">種別別の勝利（人間/AI）</string>
-    <string name="profile_chart_by_difficulty">難易度別の勝利</string>
+    <string name="profile_chart_by_player">プレイヤー別の勝利数</string>
+    <string name="profile_chart_by_controller">種別別の勝利数（人間/AI）</string>
+    <string name="profile_chart_by_difficulty">難易度別の勝利数</string>
     <string name="profile_empty">（まだありません）</string>
     <!-- AI ガイド -->
     <string name="ai_guide_title">AI モード</string>
     <string name="ai_guide_weak_title">易しい（ランダム）</string>
-    <string name="ai_guide_weak_desc">前進・ジャンプ・ベース離脱をわずかに優先しつつ、ランダムに手を選びます。</string>
+    <string name="ai_guide_weak_desc">前進やジャンプ、自陣を離れる手をわずかに優先しつつ、ランダムに手を選びます。</string>
     <string name="ai_guide_medium_title">普通（貪欲法）</string>
     <string name="ai_guide_medium_desc">全手を評価し、目標までの距離を最小化しつつ、素早く自陣を空ける手を選びます。</string>
     <string name="ai_guide_strong_title">難しい（Minimax）</string>
-    <string name="ai_guide_strong_desc">Minimax と枝刈りで複数手先を読み、距離・自陣圧・戦術的ジャンプを組み合わせます。</string>
+    <string name="ai_guide_strong_desc">Minimax と枝刈りで複数手先を読み、距離や自陣への圧力、戦術的ジャンプを組み合わせます。</string>
     <string name="ai_guide_tip_title">ヒント</string>
-    <string name="ai_guide_tip_body">ここで既定の AI 難易度を設定し、オフライン対戦では席ごとに個別の難易度を選べます。</string>
+    <string name="ai_guide_tip_body">ここで既定の AI 難易度を設定し、オフライン対戦では席ごとに個別の難易度を選択できます。</string>
     <!-- ルール -->
     <string name="howto_title">遊び方</string>
     <string name="howto_tab_rules">ルール</string>
@@ -112,11 +112,17 @@
     <string name="howto_rules_long_heading">長距離ジャンプのルール</string>
     <string name="howto_demo_title">ジャンプのデモ</string>
     <string name="howto_demo_restart">もう一度再生</string>
-    <string name="howto_demo_normal_desc">通常ジャンプのデモ：赤い駒が隣接駒を一つずつ飛び越えます。</string>
+    <string name="howto_demo_normal_desc">通常ジャンプのデモ：赤い駒が隣接する駒を一つずつ飛び越えます。</string>
     <string name="howto_demo_long_desc">長距離ジャンプのデモ：赤い駒が対称に並ぶ駒を飛び越え、連続ジャンプを続けます。</string>
-    <string name="howto_rules_standard">• 一歩: 隣の空き穴へ移動。\n• ジャンプ: 隣接駒を飛び越えて先の空き穴へ。\n• 連続ジャンプ: 着地が空いていれば続行可能。\n• 勝利: 目標の陣地の穴をすべて占領。</string>
-    <string name="howto_rules_long_jump">• 設定 → 長距離ジャンプで有効化。\n• 複数駒を対称に飛び越える長距離ジャンプを許可。\n• 長距離と通常ジャンプは同一ターンで組み合わせ可能。</string>
-    <string name="howto_rules_layout">• 2/3/4/6 人に対応、開始陣地は異なります。\n• 早めに前列を空け、ジャンプの経路を確保しましょう。</string>
+    <string name="howto_rules_standard">• 一歩：隣の空き穴へ移動します。
+• ジャンプ：隣接する駒を飛び越えて先の空き穴に着地します。
+• 連続ジャンプ：着地先が空いていれば続けてジャンプできます。
+• 勝利：目標陣地の穴をすべて埋めれば勝利です。</string>
+    <string name="howto_rules_long_jump">• 設定 → 長距離ジャンプで有効化。
+• 複数の駒を対称に飛び越える長距離ジャンプを許可します。
+• 長距離と通常ジャンプは同一ターンで組み合わせ可能です。</string>
+    <string name="howto_rules_layout">• 2/3/4/6 人に対応、開始陣地は異なります。
+• 早めに前列を空けて、ジャンプの経路を確保しましょう。</string>
     <!-- デバッグ -->
     <string name="debug_logs_title">デバッグログ (%1$d) - 最新 50 件</string>
     <string name="debug_clear">ログをクリア</string>
