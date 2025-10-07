@@ -97,13 +97,13 @@
     <!-- Guia da IA -->
     <string name="ai_guide_title">Modos de IA</string>
     <string name="ai_guide_weak_title">Fácil (aleatório)</string>
-    <string name="ai_guide_weak_desc">Escolhe jogadas aleatórias com leve preferência por avançar, saltar e liberar o campo.</string>
+    <string name="ai_guide_weak_desc">Escolhe jogadas aleatórias com leve preferência por avançar, saltar e liberar o triângulo inicial.</string>
     <string name="ai_guide_medium_title">Médio (guloso)</string>
-    <string name="ai_guide_medium_desc">Avalia todas as jogadas e escolhe a que minimiza a distância ao objetivo, saindo rapidamente da base.</string>
+    <string name="ai_guide_medium_desc">Avalia todas as jogadas e escolhe a que minimiza a distância ao objetivo, saindo rapidamente do triângulo inicial.</string>
     <string name="ai_guide_strong_title">Difícil (Minimax)</string>
-    <string name="ai_guide_strong_desc">Prevê vários turnos com minimax e poda, combinando distância, pressão em casa e saltos táticos.</string>
+    <string name="ai_guide_strong_desc">Prevê vários turnos com minimax e poda, combinando distância, pressão no triângulo inicial e saltos táticos.</string>
     <string name="ai_guide_tip_title">Dica</string>
-    <string name="ai_guide_tip_body">Aqui você define a dificuldade padrão da IA e pode escolher níveis específicos por assento na Partida offline.</string>
+    <string name="ai_guide_tip_body">Aqui você define a dificuldade padrão da IA e pode escolher níveis específicos por posição na Partida offline.</string>
     <!-- Regras -->
     <string name="howto_title">Como jogar</string>
     <string name="howto_tab_rules">Regras</string>
@@ -114,9 +114,9 @@
     <string name="howto_demo_restart">Repetir</string>
     <string name="howto_demo_normal_desc">Demonstração de salto normal: a peça vermelha salta sobre peças adjacentes, um passo de cada vez.</string>
     <string name="howto_demo_long_desc">Demonstração de salto longo: a peça vermelha cruza uma linha simétrica de peças e continua encadeando saltos.</string>
-    <string name="howto_rules_standard">• Passo: mover para um buraco adjacente livre.\n• Salto: pular uma peça adjacente para o buraco livre após ela.\n• Cadeia de saltos: continuar enquanto cada aterrissagem estiver livre.\n• Vitória: ocupar todos os buracos do campo alvo.</string>
+    <string name="howto_rules_standard">• Passo: mover para uma casa adjacente livre.\n• Salto: pular uma peça adjacente para a casa livre após ela.\n• Cadeia de saltos: continuar enquanto cada aterrissagem estiver livre.\n• Vitória: ocupar todas as casas do triângulo alvo.</string>
     <string name="howto_rules_long_jump">• Ativar em Configurações → Saltos longos.\n• Permite saltos simétricos sobre várias peças, com aterrissagem a distância igual.\n• Saltos longos e normais podem ser combinados no mesmo turno.</string>
-    <string name="howto_rules_layout">• Tabuleiro compatível com 2/3/4/6 jogadores; campos iniciais variam.\n• Liberar cedo a fileira frontal para abrir rotas de salto.</string>
+    <string name="howto_rules_layout">• Tabuleiro compatível com 2/3/4/6 jogadores; triângulos iniciais variam.\n• Liberar cedo a fileira frontal para abrir rotas de salto.</string>
     <!-- Depuração -->
     <string name="debug_logs_title">Registros de depuração (%1$d) - últimos 50</string>
     <string name="debug_clear">Limpar registros</string>
