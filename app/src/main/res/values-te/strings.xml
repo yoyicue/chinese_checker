@@ -4,7 +4,7 @@
     <string name="start_title">చైనీస్ చెకర్స్</string>
     <string name="start_version">వెర్షన్ v%1$s</string>
     <string name="start_continue">ఆట కొనసాగించండి</string>
-    <string name="start_offline">ఆఫ్‌లైన్ మ్యాచ్</string>
+    <string name="start_offline">ఆఫ్‌లైన్ ఆట</string>
     <string name="start_settings">సెట్టింగ్స్</string>
     <string name="start_stats">గణాంకాలు</string>
     <string name="start_howto">ఎలా ఆడాలి</string>
@@ -20,29 +20,29 @@
     <string name="settings_vibration">వైబ్రేషన్</string>
     <string name="settings_dark_theme">డార్క్ థీమ్</string>
     <string name="settings_fast_mode">టైమర్ మోడ్</string>
-    <string name="settings_fast_mode_desc">ప్రతి ఆటగాడికి టర్న్ కౌంట్‌డౌన్‌ని ప్రారంభించండి.</string>
+    <string name="settings_fast_mode_desc">ప్రతి ఆటగాడి టర్న్‌కి సమయ తగ్గింపును ప్రారంభించండి.</string>
     <string name="settings_long_jump">దీర్ఘ దూకుళ్లు ప్రారంభించండి</string>
-    <string name="settings_long_jump_desc">సమమిత లాంగ్ హాప్స్‌ తో ఒకే టర్న్‌లో ఎక్కువ దూరం ప్రయాణించండి.</string>
+    <string name="settings_long_jump_desc">సమమిత దీర్ఘ దూకుళ్లతో ఒకే టర్న్‌లో ఎక్కువ దూరం చేరుకోండి.</string>
     <string name="settings_turn_duration">టర్న్ వ్యవధి</string>
     <string name="settings_turn_duration_option">%1$d సె</string>
     <string name="settings_timeout_behavior">సమయం ముగిసినప్పుడు చర్య</string>
-    <string name="settings_timeout_skip">సమయం ముగిసింది: టర్న్ స్కిప్</string>
+    <string name="settings_timeout_skip">సమయం ముగిసింది: టర్న్ మానివేయండి</string>
     <string name="settings_timeout_auto">సమయం ముగిసింది: స్వయంచాలిత కదలిక</string>
     <string name="settings_ai_section">AI ప్రవర్తన</string>
     <string name="settings_ai_default_difficulty">డిఫాల్ట్ AI కఠినత</string>
     <string name="difficulty_easy">సులువు</string>
     <string name="difficulty_medium">మధ్యస్థ</string>
     <string name="difficulty_hard">కఠిన</string>
-    <string name="settings_ai_long_jump">AI కి లాంగ్ జంప్స్ అనుమతి ఇవ్వు</string>
+    <string name="settings_ai_long_jump">AIకి దీర్ఘ దూకుళ్లు అనుమతించండి</string>
     <string name="settings_debug_toggle">డీబగ్ ఓవర్లే</string>
-    <string name="settings_debug_desc">మ్యాచ్ సమయంలో అదనపు లాగ్‌లు, ఈవెంట్‌లను చూపిస్తుంది.</string>
+    <string name="settings_debug_desc">ఆట సమయంలో అదనపు లాగ్‌లు, ఈవెంట్‌లను చూపిస్తుంది.</string>
     <string name="settings_language">భాష</string>
     <string name="language_auto">సిస్టమ్ డిఫాల్ట్</string>
     <string name="language_english">ఇంగ్లీష్</string>
     <string name="language_chinese">చైనీస్</string>
     <string name="language_spanish">స్పానిష్</string>
     <!-- నిష్క్రమణ డైలాగ్ -->
-    <string name="exit_dialog_title">మ్యాచ్ నుండి బయటకు రావాలా?</string>
+    <string name="exit_dialog_title">ఆట నుండి బయటకు రావాలా?</string>
     <string name="exit_dialog_message">ప్రస్తుత ప్రగతిని సేవ్ చేయాలా లేదా అనేది ఎంచుకోండి.</string>
     <!-- గేమ్ తెర -->
     <string name="game_button_undo">రద్దుచేయి</string>
@@ -60,11 +60,11 @@
     <string name="camp_nw">వాయవ్య</string>
     <string name="victory_title">విజయం</string>
     <string name="victory_winner_message">%1$s (%2$s) గెలిచారు!</string>
-    <string name="victory_congrats_message">అభినందనలు! అద్భుతమైన మ్యాచ్!</string>
+    <string name="victory_congrats_message">అభినందనలు! అద్భుతమైన ఆట!</string>
     <string name="victory_play_again">మళ్ళీ ఆడు</string>
-    <string name="victory_return_home">హోమ్‌కి వెళ్ళు</string>
+    <string name="victory_return_home">హోమ్‌కు వెళ్లండి</string>
     <!-- ఆఫ్‌లైన్ అమరిక -->
-    <string name="offline_title">ఆఫ్‌లైన్ మ్యాచ్ అమరిక</string>
+    <string name="offline_title">ఆఫ్‌లైన్ ఆట అమరిక</string>
     <string name="offline_player_count">ఆటగాళ్ల సంఖ్య</string>
     <string name="offline_ai_label">AI</string>
     <string name="offline_ai_level">AI కఠినత</string>
@@ -86,8 +86,8 @@
     <string name="colour_custom">అనుకూలం</string>
     <!-- గణాంకాలు -->
     <string name="profile_title">గణాంకాలు</string>
-    <string name="profile_section_heading">మ్యాచ్ గణాంకాలు</string>
-    <string name="profile_total_games">మొత్తం మ్యాచ్‌లు: %1$d</string>
+    <string name="profile_section_heading">ఆట గణాంకాలు</string>
+    <string name="profile_total_games">మొత్తం ఆటలు: %1$d</string>
     <string name="profile_last_played">చివరిసారి ఆడింది: %1$s</string>
     <string name="profile_reset_stats">గణాంకాలను రీసెట్ చేయి</string>
     <string name="profile_chart_by_player">ఆటగాళ్ల వారీగా విజయాలు</string>
@@ -97,26 +97,26 @@
     <!-- AI మార్గదర్శిని -->
     <string name="ai_guide_title">AI మోడ్‌లు</string>
     <string name="ai_guide_weak_title">సులువు (యాదృచ్ఛిక)</string>
-    <string name="ai_guide_weak_desc">ముందుకు అడుగులు, జంప్‌లు, క్యాంప్ క్లియరింగ్‌కు స్వల్ప ప్రాధాన్యంతో యాదృచ్ఛిక కదలికలు ఎంచుకుంటుంది.</string>
+    <string name="ai_guide_weak_desc">ముందుకు అడుగులు, దూకుళ్లు, శిబిరం ఖాళీ చేయడానికి స్వల్ప ప్రాధాన్యంతో యాదృచ్ఛిక కదలికలు ఎంచుకుంటుంది.</string>
     <string name="ai_guide_medium_title">మధ్యస్థ (గ్రీడి)</string>
-    <string name="ai_guide_medium_desc">అన్ని కదలికలను అంచనా వేసి, లక్ష్యానికి దూరం తగ్గించే మరియు క్యాంప్‌ను త్వరగా ఖాళీ చేసే కదలికను ఎంచుకుంటుంది.</string>
+    <string name="ai_guide_medium_desc">అన్ని కదలికలను అంచనా వేసి, లక్ష్యానికి దూరం తగ్గించే మరియు శిబిరాన్ని త్వరగా ఖాళీ చేసే కదలికను ఎంచుకుంటుంది.</string>
     <string name="ai_guide_strong_title">కఠిన (Minimax)</string>
-    <string name="ai_guide_strong_desc">Minimax మరియు pruning తో అనేక టర్న్‌లు ముందుగానే చూస్తుంది; దూరం, క్యాంప్ ఒత్తిడి, వ్యూహాత్మక జంప్‌లను కలుపుతుంది.</string>
+    <string name="ai_guide_strong_desc">Minimax మరియు శాఖల తొలగింపుతో అనేక టర్న్‌లు ముందుగానే చూస్తుంది; దూరం, శిబిర ఒత్తిడి, వ్యూహాత్మక దూకుళ్లను కలుపుతుంది.</string>
     <string name="ai_guide_tip_title">సూచన</string>
-    <string name="ai_guide_tip_body">ఇక్కడ డిఫాల్ట్ AI కఠినతను సెట్ చేసి, ఆఫ్‌లైన్ మ్యాచ్‌లో ప్రతి సీటుకు వేరు స్థాయి ఎంచుకోవచ్చు.</string>
+    <string name="ai_guide_tip_body">ఇక్కడ డిఫాల్ట్ AI కఠినతను సెట్ చేసి, ఆఫ్‌లైన్ ఆటలో ప్రతి సీటుకు వేరు స్థాయి ఎంచుకోవచ్చు.</string>
     <!-- ఎలా ఆడాలి -->
     <string name="howto_title">ఎలా ఆడాలి</string>
     <string name="howto_tab_rules">నిబంధనలు</string>
     <string name="howto_tab_ai">AI అవలోకనం</string>
     <string name="howto_rules_standard_heading">ప్రామాణిక నిబంధనలు</string>
-    <string name="howto_rules_long_heading">లాంగ్ జంప్ నిబంధనలు</string>
-    <string name="howto_demo_title">జంప్ డెమోలు</string>
-    <string name="howto_demo_restart">మళ్ళీ ప్లే చేయి</string>
-    <string name="howto_demo_normal_desc">సాధారణ జంప్ డెమో: ఎర్ర ముక్క పక్కన ఉన్న ముక్కలపై ఒక్కోదానిని దాటుతుంది.</string>
-    <string name="howto_demo_long_desc">లాంగ్ జంప్ డెమో: ఎర్ర ముక్క సమమితంగా అమర్చిన ముక్కలను దాటి జంప్‌లను కొనసాగిస్తుంది.</string>
-    <string name="howto_rules_standard">• అడుగు: పక్కనున్న ఖాళీ రంధ్రానికి కదలండి.\n• జంప్: పక్కన ఉన్న ముక్కను దాటి ముందున్న ఖాళీ రంధ్రంలో దిగండి.\n• చైన్ జంప్స్: ప్రతి ల్యాండింగ్ ఖాళీగా ఉన్నంత వరకు కొనసాగించండి.\n• విజయం: లక్ష్య శిబిరంలోని అన్ని రంధ్రాలను ఆక్రమించండి.</string>
-    <string name="howto_rules_long_jump">• సెట్టింగ్స్ → లాంగ్ జంప్స్ ఎనేబుల్ చేయండి.\n• అనేక ముక్కలపై సమమిత లాంగ్ జంప్స్‌కు అనుమతి; సమాన దూరంలో ల్యాండింగ్ అవసరం.\n• లాంగ్ మరియు సాధారణ జంప్స్‌ను ఒకే టర్న్‌లో కలపవచ్చు.</string>
-    <string name="howto_rules_layout">• బోర్డు 2/3/4/6 మంది ఆటగాళ్లను మద్దతు ఇస్తుంది; ప్రారంభ శిబిరాలు వేర్వేరు.\n• చైన్ జంప్స్ కోసం మార్గాలు తెరవడానికి ముందరి వరుసను త్వరగా ఖాళీ చేయండి.</string>
+    <string name="howto_rules_long_heading">దీర్ఘ దూకుళ్ల నిబంధనలు</string>
+    <string name="howto_demo_title">దూకుల ప్రదర్శనలు</string>
+    <string name="howto_demo_restart">మళ్ళీ చూపించు</string>
+    <string name="howto_demo_normal_desc">సాధారణ దూకు ప్రదర్శన: ఎర్ర ముక్క పక్కన ఉన్న ముక్కలపై ఒక్కోదానిని దాటుతుంది.</string>
+    <string name="howto_demo_long_desc">దీర్ఘ దూకు ప్రదర్శన: ఎర్ర ముక్క సమమితంగా అమర్చిన ముక్కలను దాటి దూకుళ్లను కొనసాగిస్తుంది.</string>
+    <string name="howto_rules_standard">• అడుగు: పక్కనున్న ఖాళీ రంధ్రానికి కదలండి.\n• దూకు: పక్కన ఉన్న ముక్కను దాటి ముందు ఖాళీ రంధ్రంలో దిగండి.\n• చైన్ దూకులు: ప్రతి దిగే స్థలం ఖాళీగా ఉన్నంతవరకు కొనసాగించండి.\n• విజయం: లక్ష్య శిబిరంలోని అన్ని రంధ్రాలను ఆక్రమించండి.</string>
+    <string name="howto_rules_long_jump">• సెట్టింగ్స్ → దీర్ఘ దూకుళ్లను ప్రారంభించండి.\n• అనేక ముక్కలపై సమమిత దీర్ఘ దూకుళ్లకు అనుమతి; సమాన దూరంలో దిగటం అవసరం.\n• దీర్ఘ మరియు సాధారణ దూకుళ్లను ఒకే టర్న్‌లో కలపవచ్చు.</string>
+    <string name="howto_rules_layout">• బోర్డు 2/3/4/6 మంది ఆటగాళ్లను మద్దతు ఇస్తుంది; ప్రారంభ శిబిరాలు వేర్వేరు.\n• చైన్ దూకులకు మార్గాలు తెరవడానికి ముందరి వరుసను త్వరగా ఖాళీ చేయండి.</string>
     <!-- డీబగ్ -->
     <string name="debug_logs_title">డీబగ్ లాగ్స్ (%1$d) - తాజా 50</string>
     <string name="debug_clear">లాగ్స్ క్లియర్ చేయి</string>
