@@ -210,9 +210,13 @@ private fun LanguageDropdown(selected: String, onSelect: (String) -> Unit) {
         "mr" to "मराठी",
         "te" to "తెలుగు",
         "pa-Arab" to "پنجابی",
+        "ar" to "العربية",
         "pt" to "Português",
+        "id" to "Bahasa Indonesia",
+        "ms" to "Bahasa Melayu",
         "ru" to "Русский",
         "ja" to "日本語",
+        "th" to "ไทย",
         "tr" to "Türkçe",
         "ko" to "한국어",
         "vi" to "Tiếng Việt"

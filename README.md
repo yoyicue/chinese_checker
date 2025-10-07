@@ -8,6 +8,7 @@ This repository delivers an offline Chinese Checkers experience for Android buil
 - Multi-player board logic (2/3/4/6). Player-to-camp mapping and per-player goal camp (opposite triangle).
 - Offline config covers per-seat Human/AI (with difficulty) and color selections, plus a resume-from-save flow.
 - Compose Canvas board rendering with tap interaction, victory overlay, haptics and tone feedback.
+- Localisation spans 18 languages, now including Arabic, Bahasa Indonesia, Bahasa Melayu, and Thai alongside existing releases.
 
 ## Project Structure
 - app/src/main/java/com/yoyicue/chinesechecker/
