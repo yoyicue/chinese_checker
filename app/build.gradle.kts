@@ -56,8 +56,6 @@ android {
 
 room {
     schemaDirectory("$projectDir/app/schemas")
-    incremental = true
-    expandProjection = true
 }
 
 dependencies {

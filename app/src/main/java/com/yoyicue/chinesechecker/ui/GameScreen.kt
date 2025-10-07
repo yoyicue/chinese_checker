@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,7 +45,6 @@ import androidx.activity.compose.BackHandler
 import com.yoyicue.chinesechecker.ui.util.HapticKind
 import com.yoyicue.chinesechecker.ui.util.rememberHaptic
 import com.yoyicue.chinesechecker.ui.util.rememberSfx
-import com.yoyicue.chinesechecker.BuildConfig
 import com.yoyicue.chinesechecker.ui.game.GameViewModel.SfxEvent
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -97,7 +95,18 @@ fun GameScreen(
     androidx.compose.runtime.LaunchedEffect(settings.longJumps) {
         com.yoyicue.chinesechecker.game.Board.setLongJumps(settings.longJumps)
     }
-    val vm: GameViewModel = viewModel(factory = viewModelFactory { initializer { GameViewModel(config, clock, settings.aiLongJumps, pendingRestore) } })
+    val vm: GameViewModel = viewModel(factory = viewModelFactory {
+        initializer {
+            GameViewModel(
+                initialConfig = config,
+                clock = clock,
+                aiLongJumps = settings.aiLongJumps,
+                gameRepository = container.gameRepository,
+                statsRepository = container.statsRepository,
+                initialRestore = pendingRestore
+            )
+        }
+    })
     container.pendingRestore = null
     val ui by vm.ui.collectAsState()
     val events by vm.events.collectAsState()
@@ -126,9 +135,7 @@ fun GameScreen(
     androidx.compose.runtime.LaunchedEffect(ui.board) {
         val total = ui.board.activePlayers.sumOf { pid -> ui.board.allPieces(pid).size }
         if (total == 0) {
-            // Clear any bad save and start fresh to avoid ghost board
-            container.gameRepository.clearSave()
-            vm.newGame()
+            vm.resetBoardDueToInvalidState()
         }
     }
 
@@ -142,46 +149,41 @@ fun GameScreen(
         showVictoryOverlay.value = ui.winner != null
     }
 
-    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                Button(onClick = {
-                    if (showVictoryOverlay.value) {
-                        scope.launch {
-                            container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, activeConfig)
-                            showVictoryOverlay.value = false
-                            showConfirmExit.value = false
-                            onHome()
-                        }
-                    } else {
-                        showConfirmExit.value = true
-                    }
-                }) { Text("返回") }
-                TextButton(onClick = {
-                    if (settings.haptics) doHaptic(HapticKind.Light)
-                    vm.undo()
-                }, enabled = canUndo) { Text("悔棋") }
-                
-            }
-            val current = ui.board.currentPlayer
-            val indicatorColor = (ui.winner?.let { colorByPlayer[it] } ?: colorByPlayer[current])
-                ?: MaterialTheme.colorScheme.onSurface
-            val curCamp = ui.board.startCampOf[current]
-            val timeStr = ui.timeLeftSec?.let { " · 剩余 ${it}s" } ?: ""
-            val whoText = ui.winner?.let { "胜者: ${it.name} ${campLabel(ui.board.startCampOf[it])}" }
-                ?: "轮到: ${current.name} ${campLabel(curCamp)}$timeStr"
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Box(modifier = Modifier.size(16.dp).background(indicatorColor))
-                Text(text = whoText, color = MaterialTheme.colorScheme.onBackground)
-            }
-            // 调试按钮移至上层覆盖，避免顶栏拥挤
-        }
+    val currentPlayer = ui.board.currentPlayer
+    val indicatorColor = (ui.winner?.let { colorByPlayer[it] } ?: colorByPlayer[currentPlayer])
+        ?: MaterialTheme.colorScheme.onSurface
+    val curCamp = ui.board.startCampOf[currentPlayer]
+    val timeStr = ui.timeLeftSec?.let { " · 剩余 ${it}s" } ?: ""
+    val statusText = ui.winner?.let { "胜者: ${it.name} ${campLabel(ui.board.startCampOf[it])}" }
+        ?: "轮到: ${currentPlayer.name} ${campLabel(curCamp)}$timeStr"
 
-        // Legend: show each player's color and seat/camp + Human/AI
+    val onBackPressed: () -> Unit = {
+        if (showVictoryOverlay.value) {
+            scope.launch {
+                vm.saveSnapshot()
+                showVictoryOverlay.value = false
+                showConfirmExit.value = false
+                onHome()
+            }
+        } else {
+            showConfirmExit.value = true
+        }
+    }
+
+    val onUndoClicked: () -> Unit = {
+        if (settings.haptics) doHaptic(HapticKind.Light)
+        vm.undo()
+    }
+
+    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+        GameTopBar(
+            statusText = statusText,
+            indicatorColor = indicatorColor,
+            canUndo = canUndo,
+            onBack = onBackPressed,
+            onUndo = onUndoClicked
+        )
+
         LegendRow(
             order = ui.board.activePlayers,
             colors = colorByPlayer,
@@ -204,7 +206,6 @@ fun GameScreen(
             if (showDebug) {
                 DebugOverlay(events = events)
             }
-            // Winner ceremony overlay
             if (showVictoryOverlay.value) {
                 val winner = ui.winner ?: Board.PlayerId.A
                 val winColor = colorByPlayer[winner] ?: defaultColorFor(winner)
@@ -263,67 +264,28 @@ fun GameScreen(
         }
 
         if (showConfirmExit.value) {
-            AlertDialog(
-                onDismissRequest = { showConfirmExit.value = false },
-                title = { Text("确认退出对局？") },
-                text = { Text("选择是否保存当前对局进度。") },
-                confirmButton = {
-                        TextButton(onClick = {
-                            // 保存并退出
-                            scope.launch {
-                                container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, activeConfig)
-                                showConfirmExit.value = false
-                                onHome()
-                            }
-                        }) { Text("保存并退出") }
-                    },
-                dismissButton = {
-                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        TextButton(onClick = {
-                            // 不保存并退出
-                            scope.launch {
-                                container.gameRepository.clearSave()
-                                showConfirmExit.value = false
-                                onExitWithoutSave()
-                            }
-                        }) { Text("不保存并退出") }
-                        TextButton(onClick = { showConfirmExit.value = false }) { Text("取消") }
+            ExitConfirmDialog(
+                onSaveExit = {
+                    scope.launch {
+                        vm.saveSnapshot()
+                        showConfirmExit.value = false
+                        onHome()
                     }
-                }
+                },
+                onDiscardExit = {
+                    scope.launch {
+                        vm.clearSavedGame()
+                        showConfirmExit.value = false
+                        onExitWithoutSave()
+                    }
+                },
+                onDismiss = { showConfirmExit.value = false }
             )
         }
 
         // Victory modal removed; we keep only top status text and SFX/Haptics.
     }
 
-    // Persist side effects outside layout to avoid recomposition loops
-    // Use up-to-date config (restored or initial)
-    PersistSideEffects(container = container, config = activeConfig, ui = ui)
-}
-
-@Composable
-private fun PersistSideEffects(
-    container: com.yoyicue.chinesechecker.data.AppContainer,
-    config: GameConfig,
-    ui: com.yoyicue.chinesechecker.ui.game.GameUiState
-) {
-    // Always keep in-progress save up to date when未动画
-    androidx.compose.runtime.LaunchedEffect(ui.board, ui.lastMovePath, ui.lastMoveOwner, ui.animating) {
-        if (!ui.animating) {
-            container.gameRepository.save(ui.board, ui.lastMovePath, ui.lastMoveOwner, config)
-        }
-    }
-    // Record stats once per完成态；悔棋回到未终局会重置
-    val recorded = androidx.compose.runtime.remember { mutableStateOf(false) }
-    androidx.compose.runtime.LaunchedEffect(ui.winner) {
-        if (ui.winner == null) {
-            recorded.value = false
-        } else if (!recorded.value) {
-            container.statsRepository.recordGameResult(ui.winner, config)
-            container.gameRepository.clearSave()
-            recorded.value = true
-        }
-    }
 }
 
 @Composable
@@ -596,6 +558,52 @@ private fun BoxScope.DebugOverlay(events: List<String>) {
             )
         }
     }
+}
+
+@Composable
+private fun GameTopBar(
+    statusText: String,
+    indicatorColor: Color,
+    canUndo: Boolean,
+    onBack: () -> Unit,
+    onUndo: () -> Unit
+) {
+    Row(
+        modifier = Modifier.padding(12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+            Button(onClick = onBack) { Text("返回") }
+            TextButton(onClick = onUndo, enabled = canUndo) { Text("悔棋") }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.size(16.dp).background(indicatorColor))
+            Text(text = statusText, color = MaterialTheme.colorScheme.onBackground)
+        }
+    }
+}
+
+@Composable
+private fun ExitConfirmDialog(
+    onSaveExit: () -> Unit,
+    onDiscardExit: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("确认退出对局？") },
+        text = { Text("选择是否保存当前对局进度。") },
+        confirmButton = {
+            TextButton(onClick = onSaveExit) { Text("保存并退出") }
+        },
+        dismissButton = {
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                TextButton(onClick = onDiscardExit) { Text("不保存并退出") }
+                TextButton(onClick = onDismiss) { Text("取消") }
+            }
+        }
+    )
 }
 
 @OptIn(ExperimentalLayoutApi::class)

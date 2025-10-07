@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yoyicue.chinesechecker.data.GameRepository
+import com.yoyicue.chinesechecker.data.StatsRepository
 import com.yoyicue.chinesechecker.game.Board
 import com.yoyicue.chinesechecker.game.Bot
 import com.yoyicue.chinesechecker.game.BotFactory
@@ -38,15 +39,18 @@ enum class TimeoutAction { Skip, AutoMove }
 data class ClockConfig(val enabled: Boolean, val turnSeconds: Int, val timeout: TimeoutAction)
 
 class GameViewModel(
-    private val config: GameConfig,
+    initialConfig: GameConfig,
     private val clock: ClockConfig,
     private val aiLongJumps: Boolean,
+    private val gameRepository: GameRepository,
+    private val statsRepository: StatsRepository,
     initialRestore: GameRepository.Restored? = null
 ) : ViewModel() {
     companion object {
         private const val TAG = "GameViewModel"
     }
-    private val _ui = MutableStateFlow(GameUiState(board = Board.standard(config.playerCount)))
+    private var activeConfig: GameConfig = initialRestore?.config ?: initialConfig
+    private val _ui = MutableStateFlow(GameUiState(board = Board.standard(activeConfig.playerCount)))
     val ui: StateFlow<GameUiState> = _ui
 
     private val _events = MutableStateFlow<List<String>>(emptyList())
@@ -56,7 +60,8 @@ class GameViewModel(
 
     enum class SfxEvent { Select, Invalid, Move, Win }
 
-    private var aiBots: Map<Board.PlayerId, Bot> = buildAiBots(config)
+    private var aiBots: Map<Board.PlayerId, Bot> = buildAiBots(activeConfig)
+    private var winRecorded = false
 
     private fun rebuildAiBots(conf: GameConfig) { aiBots = buildAiBots(conf) }
 
@@ -98,8 +103,9 @@ class GameViewModel(
 
     init {
         if (initialRestore != null) {
+            activeConfig = initialRestore.config
             val restoredPieces = initialRestore.board.activePlayers.sumOf { pid -> initialRestore.board.allPieces(pid).size }
-            rebuildAiBots(initialRestore.config)
+            rebuildAiBots(activeConfig)
             _ui.value = GameUiState(
                 board = initialRestore.board.copy(),
                 selected = null,
@@ -108,13 +114,13 @@ class GameViewModel(
                 lastMoveOwner = initialRestore.lastMoveOwner
             )
             Log.d(TAG, "init restore: pieces=$restoredPieces current=${initialRestore.board.currentPlayer}")
-            log("restored game: players=${initialRestore.config.playerCount}, pieces=$restoredPieces, ai=${aiBots.keys}, aiLongJumps=$aiLongJumps")
+            log("restored game: players=${activeConfig.playerCount}, pieces=$restoredPieces, ai=${aiBots.keys}, aiLongJumps=$aiLongJumps")
             maybeAiTurn()
             startTurnTimerIfNeeded()
         } else {
             val freshPieces = _ui.value.board.activePlayers.sumOf { pid -> _ui.value.board.allPieces(pid).size }
             Log.d(TAG, "init new game: pieces=$freshPieces current=${_ui.value.board.currentPlayer}")
-            log("new game: players=${config.playerCount}, pieces=$freshPieces, ai=${aiBots.keys}, aiLongJumps=$aiLongJumps")
+            log("new game: players=${activeConfig.playerCount}, pieces=$freshPieces, ai=${aiBots.keys}, aiLongJumps=$aiLongJumps")
             maybeAiTurn()
             startTurnTimerIfNeeded()
         }
@@ -122,7 +128,10 @@ class GameViewModel(
 
     fun restore(board: Board, lastMovePath: List<Hex>?, lastMoveOwner: Board.PlayerId?, conf: GameConfig? = null) {
         cancelAi()
-        if (conf != null) rebuildAiBots(conf)
+        if (conf != null) {
+            activeConfig = conf
+            rebuildAiBots(conf)
+        }
         _ui.value = _ui.value.copy(
             board = board,
             selected = null,
@@ -133,6 +142,7 @@ class GameViewModel(
             animOwner = null,
             animating = false
         )
+        winRecorded = _ui.value.winner != null
         past.clear(); updateHistoryFlags()
         log("restored game: current=${board.currentPlayer}")
         maybeAiTurn()
@@ -141,8 +151,10 @@ class GameViewModel(
     fun newGame() {
         cancelTimer(); cancelAi()
         past.clear(); updateHistoryFlags()
-        _ui.value = GameUiState(board = Board.standard(config.playerCount))
-        log("new game started: players=${config.playerCount}")
+        winRecorded = false
+        _ui.value = GameUiState(board = Board.standard(activeConfig.playerCount))
+        log("new game started: players=${activeConfig.playerCount}")
+        clearSaveAsync()
         maybeAiTurn(); startTurnTimerIfNeeded()
     }
 
@@ -206,7 +218,17 @@ class GameViewModel(
                 animating = false,
                 timeLeftSec = null
             )
-            emitSfx(if (w != null) SfxEvent.Win else SfxEvent.Move)
+            if (w != null) {
+                emitSfx(SfxEvent.Win)
+                if (!winRecorded) {
+                    winRecorded = true
+                    recordWinAsync(w)
+                }
+            } else {
+                winRecorded = false
+                emitSfx(SfxEvent.Move)
+                persistSnapshotAsync(_ui.value)
+            }
             maybeAiTurn()
             startTurnTimerIfNeeded()
         } catch (t: Throwable) {
@@ -229,6 +251,8 @@ class GameViewModel(
             animOwner = null,
             animating = false
         )
+        winRecorded = _ui.value.winner != null
+        persistSnapshotAsync(_ui.value)
         updateHistoryFlags()
         // After undo, allow AI to play if it's AI's turn, or restart human timer.
         maybeAiTurn(); startTurnTimerIfNeeded()
@@ -290,6 +314,39 @@ class GameViewModel(
     private fun cancelTimer() { timerJob?.cancel(); timerJob = null }
     private fun cancelAi() { aiJob?.cancel(); aiJob = null }
 
+    private fun persistSnapshotAsync(state: GameUiState = _ui.value) {
+        if (state.animating) return
+        viewModelScope.launch(Dispatchers.IO) {
+            gameRepository.save(state.board, state.lastMovePath, state.lastMoveOwner, activeConfig)
+        }
+    }
+
+    private fun clearSaveAsync() {
+        viewModelScope.launch(Dispatchers.IO) { gameRepository.clearSave() }
+    }
+
+    private fun recordWinAsync(winner: Board.PlayerId) {
+        viewModelScope.launch(Dispatchers.IO) {
+            statsRepository.recordGameResult(winner, activeConfig)
+            gameRepository.clearSave()
+        }
+    }
+
+    suspend fun saveSnapshot() {
+        val state = _ui.value
+        withContext(Dispatchers.IO) {
+            gameRepository.save(state.board, state.lastMovePath, state.lastMoveOwner, activeConfig)
+        }
+    }
+
+    suspend fun clearSavedGame() {
+        withContext(Dispatchers.IO) { gameRepository.clearSave() }
+    }
+
+    fun resetBoardDueToInvalidState() {
+        newGame()
+    }
+
     private suspend fun onTimeout(player: Board.PlayerId) {
         when (clock.timeout) {
             TimeoutAction.Skip -> {
@@ -300,6 +357,8 @@ class GameViewModel(
                 val b2 = s.board.copy().pass()
                 log("timeout: $player -> skip turn")
                 _ui.value = s.copy(board = b2, selected = null, lastMovePath = null, lastMoveOwner = null, animPath = null, animOwner = null, animating = false, timeLeftSec = null)
+                winRecorded = false
+                persistSnapshotAsync(_ui.value)
                 maybeAiTurn(); startTurnTimerIfNeeded()
             }
             TimeoutAction.AutoMove -> {
@@ -317,6 +376,8 @@ class GameViewModel(
                     // No legal move, skip
                     val b2 = s.board.copy().pass()
                     _ui.value = s.copy(board = b2, selected = null, animPath = null, animOwner = null, animating = false, timeLeftSec = null)
+                    winRecorded = false
+                    persistSnapshotAsync(_ui.value)
                     maybeAiTurn(); startTurnTimerIfNeeded()
                 }
             }
