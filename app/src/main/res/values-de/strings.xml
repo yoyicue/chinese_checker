@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Chinesisches Damespiel</string>
+    <string name="app_name">Sternhalma</string>
     <!-- Startbildschirm -->
-    <string name="start_title">Chinesisches Damespiel</string>
+    <string name="start_title">Sternhalma</string>
     <string name="start_version">Version v%1$s</string>
     <string name="start_continue">Spiel fortsetzen</string>
     <string name="start_offline">Offline-Partie</string>
@@ -64,7 +64,7 @@
     <string name="victory_play_again">Nochmal spielen</string>
     <string name="victory_return_home">Zur Startseite</string>
     <!-- Offline-Konfiguration -->
-    <string name="offline_title">Offline-Partie einrichten</string>
+    <string name="offline_title">Offline-Spiel einrichten</string>
     <string name="offline_player_count">Spieleranzahl</string>
     <string name="offline_ai_label">KI</string>
     <string name="offline_ai_level">KI-Schwierigkeit</string>
@@ -97,26 +97,26 @@
     <!-- KI-Guide -->
     <string name="ai_guide_title">KI-Modi</string>
     <string name="ai_guide_weak_title">Leicht (Zufall)</string>
-    <string name="ai_guide_weak_desc">Wählt zufällige Züge mit leichter Bevorzugung von Vorwärtsschritten, Sprüngen und dem Freimachen des Lagers.</string>
+    <string name="ai_guide_weak_desc">Wählt zufällige Züge mit leichter Bevorzugung von Vorwärtsschritten, Sprüngen und dem Freimachen des Startdreiecks.</string>
     <string name="ai_guide_medium_title">Mittel (gierig)</string>
-    <string name="ai_guide_medium_desc">Bewertet alle Züge und wählt denjenigen, der die Distanz zum Ziel minimiert und das Startlager rasch räumt.</string>
+    <string name="ai_guide_medium_desc">Bewertet alle Züge und wählt denjenigen, der die Distanz zum Ziel minimiert und das Startdreieck rasch räumt.</string>
     <string name="ai_guide_strong_title">Schwer (Minimax)</string>
-    <string name="ai_guide_strong_desc">Schaut mehrere Züge voraus mit Minimax und Pruning und kombiniert Distanz, Druck im Startlager und taktische Sprünge.</string>
+    <string name="ai_guide_strong_desc">Schaut mehrere Züge voraus mit Minimax und Pruning und kombiniert Distanz, Druck im Startdreieck und taktische Sprünge.</string>
     <string name="ai_guide_tip_title">Tipp</string>
-    <string name="ai_guide_tip_body">Hier können Sie die Standard-KI-Stufe festlegen und in der Offline-Partie pro Sitz einen eigenen Wert wählen.</string>
+    <string name="ai_guide_tip_body">Hier können Sie die Standard-KI-Stufe festlegen und in der Offline-Partie pro Startposition einen eigenen Wert wählen.</string>
     <!-- Regeln -->
     <string name="howto_title">Spielanleitung</string>
     <string name="howto_tab_rules">Regeln</string>
     <string name="howto_tab_ai">KI-Überblick</string>
     <string name="howto_rules_standard_heading">Standardregeln</string>
     <string name="howto_rules_long_heading">Regeln für lange Sprünge</string>
-    <string name="howto_demo_title">Sprung-Demonstrationen</string>
+    <string name="howto_demo_title">Sprung-Demos</string>
     <string name="howto_demo_restart">Erneut abspielen</string>
-    <string name="howto_demo_normal_desc">Demonstration Normaler Sprung: Die rote Figur springt nacheinander über benachbarte Steine, jeweils einen Schritt.</string>
-    <string name="howto_demo_long_desc">Demonstration Langer Sprung: Die rote Figur überspringt eine symmetrische Reihe von Steinen und setzt Sprungketten fort.</string>
-    <string name="howto_rules_standard">• Schritt: ins benachbarte freie Feld ziehen.\n• Sprung: über einen benachbarten Stein in das dahinterliegende freie Feld springen.\n• Kettensprünge: weiter springen, solange jedes Landefeld frei ist.\n• Sieg: alle Felder im Ziellager besetzen.</string>
+    <string name="howto_demo_normal_desc">Demonstration: normaler Sprung – Die rote Figur springt nacheinander über benachbarte Steine, jeweils einen Schritt.</string>
+    <string name="howto_demo_long_desc">Demonstration: langer Sprung – Die rote Figur überspringt eine symmetrische Reihe von Steinen und setzt Sprungketten fort.</string>
+    <string name="howto_rules_standard">• Schritt: ins benachbarte freie Feld ziehen.\n• Sprung: über einen benachbarten Stein in das dahinterliegende freie Feld springen.\n• Kettensprünge: weiter springen, solange jedes Landefeld frei ist.\n• Sieg: alle Felder im Zieldreieck besetzen.</string>
     <string name="howto_rules_long_jump">• In den Einstellungen unter Lange Sprünge aktivieren.\n• Erlaubt symmetrische lange Sprünge über mehrere Steine mit Landung in gleicher Distanz.\n• Lange und normale Sprünge können in einem Zug kombiniert werden.</string>
-    <string name="howto_rules_layout">• Brett unterstützt 2/3/4/6 Spieler; Startlager unterscheiden sich.\n• Räumen Sie früh die vordere Reihe, um Sprungbahnen zu öffnen.</string>
+    <string name="howto_rules_layout">• Brett unterstützt 2/3/4/6 Spieler; Startdreiecke unterscheiden sich.\n• Räumen Sie früh die vordere Reihe, um Sprungbahnen zu öffnen.</string>
     <!-- Debug -->
     <string name="debug_logs_title">Debug-Protokolle (%1$d) - letzte 50</string>
     <string name="debug_clear">Protokolle löschen</string>

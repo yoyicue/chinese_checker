@@ -4,7 +4,7 @@
     <string name="start_title">चीनी चेकर्स</string>
     <string name="start_version">संस्करण v%1$s</string>
     <string name="start_continue">खेल जारी रखें</string>
-    <string name="start_offline">ऑफ़लाइन मुकाबला</string>
+    <string name="start_offline">ऑफ़लाइन मैच</string>
     <string name="start_settings">सेटिंग्स</string>
     <string name="start_stats">आँकड़े</string>
     <string name="start_howto">कैसे खेलें</string>
@@ -35,14 +35,14 @@
     <string name="difficulty_hard">कठिन</string>
     <string name="settings_ai_long_jump">एआई के लिए लंबी छलांगों की अनुमति दें</string>
     <string name="settings_debug_toggle">डिबग ओवरले</string>
-    <string name="settings_debug_desc">मुकाबले के दौरान अतिरिक्त लॉग और घटनाएँ दिखाएँ।</string>
+    <string name="settings_debug_desc">खेल के दौरान अतिरिक्त लॉग और घटनाएँ दिखाएँ।</string>
     <string name="settings_language">भाषा</string>
     <string name="language_auto">सिस्टम डिफ़ॉल्ट</string>
     <string name="language_english">अंग्रेज़ी</string>
     <string name="language_chinese">चीनी</string>
     <string name="language_spanish">स्पेनिश</string>
     <!-- बाहर निकलने का डायलॉग -->
-    <string name="exit_dialog_title">क्या मुकाबले से बाहर निकलें?</string>
+    <string name="exit_dialog_title">क्या खेल छोड़ना चाहते हैं?</string>
     <string name="exit_dialog_message">चुनें कि वर्तमान प्रगति सहेजनी है या नहीं।</string>
     <!-- गेम स्क्रीन -->
     <string name="game_button_undo">पूर्ववत</string>
@@ -59,12 +59,12 @@
     <string name="camp_sw">दक्षिण-पश्चिम</string>
     <string name="camp_nw">उत्तर-पश्चिम</string>
     <string name="victory_title">विजेता</string>
-    <string name="victory_winner_message">%1$s (%2$s) जीता!</string>
-    <string name="victory_congrats_message">बधाई! शानदार मुकाबला!</string>
+    <string name="victory_winner_message">%1$s (%2$s) ने जीत हासिल की!</string>
+    <string name="victory_congrats_message">बधाई! शानदार खेल!</string>
     <string name="victory_play_again">फिर से खेलें</string>
     <string name="victory_return_home">होम पर लौटें</string>
     <!-- ऑफ़लाइन कॉन्फ़िगरेशन -->
-    <string name="offline_title">ऑफ़लाइन मुकाबला सेटअप</string>
+    <string name="offline_title">ऑफ़लाइन मैच सेटअप</string>
     <string name="offline_player_count">खिलाड़ियों की संख्या</string>
     <string name="offline_ai_label">एआई</string>
     <string name="offline_ai_level">एआई कठिनाई</string>
@@ -86,7 +86,7 @@
     <string name="colour_custom">कस्टम</string>
     <!-- आँकड़े -->
     <string name="profile_title">आँकड़े</string>
-    <string name="profile_section_heading">मुकाबले के आँकड़े</string>
+    <string name="profile_section_heading">मैच के आँकड़े</string>
     <string name="profile_total_games">कुल खेल: %1$d</string>
     <string name="profile_last_played">अंतिम खेल: %1$s</string>
     <string name="profile_reset_stats">आँकड़े रीसेट करें</string>
@@ -103,7 +103,7 @@
     <string name="ai_guide_strong_title">कठिन (Minimax)</string>
     <string name="ai_guide_strong_desc">मिनीमैक्स और प्रूनिंग से कई चालें आगे देखता है; दूरी, बेस दबाव और सामरिक छलांगों का संयोजन करता है।</string>
     <string name="ai_guide_tip_title">सुझाव</string>
-    <string name="ai_guide_tip_body">यहाँ डिफ़ॉल्ट एआई कठिनाई सेट करें और ऑफ़लाइन मुकाबले में प्रत्येक सीट के लिए अलग स्तर चुनें।</string>
+    <string name="ai_guide_tip_body">यहाँ डिफ़ॉल्ट एआई कठिनाई सेट करें और ऑफ़लाइन मैच में प्रत्येक सीट के लिए अलग स्तर चुनें।</string>
     <!-- कैसे खेलें -->
     <string name="howto_title">कैसे खेलें</string>
     <string name="howto_tab_rules">नियम</string>
