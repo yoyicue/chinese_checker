@@ -55,7 +55,7 @@ android {
 
 kapt {
     arguments {
-        arg("room.schemaLocation", "$projectDir/app/schemas")
+        arg("room.schemaLocation", file("$projectDir/app/schemas").absolutePath)
     }
 }
 

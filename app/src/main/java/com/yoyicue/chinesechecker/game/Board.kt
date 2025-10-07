@@ -29,12 +29,12 @@ class Board private constructor(
 
     fun copy(): Board {
         val b = Board(
-            positions.toSet(),
+            positions,
             occupant.toMutableMap(),
-            activePlayers.toList(),
-            campCells.mapValues { it.value.toSet() },
-            startCampOf.toMap(),
-            goalCampOf.toMap()
+            activePlayers,
+            campCells,
+            startCampOf,
+            goalCampOf
         )
         b.currentPlayer = this.currentPlayer
         return b
@@ -138,7 +138,7 @@ class Board private constructor(
 
         fun setLongJumps(enabled: Boolean) { ALLOW_LONG_JUMPS = enabled }
 
-        private fun buildPositions(): Set<Hex> = buildSet {
+        private fun buildPositionsInternal(): Set<Hex> = buildSet {
             for (x in -8..8) for (y in -8..8) {
                 val z = -x - y
                 if (z < -8 || z > 8) continue
@@ -150,7 +150,7 @@ class Board private constructor(
             }
         }
 
-        private fun computeCampCells(positions: Set<Hex>): Map<Camp, Set<Hex>> {
+        private fun computeCampCellsInternal(positions: Set<Hex>): Map<Camp, Set<Hex>> {
             val top = positions.filter { it.z < -4 && abs(it.x) <= 4 && abs(it.y) <= 4 }.toSet()
             val bottom = positions.filter { it.z > 4 && abs(it.x) <= 4 && abs(it.y) <= 4 }.toSet()
             val ne = positions.filter { it.x > 4 && abs(it.y) <= 4 && abs(it.z) <= 4 }.toSet()
@@ -225,27 +225,24 @@ class Board private constructor(
         fun standard(): Board = standard(2)
 
         fun standard(playerCount: Int): Board {
-            val pos = buildPositions()
-            val camps = computeCampCells(pos)
             val asg = defaultAssignment(playerCount)
             val goal = asg.start.mapValues { (_, camp) -> oppositeOf(camp) }
 
-            val occ = mutableMapOf<Hex, PlayerId>()
-            for ((p, camp) in asg.start) {
-                val cells = camps[camp] ?: continue
-                for (h in cells) occ[h] = p
+            val occ = mutableMapOf<Hex, PlayerId>().apply {
+                for ((p, camp) in asg.start) {
+                    val cells = GLOBAL_CAMPS[camp] ?: continue
+                    for (h in cells) put(h, p)
+                }
             }
 
-            val b = Board(
-                positions = pos,
+            return Board(
+                positions = GLOBAL_POSITIONS,
                 occupant = occ,
                 activePlayers = asg.order,
-                campCells = camps,
+                campCells = GLOBAL_CAMPS,
                 startCampOf = asg.start,
                 goalCampOf = goal
-            )
-            b.currentPlayer = asg.order.first()
-            return b
+            ).apply { currentPlayer = asg.order.first() }
         }
 
         fun restore(
@@ -253,20 +250,19 @@ class Board private constructor(
             occupant: Map<Hex, PlayerId>,
             currentPlayer: PlayerId
         ): Board {
-            val pos = buildPositions()
-            val camps = computeCampCells(pos)
             val asg = defaultAssignment(playerCount)
             val goal = asg.start.mapValues { (_, camp) -> oppositeOf(camp) }
-            val b = Board(
-                positions = pos,
+            return Board(
+                positions = GLOBAL_POSITIONS,
                 occupant = occupant.toMutableMap(),
                 activePlayers = asg.order,
-                campCells = camps,
+                campCells = GLOBAL_CAMPS,
                 startCampOf = asg.start,
                 goalCampOf = goal
-            )
-            b.currentPlayer = currentPlayer
-            return b
+            ).apply { this.currentPlayer = currentPlayer }
         }
+
+        private val GLOBAL_POSITIONS: Set<Hex> = buildPositionsInternal()
+        private val GLOBAL_CAMPS: Map<Camp, Set<Hex>> = computeCampCellsInternal(GLOBAL_POSITIONS)
     }
 }

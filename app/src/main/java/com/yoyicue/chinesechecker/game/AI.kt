@@ -1,5 +1,6 @@
 package com.yoyicue.chinesechecker.game
 
+import kotlin.comparisons.compareBy
 import kotlin.math.abs
 import kotlin.random.Random
 
@@ -83,17 +84,36 @@ class SmartBot(
     private enum class Bound { EXACT, LOWER, UPPER }
     private data class TTEntry(val key: Long, val depth: Int, val score: Int, val bound: Bound, val best: Board.Move?)
 
+    private var cachedPositionsKey: Int? = null
+    private var cachedIndexByHex: Map<Hex, Int>? = null
+    private var cachedZobrist: Array<LongArray>? = null
+    private var cachedSideZ: LongArray? = null
+
+    private fun ensureHashSeeds(board: Board) {
+        val key = System.identityHashCode(board.positions)
+        if (cachedPositionsKey == key) return
+
+        val posList = board.positions.toList().sortedWith(HEX_COMPARATOR)
+        val indexMap = posList.withIndex().associate { it.value to it.index }
+        val rnd = Random(0xC0FFEE)
+        val zob = Array(posList.size) { LongArray(Board.PlayerId.values().size) { rnd.nextLong() } }
+        val side = LongArray(Board.PlayerId.values().size) { rnd.nextLong() }
+
+        cachedPositionsKey = key
+        cachedIndexByHex = indexMap
+        cachedZobrist = zob
+        cachedSideZ = side
+    }
+
     override fun chooseMove(board: Board, player: Board.PlayerId): Board.Move? {
         val moves = board.legalMovesFor(player)
         if (moves.isEmpty()) return null
         if (moves.size == 1) return moves.first()
 
-        // Zobrist init per search
-        val posList = board.positions.toList()
-        val indexByHex = posList.withIndex().associate { it.value to it.index }
-        val rnd = Random(0xC0FFEE)
-        val zob = Array(posList.size) { LongArray(Board.PlayerId.values().size) { rnd.nextLong() } }
-        val sideZ = LongArray(Board.PlayerId.values().size) { rnd.nextLong() }
+        ensureHashSeeds(board)
+        val indexByHex = cachedIndexByHex ?: error("Index cache missing")
+        val zob = cachedZobrist ?: error("Zobrist cache missing")
+        val sideZ = cachedSideZ ?: error("Side cache missing")
         fun hash(b: Board): Long {
             var h = 1469598103934665603L // FNV offset
             for ((hex, p) in b.occupant) {
@@ -475,6 +495,7 @@ private const val QUIESCENCE_MAX_DEPTH = 2
 private const val ROOT_ORDER_SCORE_SCALE = 1_000L
 private const val ENTERED_RELATIVE_CAP_PERCENT = 60
 private const val ENTERED_ABS_CAP_MIN = 120
+private val HEX_COMPARATOR = compareBy<Hex>({ it.x }, { it.y }, { it.z })
 
 private fun distanceSumToGoal(board: Board, player: Board.PlayerId): Int {
     val target = board.goalCampCells(player)
