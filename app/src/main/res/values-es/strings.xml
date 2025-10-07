@@ -117,4 +117,7 @@
     <string name="debug_logs_title">Registros de depuración (%1$d) - últimos 50</string>
     <string name="debug_clear">Borrar registros</string>
     <string name="loading_stats">Cargando estadísticas…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

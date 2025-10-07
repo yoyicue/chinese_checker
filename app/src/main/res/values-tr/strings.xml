@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">Uzun Atlayış Kuralları</string>
     <string name="howto_demo_title">Atlayış Gösterimleri</string>
     <string name="howto_demo_restart">Yeniden oynat</string>
+    <string name="howto_demo_normal">Normal atlayış gösterimi</string>
+    <string name="howto_demo_long">Uzun atlayış gösterimi</string>
     <string name="howto_demo_normal_desc">Normal atlayış gösterimi: Kırmızı taş bitişik taşların üzerinden birer birer atlar.</string>
     <string name="howto_demo_long_desc">Uzun atlayış gösterimi: Kırmızı taş simetrik dizili taşların üzerinden atlar ve atlayışları zincirlemeye devam eder.</string>
     <string name="howto_rules_standard">• Adım: bitişik boş deliğe ilerle.\n• Atlayış: bitişik taşı aşarak ardındaki boş deliğe in.\n• Zincir atlayışlar: her iniş noktası boş olduğu sürece devam et.\n• Zafer: hedef alandaki tüm delikleri doldur.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">Günlükleri temizle</string>
     <!-- Çeşitli -->
     <string name="loading_stats">İstatistikler yükleniyor…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

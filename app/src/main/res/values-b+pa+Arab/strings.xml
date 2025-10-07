@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">لمبی چھلانگ کے قواعد</string>
     <string name="howto_demo_title">چھلانگ ڈیموز</string>
     <string name="howto_demo_restart">دوبارہ چلائیں</string>
+    <string name="howto_demo_normal">عام چھلانگ ڈیمو</string>
+    <string name="howto_demo_long">لمبی چھلانگ ڈیمو</string>
     <string name="howto_demo_normal_desc">عام چھلانگ ڈیمو: لال مہرہ برابر والے مہروں پر ایک ایک کر کے چھلانگ لگاتا ہے۔</string>
     <string name="howto_demo_long_desc">لمبی چھلانگ ڈیمو: لال مہرہ متوازن قطار میں مہروں پر سے گزرتا ہے اور سلسلہ جاری رکھتا ہے۔</string>
     <string name="howto_rules_standard">• قدم: برابر کے خالی خانے میں جائیں۔\n• چھلانگ: برابر مہرے پر سے چھلانگ لگا کر آگے کے خالی خانے میں اُتریں۔\n• سلسلہ وار چھلانگیں: جب تک ہر لینڈنگ خالی ہو، جاری رکھیں۔\n• جیت: ہدفی مثلث کے تمام خانے پُر کریں۔</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">لاگز صاف کریں</string>
     <!-- متفرق -->
     <string name="loading_stats">اعدادوشمار لوڈ ہو رہے ہیں…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

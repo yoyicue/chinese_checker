@@ -114,4 +114,7 @@
     <string name="debug_logs_title">บันทึกดีบัก (%1$d) - 50 รายการล่าสุด</string>
     <string name="debug_clear">ล้างบันทึก</string>
     <string name="loading_stats">กำลังโหลดสถิติ…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

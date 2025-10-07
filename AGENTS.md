@@ -23,6 +23,7 @@
 - Place unit tests in `app/src/test/java`, instrumentation tests in `app/src/androidTest/java`. Mirror the main package structure for clarity.
 - Name test classes `<Feature>Test` (unit) or `<Feature>InstrumentedTest` (instrumented) and assert behaviour rather than implementation details.
 - Aim for coverage on core game logic (AI evaluation, board moves) before UI; include edge cases around localisation and configuration changes.
+- Existing coverage lives under `app/src/test/java/com/yoyicue/chinesechecker/game`; keep `BoardTest` passing when altering move logic or long-jump rules.
 
 ## Commit & Pull Request Guidelines
 - Follow the existing history’s imperative, concise commit style (e.g. `Expand localization support`, `bump: prepare v0.1.2`). Keep subject lines under ~72 characters and add body text for context when needed.
@@ -33,3 +34,4 @@
 - When adding or editing text, update `values/strings.xml` first, then propagate to every `values-*/strings.xml` variant.
 - Run `./gradlew lint` to catch missing translations and placeholders, and spot-check the merged resource file under `app/build/intermediates/` if AAPT2 reports escape errors.
 - While editing French or Italian strings, double-check the file remains UTF-8 encoded and that multi-line entries use `\n` rather than literal line breaks inside CDATA.
+- The TalkBack summary strings (`a11y_board_*`) live across all `values-*/strings.xml`; keep them aligned when adding locales or adjusting board semantics.

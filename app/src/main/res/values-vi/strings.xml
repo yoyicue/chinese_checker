@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">Luật nhảy xa</string>
     <string name="howto_demo_title">Minh họa nhảy</string>
     <string name="howto_demo_restart">Phát lại</string>
+    <string name="howto_demo_normal">Minh họa nhảy thường</string>
+    <string name="howto_demo_long">Minh họa nhảy xa</string>
     <string name="howto_demo_normal_desc">Minh họa nhảy thường: quân đỏ lần lượt nhảy qua các quân kề cận.</string>
     <string name="howto_demo_long_desc">Minh họa nhảy xa: quân đỏ vượt qua hàng quân đối xứng và tiếp tục chuỗi nhảy.</string>
     <string name="howto_rules_standard">• Đi bộ: di chuyển tới ô trống kề cận.\n• Nhảy: nhảy qua quân kề cận tới ô trống phía sau.\n• Chuỗi nhảy: tiếp tục khi điểm đáp còn trống.\n• Thắng: chiếm toàn bộ ô trong tam giác đích.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">Xóa nhật ký</string>
     <!-- Khác -->
     <string name="loading_stats">Đang tải thống kê…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

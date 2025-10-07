@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">장거리 점프 규칙</string>
     <string name="howto_demo_title">점프 데모</string>
     <string name="howto_demo_restart">다시 재생</string>
+    <string name="howto_demo_normal">일반 점프 데모</string>
+    <string name="howto_demo_long">장거리 점프 데모</string>
     <string name="howto_demo_normal_desc">일반 점프 데모: 빨간 말이 인접한 말을 하나씩 뛰어넘습니다.</string>
     <string name="howto_demo_long_desc">장거리 점프 데모: 빨간 말이 대칭으로 배열된 말을 뛰어넘으며 연속 점프를 이어갑니다.</string>
     <string name="howto_rules_standard">• 한 칸 이동: 인접한 빈 칸으로 이동합니다.\n• 점프: 인접한 말을 뛰어넘어 그 너머의 빈 칸에 착지합니다.\n• 연속 점프: 착지 칸이 비어 있으면 연속해서 점프할 수 있습니다.\n• 승리: 목표 진영의 모든 칸을 점령하면 승리입니다.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">로그 지우기</string>
     <!-- 기타 -->
     <string name="loading_stats">전적을 불러오는 중…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

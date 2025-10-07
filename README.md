@@ -28,7 +28,7 @@ This repository delivers an offline Chinese Checkers experience for Android buil
 - Rendering is Compose-first; tone/haptic feedback and confetti overlay highlight wins.
 
 ## Next Steps
-- Tailor SFX volume handling (respect the slider in real time) and expose music toggle when available.
-- Expand AI benchmarking and add unit tests around board/jump generation.
-- Polish accessibility: TalkBack labels for board cells and configuration dropdowns.
+- Expand AI benchmarking and broaden unit tests across AI strategies and pathfinding.
+- Expose music toggle alongside the existing SFX slider.
+- Finish accessibility polish for board semantics and offline setup controls.
 - Automate Room schema generation path (single `app/schemas` output) and add migration tests.

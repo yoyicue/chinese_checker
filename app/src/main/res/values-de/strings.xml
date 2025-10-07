@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">Regeln für lange Sprünge</string>
     <string name="howto_demo_title">Sprung-Demos</string>
     <string name="howto_demo_restart">Erneut abspielen</string>
+    <string name="howto_demo_normal">Normal Jump Demo</string>
+    <string name="howto_demo_long">Long Jump Demo</string>
     <string name="howto_demo_normal_desc">Demonstration: normaler Sprung – Die rote Figur springt nacheinander über benachbarte Steine, jeweils einen Schritt.</string>
     <string name="howto_demo_long_desc">Demonstration: langer Sprung – Die rote Figur überspringt eine symmetrische Reihe von Steinen und setzt Sprungketten fort.</string>
     <string name="howto_rules_standard">• Schritt: ins benachbarte freie Feld ziehen.\n• Sprung: über einen benachbarten Stein in das dahinterliegende freie Feld springen.\n• Kettensprünge: weiter springen, solange jedes Landefeld frei ist.\n• Sieg: alle Felder im Zieldreieck besetzen.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">Protokolle löschen</string>
     <!-- Verschiedenes -->
     <string name="loading_stats">Statistiken werden geladen…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

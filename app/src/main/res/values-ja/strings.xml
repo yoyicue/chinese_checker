@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">長距離ジャンプのルール</string>
     <string name="howto_demo_title">ジャンプのデモ</string>
     <string name="howto_demo_restart">もう一度再生</string>
+    <string name="howto_demo_normal">通常ジャンプのデモ</string>
+    <string name="howto_demo_long">長距離ジャンプのデモ</string>
     <string name="howto_demo_normal_desc">通常ジャンプのデモ：赤い駒が隣接する駒を一つずつ飛び越えます。</string>
     <string name="howto_demo_long_desc">長距離ジャンプのデモ：赤い駒が対称に並ぶ駒を飛び越え、連続ジャンプを続けます。</string>
     <string name="howto_rules_standard">• 一歩：隣の空き穴へ移動します。
@@ -128,4 +130,7 @@
     <string name="debug_clear">ログをクリア</string>
     <!-- その他 -->
     <string name="loading_stats">統計を読み込み中…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

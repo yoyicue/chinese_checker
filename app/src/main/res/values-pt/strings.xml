@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">Regras de salto longo</string>
     <string name="howto_demo_title">Demonstrações de salto</string>
     <string name="howto_demo_restart">Repetir</string>
+    <string name="howto_demo_normal">Demonstração de salto normal</string>
+    <string name="howto_demo_long">Demonstração de salto longo</string>
     <string name="howto_demo_normal_desc">Demonstração de salto normal: a peça vermelha salta sobre peças adjacentes, um passo de cada vez.</string>
     <string name="howto_demo_long_desc">Demonstração de salto longo: a peça vermelha cruza uma linha simétrica de peças e continua encadeando saltos.</string>
     <string name="howto_rules_standard">• Passo: mover para uma casa adjacente livre.\n• Salto: pular uma peça adjacente para a casa livre após ela.\n• Cadeia de saltos: continuar enquanto cada aterrissagem estiver livre.\n• Vitória: ocupar todas as casas do triângulo alvo.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">Limpar registros</string>
     <!-- Diversos -->
     <string name="loading_stats">Carregando estatísticas…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

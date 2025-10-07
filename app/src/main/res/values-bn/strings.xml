@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">দীর্ঘ লাফের নিয়ম</string>
     <string name="howto_demo_title">লাফের ডেমো</string>
     <string name="howto_demo_restart">পুনরায় চালান</string>
+    <string name="howto_demo_normal">সাধারণ লাফ ডেমো</string>
+    <string name="howto_demo_long">দীর্ঘ লাফ ডেমো</string>
     <string name="howto_demo_normal_desc">সাধারণ লাফের ডেমো: লাল গুটি পাশের গুটির ওপর দিয়ে একে একে লাফায়।</string>
     <string name="howto_demo_long_desc">দীর্ঘ লাফের ডেমো: লাল গুটি সমমিত সারির গুটির ওপর দিয়ে লাফিয়ে শৃঙ্খল চাল চালিয়ে যায়।</string>
     <string name="howto_rules_standard">• এক ধাপ: পাশের খালি ছিদ্রে যান।\n• লাফ: পাশের গুটির ওপর দিয়ে সামনের খালি ছিদ্রে যান।\n• শৃঙ্খল লাফ: প্রতিটি অবতরণ খালি থাকলে চালিয়ে যান।\n• জয়: লক্ষ্য ত্রিভুজের সব ছিদ্র দখল করুন।</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">লগ মুছুন</string>
     <!-- অন্যান্য -->
     <string name="loading_stats">পরিসংখ্যান লোড হচ্ছে…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

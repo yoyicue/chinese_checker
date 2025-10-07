@@ -122,4 +122,7 @@
     <string name="debug_clear">清除日誌</string>
     <!-- 其他 -->
     <string name="loading_stats">統計載入中…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

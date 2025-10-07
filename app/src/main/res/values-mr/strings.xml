@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">लांब उडीचे नियम</string>
     <string name="howto_demo_title">उडींचे प्रात्यक्षिक</string>
     <string name="howto_demo_restart">पुन्हा दाखवा</string>
+    <string name="howto_demo_normal">सामान्य उडी डेमो</string>
+    <string name="howto_demo_long">लांब उडी डेमो</string>
     <string name="howto_demo_normal_desc">सामान्य उडीचे प्रात्यक्षिक: लाल मोहरा शेजारच्या मोहऱ्यांवरून एकामागून एक उडी मारतो.</string>
     <string name="howto_demo_long_desc">लांब उडीचे प्रात्यक्षिक: लाल मोहरा सममित रांगेतील मोहऱ्यांवरून उडी मारतो आणि उड्यांची साखळी चालू ठेवतो.</string>
     <string name="howto_rules_standard">• चाल: शेजारच्या रिकाम्या छिद्रात जा.\n• उडी: शेजारच्या मोहऱ्यावरून पुढील रिकाम्या छिद्रात उतरा.\n• सलग उड्या: प्रत्येक उतरण्याची जागा रिकामी असेपर्यंत सुरू ठेवा.\n• विजय: लक्ष्य कॅम्पमधील सर्व छिद्रे भरा.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">लॉग साफ करा</string>
     <!-- इतर -->
     <string name="loading_stats">आकडेवारी लोड होत आहे…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

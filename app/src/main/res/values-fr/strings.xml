@@ -104,6 +104,8 @@
     <string name="howto_rules_long_heading">Règles de saut long</string>
     <string name="howto_demo_title">Démonstrations de saut</string>
     <string name="howto_demo_restart">Rejouer</string>
+    <string name="howto_demo_normal">Normal Jump Demo</string>
+    <string name="howto_demo_long">Long Jump Demo</string>
     <string name="howto_demo_normal_desc">Démonstration de saut normal : le pion rouge saute par-dessus des pièces adjacentes, une étape à la fois.</string>
     <string name="howto_demo_long_desc">Démonstration de saut long : le pion rouge franchit une ligne symétrique de pièces et enchaîne les sauts.</string>
     <string name="howto_rules_standard">• Pas : se déplacer vers une case adjacente libre.\n• Saut : franchir une pièce adjacente pour atteindre la case libre située au-delà.\n• Chaîne de sauts : continuer tant que chaque case d\'atterrissage est libre.\n• Victoire : occuper toutes les cases du triangle cible.</string>
@@ -112,4 +114,7 @@
     <string name="debug_logs_title">Journaux de débogage (%1$d) - 50 derniers</string>
     <string name="debug_clear">Effacer les journaux</string>
     <string name="loading_stats">Chargement des statistiques…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

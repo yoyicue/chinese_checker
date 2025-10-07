@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">దీర్ఘ దూకుళ్ల నిబంధనలు</string>
     <string name="howto_demo_title">దూకుల ప్రదర్శనలు</string>
     <string name="howto_demo_restart">మళ్ళీ చూపించు</string>
+    <string name="howto_demo_normal">సాధారణ దూకు డెమో</string>
+    <string name="howto_demo_long">దీర్ఘ దూకు డెమో</string>
     <string name="howto_demo_normal_desc">సాధారణ దూకు ప్రదర్శన: ఎర్ర ముక్క పక్కన ఉన్న ముక్కలపై ఒక్కోదానిని దాటుతుంది.</string>
     <string name="howto_demo_long_desc">దీర్ఘ దూకు ప్రదర్శన: ఎర్ర ముక్క సమమితంగా అమర్చిన ముక్కలను దాటి దూకుళ్లను కొనసాగిస్తుంది.</string>
     <string name="howto_rules_standard">• అడుగు: పక్కనున్న ఖాళీ రంధ్రానికి కదలండి.\n• దూకు: పక్కన ఉన్న ముక్కను దాటి ముందు ఖాళీ రంధ్రంలో దిగండి.\n• చైన్ దూకులు: ప్రతి దిగే స్థలం ఖాళీగా ఉన్నంతవరకు కొనసాగించండి.\n• విజయం: లక్ష్య శిబిరంలోని అన్ని రంధ్రాలను ఆక్రమించండి.</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">లాగ్స్ క్లియర్ చేయి</string>
     <!-- ఇతర -->
     <string name="loading_stats">గణాంకాలు లోడ్ అవుతున్నాయి…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

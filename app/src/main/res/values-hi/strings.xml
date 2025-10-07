@@ -112,6 +112,8 @@
     <string name="howto_rules_long_heading">लंबी छलांग नियम</string>
     <string name="howto_demo_title">छलांग डेमो</string>
     <string name="howto_demo_restart">फिर से चलाएँ</string>
+    <string name="howto_demo_normal">सामान्य छलांग डेमो</string>
+    <string name="howto_demo_long">लंबी छलांग डेमो</string>
     <string name="howto_demo_normal_desc">सामान्य छलांग डेमो: लाल मोहरा पास की गोटियों के ऊपर एक-एक करके कूदता है।</string>
     <string name="howto_demo_long_desc">लंबी छलांग डेमो: लाल मोहरा सममित पंक्ति की गोटियों के ऊपर कूदकर श्रृंखला जारी रखता है।</string>
     <string name="howto_rules_standard">• एक कदम: पास के खाली छेद में जाएँ।\n• छलांग: पास की गोटी के ऊपर से आगे के खाली छेद में जाएँ।\n• श्रृंखलाबद्ध छलांग: जब तक हर लैंडिंग खाली हो, जारी रखें।\n• जीत: लक्ष्य कैंप के सभी छेद भरें।</string>
@@ -122,4 +124,7 @@
     <string name="debug_clear">लॉग साफ़ करें</string>
     <!-- विविध -->
     <string name="loading_stats">आँकड़े लोड हो रहे हैं…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

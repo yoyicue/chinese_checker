@@ -1,25 +1,32 @@
 package com.yoyicue.chinesechecker.ui.util
 
-import android.media.ToneGenerator
 import android.media.AudioManager
+import android.media.ToneGenerator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
+import kotlin.math.roundToInt
 
 enum class SfxKind { Select, Invalid, Move, Win }
 
 @Composable
-fun rememberSfx(): (SfxKind) -> Unit {
-    val tone = remember {
-        try { ToneGenerator(AudioManager.STREAM_MUSIC, 80) } catch (t: Throwable) { null }
+fun rememberSfx(volume: Float): (SfxKind) -> Unit {
+    val clamped = volume.coerceIn(0f, 1f)
+    val scaledVolume = (clamped * 100f).roundToInt().coerceIn(0, 100)
+    val tone = remember(scaledVolume) {
+        if (scaledVolume <= 0) null else runCatching {
+            ToneGenerator(AudioManager.STREAM_MUSIC, scaledVolume)
+        }.getOrNull()
     }
-    DisposableEffect(Unit) {
+    DisposableEffect(tone) {
         onDispose { runCatching { tone?.release() } }
     }
-    return remember(tone) {
-        { kind: SfxKind ->
+    return remember(tone, scaledVolume) {
+        if (tone == null || scaledVolume <= 0) {
+            { _: SfxKind -> }
+        } else {
             val tg = tone
-            if (tg != null) {
+            { kind: SfxKind ->
                 val (type, dur) = when (kind) {
                     SfxKind.Select -> ToneGenerator.TONE_PROP_BEEP to 40
                     SfxKind.Invalid -> ToneGenerator.TONE_PROP_NACK to 80

@@ -104,6 +104,8 @@
     <string name="howto_rules_long_heading">Regole dei salti lunghi</string>
     <string name="howto_demo_title">Dimostrazioni di salto</string>
     <string name="howto_demo_restart">Ripeti</string>
+    <string name="howto_demo_normal">Demo salto normale</string>
+    <string name="howto_demo_long">Demo salto lungo</string>
     <string name="howto_demo_normal_desc">Dimostrazione del salto normale: il pezzo rosso salta sopra i pezzi adiacenti un passo alla volta.</string>
     <string name="howto_demo_long_desc">Dimostrazione del salto lungo: il pezzo rosso supera una linea simmetrica di pezzi e continua a concatenare i salti.</string>
     <string name="howto_rules_standard">• Passo: muovere verso un foro adiacente libero.\n• Salto: saltare sopra un pezzo adiacente nel foro libero oltre.\n• Salti concatenati: continuare finché ogni atterraggio è libero.\n• Vittoria: occupare tutti i fori del triangolo obiettivo.</string>
@@ -112,4 +114,7 @@
     <string name="debug_logs_title">Log di debug (%1$d) - ultimi 50</string>
     <string name="debug_clear">Cancella log</string>
     <string name="loading_stats">Caricamento statistiche…</string>
+    <string name="a11y_board_selected" translatable="false">Selected %1$s, %2$s camp, %3$s piece.</string>
+    <string name="a11y_board_hint" translatable="false">Double-tap a highlighted hole to confirm the move.</string>
+    <string name="a11y_board_empty" translatable="false">Empty hole</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,6 +43,11 @@ import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.activity.compose.BackHandler
 import com.yoyicue.chinesechecker.ui.util.HapticKind
 import com.yoyicue.chinesechecker.ui.util.rememberHaptic
@@ -84,7 +90,7 @@ fun GameScreen(
     val showDebug = settings.debugOverlay
     val scope = rememberCoroutineScope()
     val doHaptic = rememberHaptic()
-    val playSfx = rememberSfx()
+    val playSfx = rememberSfx(settings.soundsVolume)
 
     val clock = remember(settings) {
         ClockConfig(
@@ -113,16 +119,13 @@ fun GameScreen(
     val ui by vm.ui.collectAsState()
     val events by vm.events.collectAsState()
     val canUndo by vm.canUndo.collectAsState(initial = false)
-    // SFX listener: gate by soundsVolume > 0
-    androidx.compose.runtime.LaunchedEffect(Unit) {
+    androidx.compose.runtime.LaunchedEffect(playSfx) {
         vm.sfx.collect { ev ->
-            if (settings.soundsVolume > 0f) {
-                when (ev) {
-                    SfxEvent.Select -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Select)
-                    SfxEvent.Invalid -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Invalid)
-                    SfxEvent.Move -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Move)
-                    SfxEvent.Win -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Win)
-                }
+            when (ev) {
+                SfxEvent.Select -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Select)
+                SfxEvent.Invalid -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Invalid)
+                SfxEvent.Move -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Move)
+                SfxEvent.Win -> playSfx(com.yoyicue.chinesechecker.ui.util.SfxKind.Win)
             }
         }
     }
@@ -212,6 +215,7 @@ fun GameScreen(
                 lastMoveOwner = ui.lastMoveOwner,
                 animPath = ui.animPath,
                 animOwner = ui.animOwner,
+                statusLabel = statusText,
                 onAnimFinished = { vm.onAnimationFinished() },
                 onTapHex = { tapped -> vm.onTap(tapped) }
             )
@@ -307,6 +311,7 @@ private fun BoardCanvas(
     lastMoveOwner: Board.PlayerId?,
     animPath: List<Hex>?,
     animOwner: Board.PlayerId?,
+    statusLabel: String,
     onAnimFinished: () -> Unit,
     onTapHex: (Hex) -> Unit
 ) {
@@ -342,10 +347,31 @@ private fun BoardCanvas(
     val minY = unitPx.minOf { it.y }
     val maxY = unitPx.maxOf { it.y }
 
+    val selectedSummary = selected?.let { hex ->
+        val owner = board.at(hex)
+        if (owner != null) {
+            val playerColor = colors[owner] ?: defaultColorFor(owner)
+            val colorName = colorDisplayName(playerColor)
+            val campName = campLabel(board.startCampOf[owner])
+            stringResource(R.string.a11y_board_selected, owner.name, campName, colorName)
+        } else {
+            stringResource(R.string.a11y_board_empty)
+        }
+    }
+    val boardHint = stringResource(R.string.a11y_board_hint)
+    val semanticsDescription = listOfNotNull(statusLabel, selectedSummary, boardHint).joinToString(separator = ". ")
+    val stateDescriptionText = selectedSummary ?: statusLabel
+
     Canvas(
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp)
+            .semantics(mergeDescendants = true) {
+                contentDescription = semanticsDescription
+                stateDescription = stateDescriptionText
+                role = Role.Image
+            }
+            .focusable()
             .pointerInput(board, selected) {
                 detectTapGestures { offset ->
                     // Inverse-map by nearest neighbor search

@@ -25,6 +25,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -145,14 +150,22 @@ fun OfflineConfigScreen(
 @Composable
 private fun CountDropdown(options: List<Int>, selected: Int, onSelect: (Int) -> Unit) {
     val expanded = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    val labelText = stringResource(R.string.offline_player_count)
+    val valueText = selected.toString()
     ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
         OutlinedTextField(
             readOnly = true,
-            value = selected.toString(),
+            value = valueText,
             onValueChange = {},
-            label = { Text(stringResource(R.string.offline_player_count)) },
+            label = { Text(labelText) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
-            modifier = Modifier.menuAnchor()
+            modifier = Modifier
+                .menuAnchor()
+                .semantics(mergeDescendants = true) {
+                    contentDescription = "$labelText, $valueText"
+                    stateDescription = valueText
+                    role = Role.DropdownList
+                }
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
             options.forEach { opt ->
@@ -174,6 +187,12 @@ private fun AiDropdown(
 ) {
     val expanded = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     val options = listOf(AiDifficulty.Weak, AiDifficulty.Greedy, AiDifficulty.Smart)
+    val labelText = stringResource(R.string.offline_ai_level)
+    val valueLabel = when (selected) {
+        AiDifficulty.Weak -> stringResource(R.string.difficulty_easy)
+        AiDifficulty.Greedy -> stringResource(R.string.difficulty_medium)
+        AiDifficulty.Smart -> stringResource(R.string.difficulty_hard)
+    }
     ExposedDropdownMenuBox(
         expanded = expanded.value,
         onExpandedChange = { expanded.value = !expanded.value },
@@ -181,16 +200,17 @@ private fun AiDropdown(
     ) {
         OutlinedTextField(
             readOnly = true,
-            value = when (selected) {
-                AiDifficulty.Weak -> stringResource(R.string.difficulty_easy)
-                AiDifficulty.Greedy -> stringResource(R.string.difficulty_medium)
-                AiDifficulty.Smart -> stringResource(R.string.difficulty_hard)
-            },
+            value = valueLabel,
             onValueChange = {},
-            label = { Text(stringResource(R.string.offline_ai_level)) },
+            label = { Text(labelText) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier
                 .menuAnchor()
+                .semantics(mergeDescendants = true) {
+                    contentDescription = "$labelText, $valueLabel"
+                    stateDescription = valueLabel
+                    role = Role.DropdownList
+                }
                 .widthIn(min = OfflineConfigAiDropdownMinWidth)
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
@@ -223,6 +243,7 @@ private fun ColorDropdown(
         ?: options.firstOrNull()?.labelRes
         ?: R.string.offline_color_label
     val label = stringResource(labelRes)
+    val fieldLabel = stringResource(R.string.offline_color_label)
     ExposedDropdownMenuBox(
         expanded = expanded.value,
         onExpandedChange = { expanded.value = !expanded.value },
@@ -232,10 +253,15 @@ private fun ColorDropdown(
             readOnly = true,
             value = label,
             onValueChange = {},
-            label = { Text(stringResource(R.string.offline_color_label)) },
+            label = { Text(fieldLabel) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
             modifier = Modifier
                 .menuAnchor()
+                .semantics(mergeDescendants = true) {
+                    contentDescription = "$fieldLabel, $label"
+                    stateDescription = label
+                    role = Role.DropdownList
+                }
                 .widthIn(min = OfflineConfigColorDropdownMinWidth)
         )
         DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
