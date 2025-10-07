@@ -3,11 +3,11 @@
     <!-- 起始畫面 -->
     <string name="start_title">中國跳棋</string>
     <string name="start_version">版本 v%1$s</string>
-    <string name="start_continue">繼續對局</string>
+    <string name="start_continue">繼續遊戲</string>
     <string name="start_offline">離線對戰</string>
     <string name="start_settings">設定</string>
-    <string name="start_stats">統計</string>
-    <string name="start_howto">怎麼玩</string>
+    <string name="start_stats">統計資料</string>
+    <string name="start_howto">玩法教學</string>
     <!-- 通用 -->
     <string name="common_back">返回</string>
     <string name="common_cancel">取消</string>
@@ -20,9 +20,9 @@
     <string name="settings_vibration">震動</string>
     <string name="settings_dark_theme">深色主題</string>
     <string name="settings_fast_mode">計時模式</string>
-    <string name="settings_fast_mode_desc">為每位玩家啟用回合倒數。</string>
+    <string name="settings_fast_mode_desc">為每位玩家啟用回合倒數計時。</string>
     <string name="settings_long_jump">啟用多格連跳</string>
-    <string name="settings_long_jump_desc">允許對稱跨越更多棋子，在單回合內跳得更遠。</string>
+    <string name="settings_long_jump_desc">允許對稱跨越更多棋子，單回合即可跳得更遠。</string>
     <string name="settings_turn_duration">每回合時長</string>
     <string name="settings_turn_duration_option">%1$d 秒</string>
     <string name="settings_timeout_behavior">逾時行為</string>
@@ -61,7 +61,7 @@
     <string name="victory_title">勝利</string>
     <string name="victory_winner_message">%1$s（%2$s）獲勝！</string>
     <string name="victory_congrats_message">恭喜！精彩對局！</string>
-    <string name="victory_play_again">再玩一局</string>
+    <string name="victory_play_again">再來一局</string>
     <string name="victory_return_home">返回首頁</string>
     <!-- 離線設定 -->
     <string name="offline_title">離線對戰設定</string>
@@ -85,38 +85,38 @@
     <string name="colour_teal">青</string>
     <string name="colour_custom">自訂</string>
     <!-- 統計 -->
-    <string name="profile_title">統計</string>
-    <string name="profile_section_heading">對局統計</string>
+    <string name="profile_title">統計資料</string>
+    <string name="profile_section_heading">對局統計資料</string>
     <string name="profile_total_games">總局數：%1$d</string>
-    <string name="profile_last_played">最近遊玩：%1$s</string>
+    <string name="profile_last_played">最近遊玩時間：%1$s</string>
     <string name="profile_reset_stats">重設統計</string>
-    <string name="profile_chart_by_player">按玩家勝場</string>
-    <string name="profile_chart_by_controller">按類型勝場（玩家/AI）</string>
-    <string name="profile_chart_by_difficulty">按難度勝場</string>
+    <string name="profile_chart_by_player">按玩家勝場數</string>
+    <string name="profile_chart_by_controller">按類型勝場數（玩家/AI）</string>
+    <string name="profile_chart_by_difficulty">按難度勝場數</string>
     <string name="profile_empty">（尚無）</string>
     <!-- AI 指南 -->
     <string name="ai_guide_title">AI 模式</string>
     <string name="ai_guide_weak_title">弱（隨機偏好）</string>
-    <string name="ai_guide_weak_desc">以隨機權重選擇走法，稍微偏好前進、跳躍與清營。</string>
+    <string name="ai_guide_weak_desc">以隨機權重選擇走法，稍微偏好前進、跳躍與清空營地。</string>
     <string name="ai_guide_medium_title">中（貪心評估）</string>
-    <string name="ai_guide_medium_desc">遍歷所有走法，選擇縮短距離並盡快清營的那一個。</string>
+    <string name="ai_guide_medium_desc">遍歷所有走法，選擇縮短距離並盡快清空營地的那一個。</string>
     <string name="ai_guide_strong_title">強（Minimax）</string>
     <string name="ai_guide_strong_desc">使用逐步加深與剪枝，結合距離、營地壓力與戰術跳躍，預先推演多步。</string>
     <string name="ai_guide_tip_title">提示</string>
-    <string name="ai_guide_tip_body">可於此設定預設 AI 難度，並在離線對戰中為每個座位單獨選擇。</string>
+    <string name="ai_guide_tip_body">可於此設定預設 AI 難度，並在離線對戰中為每個座位單獨設定等級。</string>
     <!-- 規則 -->
-    <string name="howto_title">怎麼玩</string>
+    <string name="howto_title">玩法教學</string>
     <string name="howto_tab_rules">基礎規則</string>
     <string name="howto_tab_ai">AI 介紹</string>
     <string name="howto_rules_standard_heading">標準規則</string>
     <string name="howto_rules_long_heading">長跳規則</string>
     <string name="howto_demo_title">跳躍示範</string>
     <string name="howto_demo_restart">重新播放</string>
-    <string name="howto_demo_normal_desc">普通跳示範：紅色棋子依序跨過鄰近棋子，逐步向前推進。</string>
+    <string name="howto_demo_normal_desc">一般跳示範：紅色棋子依序跨過鄰近棋子，逐步向前推進。</string>
     <string name="howto_demo_long_desc">長跳示範：紅色棋子一次跨過對稱排列的棋子，並繼續連跳。</string>
-    <string name="howto_rules_standard">• 一步走：移動到相鄰的空位。\n• 普通跳：跨過相鄰棋子，落到正對的空位。\n• 連續跳：落點為空時可繼續多次跳躍。\n• 勝利：占滿目標營地。</string>
+    <string name="howto_rules_standard">• 一步走：移動到相鄰的空位。\n• 普通跳：跨過相鄰棋子，落到正對的空位。\n• 連續跳：落點為空時可繼續多次跳躍。\n• 勝利：佔滿目標營地。</string>
     <string name="howto_rules_long_jump">• 於設定中啟用多格連跳。\n• 允許按對稱規則跨越多顆棋子，落點需與被跨棋子等距。\n• 可與普通跳於同一回合組合使用。</string>
-    <string name="howto_rules_layout">• 支援 2/3/4/6 人局，起始營地不同。\n• 儘早清出營地前排，為連跳留出通路。</string>
+    <string name="howto_rules_layout">• 支援 2/3/4/6 人局，起始營地不同。\n• 儘早清空營地前排，為連跳留出通路。</string>
     <!-- 除錯 -->
     <string name="debug_logs_title">除錯日誌（%1$d）- 最近 50 筆</string>
     <string name="debug_clear">清除日誌</string>

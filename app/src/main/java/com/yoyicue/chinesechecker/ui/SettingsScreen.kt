@@ -199,7 +199,7 @@ private fun LanguageDropdown(selected: String, onSelect: (String) -> Unit) {
     val options = listOf(
         "" to "Follow system",
         "en" to "English",
-        "zh" to "中文",
+        "zh" to "简体中文",
         "zh-Hant" to "繁體中文",
         "es" to "Español",
         "fr" to "Français",
