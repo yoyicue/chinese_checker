@@ -1,5 +1,6 @@
 package com.yoyicue.chinesechecker.ui.offline
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yoyicue.chinesechecker.data.AppContainer
@@ -17,7 +18,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import androidx.compose.ui.graphics.Color
 import java.util.LinkedHashMap
 
 class OfflineConfigViewModel(
@@ -99,15 +99,26 @@ class OfflineConfigViewModel(
     fun setColor(pid: Board.PlayerId, color: Color) {
         _state.update { current ->
             val setup = current.setups[pid] ?: return
-            val updated = setup.copy(color = color)
-            current.copy(setups = current.setups + (pid to updated))
+            val existingHolder = current.setups.entries.firstOrNull { it.key != pid && it.value.color == color }
+            val updatedSetups = current.setups.toMutableMap()
+            if (existingHolder != null) {
+                updatedSetups[existingHolder.key] = existingHolder.value.copy(color = setup.color)
+            }
+            updatedSetups[pid] = setup.copy(color = color)
+            current.copy(setups = updatedSetups)
         }
     }
 
-    fun colorOptionsFor(pid: Board.PlayerId): List<Pair<Color, Int>> {
+    fun colorOptionsFor(pid: Board.PlayerId): List<ColorOption> {
         val state = _state.value
         val used = state.setups.filter { it.key != pid }.values.map { it.color }.toSet()
-        return COLOR_PALETTE.filter { (color, _) -> color == state.setups[pid]?.color || color !in used }
+        return COLOR_PALETTE.map { (color, labelRes) ->
+            ColorOption(
+                color = color,
+                labelRes = labelRes,
+                isAvailable = color == state.setups[pid]?.color || color !in used
+            )
+        }
     }
 
     fun currentSetup(pid: Board.PlayerId): SeatSetup? = _state.value.setups[pid]
@@ -147,6 +158,11 @@ class OfflineConfigViewModel(
         val difficulty: AiDifficulty,
         val color: Color,
         val userDifficultyLocked: Boolean
+    )
+    data class ColorOption(
+        val color: Color,
+        val labelRes: Int,
+        val isAvailable: Boolean
     )
 
     companion object {

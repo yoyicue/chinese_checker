@@ -53,9 +53,15 @@ android {
     packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
 }
 
+private fun roomSchemaDir(): String = file("$projectDir/schemas").also { dir ->
+    if (!dir.exists()) {
+        dir.mkdirs()
+    }
+}.path
+
 kapt {
     arguments {
-        arg("room.schemaLocation", "$projectDir/app/schemas")
+        arg("room.schemaLocation", roomSchemaDir())
         arg("room.incremental", "true")
         arg("room.expandProjection", "true")
     }
@@ -86,8 +92,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     testImplementation("junit:junit:4.13.2")
+    kaptTest("androidx.room:room-compiler:2.6.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.02"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    kaptAndroidTest("androidx.room:room-compiler:2.6.1")
 }
