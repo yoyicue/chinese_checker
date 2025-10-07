@@ -1,9 +1,9 @@
 # Chinese Checker (Kotlin/Compose, Offline)
 
-This project implements an offline Chinese Checkers game for Android using Kotlin and Jetpack Compose, following the offline design goals and module ideas from `../chinese_checkers/docs/offline_chinese_checkers.md` but adapted to native Compose (no Flutter).
+This repository delivers an offline Chinese Checkers experience for Android built with Kotlin and Jetpack Compose, organized around clear domain, AI, and UI layers tuned for native Compose (no Flutter dependency).
 
 ## Highlights
-- Pure Kotlin + Compose UI, no online dependencies.
+- Pure Kotlin + Compose UI with no network requirements.
 - Core game model: hex coordinates, board generation (121 nodes), legal steps and multi-jumps.
 - Multi-player board logic (2/3/4/6). Player-to-camp mapping and per-player goal camp (opposite triangle).
 - Offline config supports 2/3/4/6 players, per-seat Human/AI (with difficulty), and per-seat color. In-game UI currently shows current player and renders with chosen colors.
