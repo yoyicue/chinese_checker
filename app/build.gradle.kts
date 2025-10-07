@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
-val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v0.1.2"
+val semanticTag = (project.findProperty("VERSION_NAME") as String?) ?: "v0.2.0"
 
 android {
     namespace = "com.yoyicue.chinesechecker"

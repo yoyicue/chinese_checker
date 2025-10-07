@@ -4,7 +4,7 @@
 - `app/` contains the primary Android module. Source lives under `app/src/main/java/com/yoyicue/chinesechecker`, and UI resources are in `app/src/main/res`.
 - `docs/` holds reference material shipped with the project; update it when behaviour changes.
 - `scripts/` is reserved for helper automation (release packaging, localisation sync). Reuse these scripts rather than duplicating logic.
-- Build artefacts (for example `chinesechecker_v0.1.2.apk`) are produced at the repository root; keep only the latest signed package in version control.
+- Build artefacts (for example `chinesechecker_v0.2.0.apk`) are produced at the repository root; keep only the latest signed package in version control.
 
 ## Build, Test, and Development Commands
 - `./gradlew assembleDebug` – compile the app and package a debuggable APK into `app/build/outputs/apk/debug/`. The wrapper in `gradle/wrapper/` targets Android SDK 34, so ensure a Java 17 runtime is available in `$JAVA_HOME`.
@@ -26,7 +26,7 @@
 - Existing coverage lives under `app/src/test/java/com/yoyicue/chinesechecker/game`; keep `BoardTest` passing when altering move logic or long-jump rules.
 
 ## Commit & Pull Request Guidelines
-- Follow the existing history’s imperative, concise commit style (e.g. `Expand localization support`, `bump: prepare v0.1.2`). Keep subject lines under ~72 characters and add body text for context when needed.
+- Follow the existing history’s imperative, concise commit style (e.g. `Expand localization support`, `bump: prepare v0.2.0`). Keep subject lines under ~72 characters and add body text for context when needed.
 - Each pull request should describe the change, link related issues, and include screenshots or recordings for UI adjustments. Mention required testing (`assembleDebug`, `lint`, `test`) and highlight localisation updates if strings changed.
 - Keep branches focused: one feature/fix per PR. Rebase on latest `main` before requesting review and resolve merge conflicts locally.
 
