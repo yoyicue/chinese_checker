@@ -16,12 +16,15 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.yoyicue.chinesechecker.ui.LocalAppContainer
+import com.yoyicue.chinesechecker.ui.profile.ProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -29,8 +32,10 @@ import java.util.Locale
 @Composable
 fun ProfileScreen(onBack: () -> Unit) {
     val container = LocalAppContainer.current
-    val scope = rememberCoroutineScope()
-    val stats by container.statsRepository.stats().collectAsState(initial = null)
+    val viewModel: ProfileViewModel = viewModel(factory = viewModelFactory {
+        initializer { ProfileViewModel(container.profileRepository, container.statsRepository) }
+    })
+    val stats by viewModel.stats.collectAsState(initial = null)
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
         Row { TextButton(onClick = onBack) { Text("返回") } }
@@ -68,7 +73,7 @@ fun ProfileScreen(onBack: () -> Unit) {
                 )
             }
             Spacer(Modifier.height(12.dp))
-            Button(onClick = { scope.launch { container.statsRepository.reset() } }) { Text("重置统计") }
+            Button(onClick = { viewModel.resetStats() }) { Text("重置统计") }
         } else {
             Text("统计加载中…")
         }

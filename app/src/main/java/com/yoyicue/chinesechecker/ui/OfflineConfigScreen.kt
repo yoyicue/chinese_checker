@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -26,23 +28,16 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.yoyicue.chinesechecker.data.AppSettings
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.yoyicue.chinesechecker.game.AiDifficulty
 import com.yoyicue.chinesechecker.game.Board
-import com.yoyicue.chinesechecker.ui.game.ControllerType
-import com.yoyicue.chinesechecker.ui.game.GameConfig
-import com.yoyicue.chinesechecker.ui.game.PlayerConfig
-import kotlinx.coroutines.launch
+import com.yoyicue.chinesechecker.ui.LocalAppContainer
 
 @Composable
 fun OfflineConfigScreen(
@@ -50,59 +45,16 @@ fun OfflineConfigScreen(
     onStartGame: () -> Unit
 ) {
     val container = LocalAppContainer.current
-    val settings by container.settingsRepository.settings.collectAsState(initial = AppSettings())
-    val scope = rememberCoroutineScope()
-
-    val playerCountOptions = listOf(2, 3, 4, 6)
-    val playerCountState = remember { mutableStateOf(2) }
-
-    val defaultColors = mapOf(
-        Board.PlayerId.A to Color(0xFFE53935), // red
-        Board.PlayerId.B to Color(0xFF1E88E5), // blue
-        Board.PlayerId.C to Color(0xFF8E24AA), // purple
-        Board.PlayerId.D to Color(0xFF43A047), // green
-        Board.PlayerId.E to Color(0xFFFDD835), // yellow
-        Board.PlayerId.F to Color(0xFFFF7043)  // orange
-    )
-    val colorPalette: List<Pair<Color, String>> = listOf(
-        Color(0xFFE53935) to "红",
-        Color(0xFF1E88E5) to "蓝",
-        Color(0xFF8E24AA) to "紫",
-        Color(0xFF43A047) to "绿",
-        Color(0xFFFDD835) to "黄",
-        Color(0xFFFF7043) to "橙",
-        Color(0xFF26A69A) to "青"
-    )
-
-    data class SetupState(
-        val isAI: androidx.compose.runtime.MutableState<Boolean>,
-        val difficulty: androidx.compose.runtime.MutableState<AiDifficulty>,
-        val color: androidx.compose.runtime.MutableState<Color>
-    )
-
-    val setups = remember(settings) {
-        mutableStateMapOf<Board.PlayerId, SetupState>().apply {
-            val defaultDiff = when (settings.aiDifficulty) {
-                0 -> AiDifficulty.Weak
-                1 -> AiDifficulty.Greedy
-                2 -> AiDifficulty.Smart
-                else -> AiDifficulty.Greedy
-            }
-            Board.PlayerId.values().forEach { pid ->
-                put(
-                    pid,
-                    SetupState(
-                        isAI = mutableStateOf(false),
-                        difficulty = mutableStateOf(defaultDiff),
-                        color = mutableStateOf(defaultColors[pid] ?: Color.Gray)
-                    )
-                )
-            }
+    val viewModel: com.yoyicue.chinesechecker.ui.offline.OfflineConfigViewModel = viewModel(factory = viewModelFactory {
+        initializer {
+            com.yoyicue.chinesechecker.ui.offline.OfflineConfigViewModel(
+                settingsRepository = container.settingsRepository,
+                gameRepository = container.gameRepository,
+                appContainer = container
+            )
         }
-    }
-
-    val seats = remember(playerCountState.value) { seatsForCount(playerCountState.value) }
-
+    })
+    val state by viewModel.state.collectAsState()
     val scrollState = rememberScrollState()
 
     Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
@@ -120,19 +72,18 @@ fun OfflineConfigScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text("玩家人数")
-                CountDropdown(options = playerCountOptions, selected = playerCountState.value, onSelect = { playerCountState.value = it })
+                CountDropdown(
+                    options = listOf(2, 3, 4, 6),
+                    selected = state.playerCount,
+                    onSelect = viewModel::setPlayerCount
+                )
             }
 
             Column(modifier = Modifier.padding(top = 8.dp)) {
-                seats.forEach { (pid, label) ->
-                    val st = setups.getValue(pid)
-                    // Colors chosen by others
-                    val chosenByOthers = seats.filter { it.first != pid }.map { setups.getValue(it.first).color.value }.toSet()
-                    val optionsForThis = colorPalette.filter { it.first !in chosenByOthers }
-                    // Ensure current selection remains valid; if not, force to first available
-                    if (optionsForThis.none { it.first == st.color.value }) {
-                        optionsForThis.firstOrNull()?.let { st.color.value = it.first }
-                    }
+                state.seats.forEach { (pid, label) ->
+                    val setup = viewModel.currentSetup(pid) ?: return@forEach
+                    val optionsForThis = viewModel.colorOptionsFor(pid).ifEmpty { com.yoyicue.chinesechecker.ui.offline.OfflineConfigViewModel.COLOR_PALETTE }
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -146,89 +97,46 @@ fun OfflineConfigScreen(
                         Column(horizontalAlignment = Alignment.End) {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                 Text("AI")
-                                Switch(checked = st.isAI.value, onCheckedChange = { st.isAI.value = it })
+                                Switch(checked = setup.isAi, onCheckedChange = { on -> viewModel.toggleAi(pid, on) })
                             }
                             Row(
                                 modifier = Modifier.padding(top = 6.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(12.dp)
                             ) {
-                                if (st.isAI.value) {
+                                if (setup.isAi) {
                                     AiDropdown(
-                                        selected = st.difficulty.value,
-                                        onSelect = { st.difficulty.value = it },
+                                        selected = setup.difficulty,
+                                        onSelect = { diff -> viewModel.setDifficulty(pid, diff) }
                                     )
                                 }
                                 ColorDropdown(
                                     options = optionsForThis,
-                                    selected = st.color.value,
-                                    onSelect = { st.color.value = it }
+                                    selected = setup.color,
+                                    onSelect = { color -> viewModel.setColor(pid, color) }
                                 )
                             }
                         }
                     }
                 }
             }
-            Spacer(Modifier.height(16.dp))
         }
 
         Button(
             modifier = Modifier.padding(top = 24.dp),
             onClick = {
-                val players = seats.map { (pid, _) ->
-                    val st = setups.getValue(pid)
-                    PlayerConfig(
-                        playerId = pid,
-                        controller = if (st.isAI.value) ControllerType.AI else ControllerType.Human,
-                        difficulty = if (st.isAI.value) st.difficulty.value else null,
-                        color = st.color.value
-                    )
-                }
-                val config = GameConfig(
-                    playerCount = playerCountState.value,
-                    players = players
-                )
-                scope.launch {
-                    container.pendingRestore = null
-                    container.lastGameConfig = config
-                    container.gameRepository.clearSave()
-                    onStartGame()
-                }
+                val config = viewModel.createGameConfig()
+                viewModel.prepareGame(config)
+                onStartGame()
             }
         ) { Text("开始游戏") }
     }
 }
 
-private fun seatsForCount(n: Int): List<Pair<Board.PlayerId, String>> = when (n) {
-    2 -> listOf(
-        Board.PlayerId.A to "上(Top)",
-        Board.PlayerId.B to "下(Bottom)"
-    )
-    3 -> listOf(
-        Board.PlayerId.A to "上(Top)",
-        Board.PlayerId.B to "左下(SW)",
-        Board.PlayerId.C to "右下(SE)"
-    )
-    4 -> listOf(
-        Board.PlayerId.A to "上(Top)",
-        Board.PlayerId.B to "下(Bottom)",
-        Board.PlayerId.C to "右上(NE)",
-        Board.PlayerId.D to "左下(SW)"
-    )
-    else -> listOf(
-        Board.PlayerId.A to "上(Top)",
-        Board.PlayerId.C to "右上(NE)",
-        Board.PlayerId.F to "右下(SE)",
-        Board.PlayerId.B to "下(Bottom)",
-        Board.PlayerId.D to "左下(SW)",
-        Board.PlayerId.E to "左上(NW)"
-    )
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CountDropdown(options: List<Int>, selected: Int, onSelect: (Int) -> Unit) {
-    val expanded = remember { mutableStateOf(false) }
+    val expanded = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
         OutlinedTextField(
             readOnly = true,
@@ -252,7 +160,7 @@ private fun CountDropdown(options: List<Int>, selected: Int, onSelect: (Int) -> 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AiDropdown(selected: AiDifficulty, onSelect: (AiDifficulty) -> Unit) {
-    val expanded = remember { mutableStateOf(false) }
+    val expanded = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     val options = listOf(AiDifficulty.Weak, AiDifficulty.Greedy, AiDifficulty.Smart)
     ExposedDropdownMenuBox(expanded = expanded.value, onExpandedChange = { expanded.value = !expanded.value }) {
         OutlinedTextField(
@@ -286,7 +194,7 @@ private fun AiDropdown(selected: AiDifficulty, onSelect: (AiDifficulty) -> Unit)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ColorDropdown(options: List<Pair<Color, String>>, selected: Color, onSelect: (Color) -> Unit) {
-    val expanded = remember { mutableStateOf(false) }
+    val expanded = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     val label = options.firstOrNull { it.first == selected }?.second
         ?: options.firstOrNull()?.second
         ?: "颜色"

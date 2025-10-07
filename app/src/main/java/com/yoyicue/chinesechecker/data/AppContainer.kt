@@ -12,6 +12,7 @@ class AppContainer(context: Context) {
         .addMigrations(*AppDatabase.ALL_MIGRATIONS)
         .build()
     val statsRepository = StatsRepository(db.gameResultDao())
+    val profileRepository = ProfileRepository(db.profileDao())
     val gameRepository = GameRepository(context, db.saveGameDao())
 
     // Ephemeral config & pending restore payload for navigation between screens
